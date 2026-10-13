@@ -20,3 +20,6 @@ WASD / 方向键移动；Shift 跑步；按住鼠标右键旋转视角；滚轮�
 
 ## GitHub
 预期私有仓库 `dark-fantasy-rpg`。仅在 CLI 授权有效时创建和推送；实际状态见验证记录。不要提交凭据。恢复授权：`gh auth login -h github.com`，随后 `tools/sync_github.sh`（会检查私有可见性）。
+
+## 验证与预览
+`tests/prototype_test.gd` 可用 Godot `--headless --path . --script tests/prototype_test.gd` 执行。`tools/capture_preview.gd` 必须使用图形渲染运行，保存实际游戏截图至 `docs/prototype_preview.png`。

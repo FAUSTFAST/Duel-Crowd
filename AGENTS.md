@@ -6,3 +6,5 @@
 每个稳定阶段测试后提交与推送，重大修改前保留检查点；禁止强推和覆盖历史。
 更新 README.md、ART_STYLE_GUIDE.md、DEVELOPMENT_PLAN.md、docs/VALIDATION.md。
 明确区分本地提交与远程成功。授权失败不得宣称已同步；不打印或保存 Token。
+
+本机已验证 Godot：`/Users/mac/Downloads/Godot.app/Contents/MacOS/Godot`（4.7.2）。Blender 未找到。执行 tests/prototype_test.gd 回归；图形运行 tools/capture_preview.gd 验证截图。只记录实际测试结果。
