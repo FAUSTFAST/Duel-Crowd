@@ -19,7 +19,7 @@ WASD / 方向键移动；Shift 跑步；启动自动捕获鼠标，直接移动�
 本轮使用真实 3D、低面数几何、动态阴影和深度雾。尚未实现低分辨率 SubViewport、像素贴图、战斗或正式骨骼动画。UI 独立 CanvasLayer，为后续高清 UI 保留结构。
 
 ## GitHub
-预期私有仓库 `dark-fantasy-rpg`。仅在 CLI 授权有效时创建和推送；实际状态见验证记录。不要提交凭据。恢复授权：`gh auth login -h github.com`，随后 `tools/sync_github.sh`（会检查私有可见性）。
+已关联用户指定仓库：https://github.com/FAUSTFAST/Duel-Crowd ，`main` 跟踪 `origin/main`。稳定摄像机版本 `e7ac7db` 已成功推送并核对远程提交。后续使用 `git push origin main` 同步；不要提交凭据或强制推送。
 
 ## 验证与预览
 `tests/prototype_test.gd` 可用 Godot `--path . --script tests/prototype_test.gd`（包含鼠标捕获测试，必须使用图形窗口） 执行。`tools/capture_preview.gd` 必须使用图形渲染运行，保存实际游戏截图至 `docs/prototype_preview.png`。

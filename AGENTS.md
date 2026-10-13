@@ -12,3 +12,5 @@
 项目版本标记必须与实际验证的编辑器版本一致；当前为 4.7，未验证 4.3 兼容性。
 
 摄像机输入回归 tests/prototype_test.gd 现在必须在图形窗口运行，不使用 --headless；捕获模式按 Esc 释放，点击重新捕获。
+
+用户指定远程为 https://github.com/FAUSTFAST/Duel-Crowd.git；main 跟踪 origin/main。不要再创建 dark-fantasy-rpg 仓库。沙箱内授权检查可能无法读取钥匙串，网络可能无法连接本地代理；需在获准的网络执行中核实，不可将沙箱限制误报为真实凭据失效。

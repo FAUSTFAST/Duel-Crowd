@@ -39,3 +39,6 @@
 - capture_preview.gd 实际 OpenGL 图形运行退出 0；查看更新截图，默认构图正常，UI 提示已更新。
 - GitHub 同步尝试仍因授权失效退出 1；origin 未配置，未创建仓库或远程推送。
 - 鼠标事件依据 Godot 官方说明：https://docs.godotengine.org/en/stable/classes/class_inputeventmousemotion.html
+
+## 指定仓库同步成功（2026-10-13）
+用户指定 https://github.com/FAUSTFAST/Duel-Crowd.git。沙箱内出现授权/代理连接错误；获准网络执行后 gh 确认 FAUSTFAST 授权有效，目标仓库无已有 refs。添加 origin，正常 push main 成功；远程 refs/heads/main 核对为 e7ac7dbce30f57563ad80ae21b05f431dedd299a。此前授权失败记录是当时沙箱检查结果，不能代表当前真实凭据失效。未强推或删除历史。本次仅更新同步文档，不改游戏，未重复运行游戏测试。
