@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Ashen Oath — Forest Prototype"
-run/main_scene="res://scenes/world/forest_ruins.tscn"
+run/main_scene="res://scenes/rendering/pixel_game.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 
 [display]
@@ -20,7 +20,13 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/size/window_width_override=1280
 window/size/window_height_override=720
-window/stretch/mode="canvas_items"
+window/size/min_width=640
+window/size/min_height=360
+window/stretch/mode="disabled"
+
+[physics]
+
+common/physics_interpolation=true
 
 [rendering]
 

@@ -42,3 +42,34 @@
 
 ## 指定仓库同步成功（2026-10-13）
 用户指定 https://github.com/FAUSTFAST/Duel-Crowd.git。沙箱内出现授权/代理连接错误；获准网络执行后 gh 确认 FAUSTFAST 授权有效，目标仓库无已有 refs。添加 origin，正常 push main 成功；远程 refs/heads/main 核对为 e7ac7dbce30f57563ad80ae21b05f431dedd299a。此前授权失败记录是当时沙箱检查结果，不能代表当前真实凭据失效。未强推或删除历史。本次仅更新同步文档，不改游戏，未重复运行游戏测试。
+
+## 第二阶段：像素渲染与基础视觉优化（2026-10-13）
+开发前稳定提交 37939e6；git fetch 后 main 与 origin/main 一致，工作区没有已有用户修改。先实际渲染并保存 visual_before.png，再开始修改。引擎仍为 Godot 4.7.2 / Apple M1 OpenGL 4.1 Metal Compatibility。
+
+### 实现与修复
+- 主场景 pixel_game.tscn，WorldViewport 单独渲染 3D，默认 640×360、可选 480×270 / 960×540；高清 UI 在根窗口 CanvasLayer。
+- 最近邻呈现与纹素中心 Shader；默认整数倍居中留边，F6 等比适应；原生对比也保持整像素 16:9。根窗口禁用 canvas_items 拉伸，使 UI 使用窗口分辨率。
+- 独立调试模块处理 F1/F2/F3/F4/F6 和环境光 +/-，其他输入只向 SubViewport 转发一次，保留 screen_relative 和已有摄像机/移动逻辑。
+- 原创确定性 64px 石材、路面、土壤、树皮、针叶、钢板、布料纹理，缓存且只在初始化生成；三平面映射、最近邻 mipmap。保留布局，增加棱面碎石和少量草簇。
+- 实图发现最初地面纹理太密，降低对比与高频细节后重新截图。调节冷色方向光/雾与局部暖光。
+- 启用物理插值，传送时 reset_physics_interpolation；修复出生点在摄像机初始化后赋值的顺序。静止测试第一次未通过（相机尚在收敛），修复顺序并充分预热后通过。
+- 截图工具的 RGB/RGBA 拼接不一致已修复，重新生成移动采样。测试工具的类型声明错误已修复。
+
+### 最终实际测试
+- 编辑器 --headless --editor --import --quit 导入退出 0。
+- 图形运行 tests/prototype_test.gd：19 项通过，退出 0，涵盖鼠标捕获/释放/点击、无按键转动、平滑跟随、缩放、WASD/奔跑/碰撞与重置。
+- 图形运行 tests/rendering_test.gd：28 项通过，退出 0。确认真实 SubViewport 分辨率、根 UI 与世界视口分离、无屏幕 AA；采样区域每个 2×2 像素块颜色完全一致；预热后的静止世界图像逐字节一致；三档切换/鼠标灵敏度、原生开关、纹理/雾/环境光调试通过。
+- 实际调整窗口到 1000×700，验证 640×360 整数显示在 (180,170) 居中；留边点击不捕获，画面内点击捕获。适应缩放保持 1000×562.5 比例；原生模式为 992×558 精确 16:9。640×360 小窗口显示 960 档等比缩小。
+- 短时预热采样 180 帧，640×360 平均帧间隔 8.30ms、P95 10.42ms；约 1157 渲染对象计数、1190 draw calls（含阴影重复绘制）。这些是本机短测数据，不是纯 GPU 时间，不代表跨平台帧率保证，扩大地图前需压缩阴影绘制开销。
+- tools/capture_preview.gd 实际图形运行退出 0，全部 PNG 保存成功；已人工查看三档、原生与连续移动采样。
+
+### 截图与边界
+- visual_before.png：本阶段开发前实际渲染。
+- visual_pixel_640.png / prototype_preview.png：最终默认像素渲染。
+- visual_native.png：相同新材质与光照的原生渲染，用于单独对比像素效果。
+- visual_pixel_480.png、visual_pixel_960.png：整数倍留边；故画面显示面积与默认不同，这是预期取舍。
+- visual_motion.png：移动并旋转的四个连续采样画面（内部分辨率，未包含 UI）。
+
+静止无闪烁测试通过，但截图/稀疏采样不能证明所有运动无闪烁；透视旋转、细枝、远处阴影与非整数缩放仍需真人试玩。未进行 Windows 导出、Retina 多种缩放、长时负载或全面手工输入测试。正式 GLB、骨骼骑士、粒子火焰尚未制作；当前不声称达到参考游戏商业美术质量。本轮没有新增战斗/敌人/装备。
+
+渲染依据官方文档：https://docs.godotengine.org/en/stable/classes/class_subviewport.html 、https://docs.godotengine.org/en/stable/classes/class_basematerial3d.html 。最新提交/同步结果以本轮 git log 与远程核对为准，继续使用用户指定 Duel-Crowd 仓库，不改可见性或历史。

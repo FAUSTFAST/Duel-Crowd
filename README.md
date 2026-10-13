@@ -1,27 +1,44 @@
-# 灰誓 / Ashen Oath
-原创暗黑奇幻 3D 动作 RPG，当前仅为阶段 1–2 基础原型。参考复古 3D 像素视觉语言，未使用 Duel Corp 代码或素材。
+# 灰誓 / Ashen Oath — Duel-Crowd
+原创暗黑奇幻 3D 动作 RPG。本阶段完成基础像素渲染与程序化美术优化；所有代码、几何和纹理均原创，未使用 Duel Corp 素材。
 
-## 启动
-使用 Godot 4.7.2 导入 `project.godot`，按 F6/F5 运行主场景。当前验证引擎版本见 docs/VALIDATION.md。
+## 运行与操作
+使用 **Godot 4.7.2** 导入 `project.godot`，按 F5 运行 `scenes/rendering/pixel_game.tscn`。WASD / 方向键移动，Shift 跑步，移动鼠标旋转摄像机，滚轮缩放，R 返回出生点。启动自动捕获鼠标；Esc 释放，点击游戏画面重新捕获；失焦释放，关闭窗口退出。
 
-WASD / 方向键移动；Shift 跑步；启动自动捕获鼠标，直接移动鼠标旋转视角；滚轮缩放；R 返回出生点；Esc 释放鼠标；左/右键点击游戏画面重新捕获。失去窗口焦点也会释放鼠标。关闭窗口退出。
+| 调试键 | 功能 |
+| --- | --- |
+| F1 | 像素渲染 / 原生分辨率对比 |
+| F2 | 640×360 → 960×540 → 480×270 循环 |
+| F3 | 开关原创纹理细节（保留当前光照） |
+| F4 | 开关环境雾 |
+| F6 | 整数倍 / 适应窗口缩放 |
+| - / =（+ 所在键） | 环境光能量，每次增减 0.05 |
 
-## 结构
-- scenes/：主场景；运行时生成确定性的原创占位环境与骑士
-- scripts/world/：场景构建与几何工具
-- scripts/characters/：角色移动和程序化占位动画
-- scripts/camera/：跟随、碰撞避让与视角控制
-- assets/：后续原创 GLB、贴图、材质、音频
-- shaders/：阶段 3 像素渲染预留
-- tests/：自动场景和移动回归检查
-- docs/：验证与环境记录
+默认内部 **640×360**。在 1280×720 窗口中为精确 2 倍最近邻放大。480 档显示 960×540；960 档显示 960×540，余下空间留边。F6 可填满窗口中最大的 16:9 区域；非整数缩放会出现像素宽度不完全均匀的取舍。窗口小于内部分辨率时会等比缩小，无法保证每个内部像素都可见。UI 使用窗口分辨率，保持清晰。16:9 之外的窗口会留边，不拉伸 3D 画面。
 
-本轮使用真实 3D、低面数几何、动态阴影和深度雾。尚未实现低分辨率 SubViewport、像素贴图、战斗或正式骨骼动画。UI 独立 CanvasLayer，为后续高清 UI 保留结构。
+## 模块
+- `scenes/rendering/pixel_game.tscn` / `scripts/rendering/pixel_renderer.gd`：SubViewport、呈现比例、输入路由、高清 UI 与调试，独立于角色逻辑。
+- `shaders/pixel_present.gdshader`：只采样纹素中心，无模糊、抖动或额外调色叠加。
+- `scripts/rendering/pixel_materials.gd`：缓存原创确定性 64px 纹理，石材、路面、土壤、树皮、针叶、钢和布料；最近邻与 mipmap。
+- `scenes/world/forest_ruins.tscn` / `scripts/world/`：保留原有布局的废墟、环境与几何工具。
+- `scripts/characters/`、`scripts/camera/`：骑士控制与 SpringArm 摄像机。
+- `assets/`：后续正式 GLB、像素贴图与音频预留。
+- `tests/`、`tools/`、`docs/`：回归、截图工具与验收记录。
+
+纹理通过世界空间三平面投射保持环境像素密度；骑士使用局部空间投射，随模型移动。摄像机平滑与物理插值减少高帧率下的物理步进感，mipmap 减少远处纹理闪烁；透视旋转下仍有正常的像素边缘跳变，并非完全消除走样。
+
+摄像机导出参数在 `scripts/camera/orbit_camera.gd`；渲染默认开关、分辨率索引与整数缩放可在主场景 Inspector 调整。调试调整仅作用于当前运行，不写入项目文件。
+
+## 验证与截图
+两个测试需要真实图形窗口，不使用 `--headless`：
+```
+Godot --path . --script tests/prototype_test.gd
+Godot --path . --script tests/rendering_test.gd
+Godot --path . --script tools/capture_preview.gd
+```
+本机可将 `Godot` 替换为 `/Users/mac/Downloads/Godot.app/Contents/MacOS/Godot`。测试包含输入事件注入，不等同于真人长时间试玩。截图保存在 docs：visual_before（修改前）、visual_pixel_640（默认）、visual_native（相同材质原生对比）、visual_pixel_480/960、visual_motion（移动采样）。详细结果见 `docs/VALIDATION.md`。
+
+## 当前边界
+仍为低面数占位骑士与程序化场景，未制作正式 Blender GLB、骨骼动画或粒子火焰。本轮没有战斗、敌人、装备或 RPG 新玩法。未验证 Windows 导出与长时间性能，不声称达到商业游戏最终美术质量。
 
 ## GitHub
-已关联用户指定仓库：https://github.com/FAUSTFAST/Duel-Crowd ，`main` 跟踪 `origin/main`。稳定摄像机版本 `e7ac7db` 已成功推送并核对远程提交。后续使用 `git push origin main` 同步；不要提交凭据或强制推送。
-
-## 验证与预览
-`tests/prototype_test.gd` 可用 Godot `--path . --script tests/prototype_test.gd`（包含鼠标捕获测试，必须使用图形窗口） 执行。`tools/capture_preview.gd` 必须使用图形渲染运行，保存实际游戏截图至 `docs/prototype_preview.png`。
-
-摄像机参数在 `scripts/camera/orbit_camera.gd` 的导出变量中调整：mouse_sensitivity、俯仰上下限、follow_offset、follow_speed、rotation_speed、min/max_distance、zoom_step、zoom_speed。当前摄像机由 Knight 脚本创建；可改导出默认值，或在创建时赋值。
+用户指定仓库：https://github.com/FAUSTFAST/Duel-Crowd 。`main` 跟踪 `origin/main`。使用 `git push origin main` 同步，不强推，不创建新仓库，不改变仓库可见性。最新实际推送结果以验证记录和 Git 日志为准。

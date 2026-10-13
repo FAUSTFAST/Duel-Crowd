@@ -37,3 +37,18 @@ static func cone(parent: Node3D, at: Vector3, radius: float, height: float, mat:
 	parent.add_child(instance)
 	instance.position = at
 	return instance
+
+static func rock(parent: Node3D, at: Vector3, size: Vector3, mat: Material) -> MeshInstance3D:
+	var corners := [Vector3(-0.5, 0, -0.35), Vector3(0.45, -0.1, -0.5), Vector3(0.5, 0, 0.3), Vector3(-0.35, 0.1, 0.5)]
+	var surface := SurfaceTool.new()
+	surface.begin(Mesh.PRIMITIVE_TRIANGLES)
+	for i in 4:
+		for point in [Vector3(0.05, 0.65, -0.05), corners[i], corners[(i + 1) % 4], Vector3(0, -0.45, 0), corners[(i + 1) % 4], corners[i]]:
+			surface.add_vertex(point * size)
+	surface.generate_normals()
+	var instance := MeshInstance3D.new()
+	instance.mesh = surface.commit()
+	instance.material_override = mat
+	parent.add_child(instance)
+	instance.position = at
+	return instance

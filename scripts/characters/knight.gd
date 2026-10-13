@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 const Geo = preload("res://scripts/world/geometry.gd")
+const PixelMaterials = preload("res://scripts/rendering/pixel_materials.gd")
 const Orbit = preload("res://scripts/camera/orbit_camera.gd")
 @export var walk_speed: float = 3.2
 @export var run_speed: float = 5.8
@@ -10,6 +11,8 @@ var right_leg: Node3D
 var left_arm: Node3D
 var right_arm: Node3D
 var orbit: Node3D
+var detailed_materials: Array[StandardMaterial3D] = []
+var material_textures: Array[Texture2D] = []
 var phase: float = 0.0
 var spawn_point := Vector3(0, 0.1, 5)
 
@@ -27,6 +30,11 @@ func _ready() -> void:
 	var steel := Geo.material(Color("8c9da5"), 0.55)
 	var dark := Geo.material(Color("293339"), 0.2)
 	var red := Geo.material(Color("6e2632"))
+	for item in [[steel, "steel"], [dark, "steel"], [red, "cloth"]]:
+		PixelMaterials.apply(item[0], item[1], 1.5)
+		item[0].uv1_world_triplanar = false
+		detailed_materials.append(item[0])
+		material_textures.append(item[0].albedo_texture)
 	Geo.box(visual, Vector3(0, 1.2, 0), Vector3(0.57, 0.6, 0.32), steel)
 	Geo.box(visual, Vector3(0, 1.68, 0), Vector3(0.4, 0.4, 0.37), steel)
 	Geo.box(visual, Vector3(0, 1.69, -0.192), Vector3(0.31, 0.055, 0.02), dark)
@@ -72,3 +80,4 @@ func _physics_process(delta: float) -> void:
 	if position.y < -8 or Input.is_action_just_pressed("reset"):
 		position = spawn_point
 		velocity = Vector3.ZERO
+		reset_physics_interpolation()

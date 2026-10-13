@@ -22,8 +22,9 @@ func frames(count: int) -> void:
 		await physics_frame
 
 func _run() -> void:
-	world = load("res://scenes/world/forest_ruins.tscn").instantiate()
-	root.add_child(world)
+	var game: Node = load("res://scenes/rendering/pixel_game.tscn").instantiate()
+	root.add_child(game)
+	world = game.world
 	await frames(30)
 	var knight: CharacterBody3D = world.player
 	check(knight.is_on_floor(), "knight settles on ground")
