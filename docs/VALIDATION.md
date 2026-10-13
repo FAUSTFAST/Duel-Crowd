@@ -25,3 +25,6 @@
 - 阶段 2 稳定提交使用 `git log -1 --oneline` 查看，包含本记录与实际截图。
 - `tools/sync_github.sh` 实际执行退出 1：GitHub 授权失效。未关联 origin，未创建私有远程，未推送。没有可报告的已验证 GitHub 项目 URL。
 - 用户运行 `gh auth login -h github.com` 恢复授权后，可执行 `tools/sync_github.sh` 创建 `dark-fantasy-rpg` 私有仓库并正常 push；脚本不强推。若同名仓库已存在，创建会安全失败，需先检查再关联。
+
+## 版本提示修复
+项目初始 config/features 错标为 4.3，但实际测试引擎为 4.7.2，导致项目管理器提示升级到 4.7。现已修正为 4.7，并移除 README 中未经验证的 4.3+ 兼容声明。重新运行 9 项回归全部通过（退出 0）。未改动视觉或玩法；尚未通过项目管理器 UI 复测弹窗。

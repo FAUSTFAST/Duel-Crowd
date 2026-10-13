@@ -2,7 +2,7 @@
 原创暗黑奇幻 3D 动作 RPG，当前仅为阶段 1–2 基础原型。参考复古 3D 像素视觉语言，未使用 Duel Corp 代码或素材。
 
 ## 启动
-使用 Godot 4.3+ 导入 `project.godot`，按 F6/F5 运行主场景。当前验证引擎版本见 docs/VALIDATION.md。
+使用 Godot 4.7.2 导入 `project.godot`，按 F6/F5 运行主场景。当前验证引擎版本见 docs/VALIDATION.md。
 
 WASD / 方向键移动；Shift 跑步；按住鼠标右键旋转视角；滚轮缩放；R 返回出生点；Esc 退出。
 

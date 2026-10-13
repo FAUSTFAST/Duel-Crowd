@@ -8,3 +8,5 @@
 明确区分本地提交与远程成功。授权失败不得宣称已同步；不打印或保存 Token。
 
 本机已验证 Godot：`/Users/mac/Downloads/Godot.app/Contents/MacOS/Godot`（4.7.2）。Blender 未找到。执行 tests/prototype_test.gd 回归；图形运行 tools/capture_preview.gd 验证截图。只记录实际测试结果。
+
+项目版本标记必须与实际验证的编辑器版本一致；当前为 4.7，未验证 4.3 兼容性。
