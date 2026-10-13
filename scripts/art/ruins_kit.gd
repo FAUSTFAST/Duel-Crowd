@@ -43,6 +43,23 @@ static func portal(parent: Node3D, stone: Material, pale: Material, iron: Materi
 	block(module, Vector3(0, 3.7, 0.34), Vector3(0.34, 0.55, 1.16), stone)
 	var sigil := Geo.box(module, Vector3(0, 3.75, 0.94), Vector3(0.12, 0.23, 0.035), iron)
 	sigil.rotation.z = PI / 4
+	# Broken upper lancet: an asymmetric silhouette, with sky visible through it.
+	for side in [-1, 1]:
+		for row in 4:
+			block(module, Vector3(3.25 + side * 0.64, 2.48 + row * 0.4, -0.1), Vector3(0.4, 0.38, 0.7), stone if row % 2 else pale)
+		var arch_stone := block(module, Vector3(3.25 + side * 0.37, 4.04, -0.1), Vector3(0.83, 0.32, 0.74), pale)
+		arch_stone.rotation.z = -side * 0.71
+	block(module, Vector3(3.25, 4.34, -0.1), Vector3(0.3, 0.4, 0.76), stone)
+	# Shallow layered stone bands, repaired joints and protruding broken cornices.
+	for side in [-1, 1]:
+		for row in 3:
+			block(module, Vector3(side * 3.22, 0.43 + row * 0.57, 0.47), Vector3(2.3, 0.055, 0.07), pale)
+		for row in 2:
+			for offset in [2.66, 3.7]:
+				block(module, Vector3(side * (offset + row * 0.18), 0.71 + row * 0.57, 0.48), Vector3(0.045, 0.51, 0.075), stone)
+		for i in 3:
+			var fragment := block(module, Vector3(side * (4.4 + i * 0.28), 2.47 - i * 0.08, -0.12), Vector3(0.4, 0.32, 0.87), stone)
+			fragment.rotation.z = side * i * 0.055
 	# Short ruined pilasters along the inner walls establish repeating modules.
 	for side in [-1, 1]:
 		for z in [-4.4, -7.2, -9.7]:

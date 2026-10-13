@@ -3,6 +3,7 @@ extends SceneTree
 const Kit = preload("res://scripts/art/ruins_kit.gd")
 const Meshes = preload("res://scripts/art/art_meshes.gd")
 const Geo = preload("res://scripts/world/geometry.gd")
+const Dressing = preload("res://scripts/art/forest_dressing.gd")
 var failures: int = 0
 
 func _initialize() -> void:
@@ -53,6 +54,24 @@ func _run() -> void:
 	check(not world.get_world_3d().direct_space_state.intersect_ray(parameters).is_empty(), "side wall collision survives world batching")
 	parameters = PhysicsRayQueryParameters3D.create(Vector3(0, 1.5, 1), Vector3(0, 1.5, -3))
 	check(world.get_world_3d().direct_space_state.intersect_ray(parameters).is_empty(), "main doorway remains traversable")
+	parameters = PhysicsRayQueryParameters3D.create(Vector3(6, 2, 4), Vector3(6, -1, 4))
+	var terrain_hit := world.get_world_3d().direct_space_state.intersect_ray(parameters)
+	check(not terrain_hit.is_empty() and absf(terrain_hit.position.y - Dressing.ground_height(6, 4) - 0.003) < 0.02, "verge collision matches visible terrain height")
+	world.player.position = Vector3(6, 1, 4)
+	world.player.velocity = Vector3.ZERO
+	world.player.reset_physics_interpolation()
+	for i in 90:
+		await physics_frame
+	check(world.player.is_on_floor() and absf(world.player.position.y - Dressing.ground_height(6, 4) - 0.003) < 0.05, "character physically settles on raised verge without falling through")
+	world.player.position = world.player.spawn_point
+	world.player.reset_physics_interpolation()
+	check(is_zero_approx(Dressing.ground_height(0, 5)) and is_zero_approx(Dressing.ground_height(0, -6)), "road and chapel retain original flat traversable height")
+	parameters = PhysicsRayQueryParameters3D.create(Vector3(19, 1, 0), Vector3(22, 1, 0))
+	check(not world.get_world_3d().direct_space_state.intersect_ray(parameters).is_empty(), "lower perimeter visuals retain the original 1.2m safety collision")
+	var flames := get_nodes_in_group("art_flames")
+	check(flames.size() == 4 and flames[0].sprite.hframes == 8 and flames[0].sprite.alpha_cut == SpriteBase3D.ALPHA_CUT_DISCARD, "pixel flame atlas is independent and uses sharp alpha cutout")
+	world.set_art_animation(false)
+	check(flames[0].sprite.frame == 3 and not flames[0].animation_enabled, "capture freeze keeps a deterministic flame frame")
 	var environmental_meshes := world.find_children("*", "MeshInstance3D", true, false)
 	check(environmental_meshes.size() < 50, "static draw mesh budget remains bounded")
 	var normals_ok := true
@@ -67,7 +86,7 @@ func _run() -> void:
 		var texture: Texture2D = load("res://assets/textures/%s.png" % kind)
 		formats_ok = formats_ok and texture.get_size() == Vector2(64, 64)
 	check(formats_ok, "required source textures are loadable 64x64 resources")
-	for name in ["chapel_portal", "pine", "knight_visual"]:
+	for name in ["chapel_portal", "pine", "knight_visual", "old_tree", "shrub"]:
 		var asset: PackedScene = load("res://assets/models/%s.scn" % name)
 		var instance := asset.instantiate()
 		check(not instance.find_children("*", "MeshInstance3D", true, false).is_empty(), "saved module %s instantiates with meshes" % name)

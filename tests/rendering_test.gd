@@ -31,6 +31,8 @@ func _run() -> void:
 	root.size = Vector2i(1280, 720)
 	game = load("res://scenes/rendering/pixel_game.tscn").instantiate()
 	root.add_child(game)
+	# Separate intended flame animation from unintended camera/pixel instability.
+	game.world.set_art_animation(false)
 	await settle(300)
 	check(game.viewport.size == Vector2i(640, 360), "default internal resolution 640x360")
 	check(game.viewport.get_camera_3d() == game.world.player.orbit.camera, "camera renders only in world viewport")
@@ -47,7 +49,13 @@ func _run() -> void:
 	check(repeat_ok, "640p presentation repeats exact 2x2 texels")
 	var still_before: PackedByteArray = game.viewport.get_texture().get_image().get_data()
 	await settle(30)
-	check(still_before == game.viewport.get_texture().get_image().get_data(), "stationary view has no temporal flicker")
+	check(still_before == game.viewport.get_texture().get_image().get_data(), "stationary view has no temporal flicker with effects frozen")
+	var flames := get_nodes_in_group("art_flames")
+	check(flames.size() == 4, "four independently animated original pixel flames")
+	game.world.set_art_animation(true)
+	await settle(13)
+	check(still_before != game.viewport.get_texture().get_image().get_data(), "enabled flame animation changes the actual rendered pixels")
+	game.world.set_art_animation(false)
 	for index in [2, 0, 1]:
 		key(KEY_F2)
 		await settle()
@@ -106,6 +114,7 @@ func _run() -> void:
 	check(game.presentation_rect.size == Vector2(640, 360), "small window downsizes 960p without distortion")
 	root.size = Vector2i(1280, 720)
 	game.set_resolution(1)
+	game.world.set_art_animation(true)
 	await settle(30)
 	var sample_times: Array[float] = []
 	for i in 180:

@@ -26,7 +26,7 @@ static func build(visual: Node3D, steel: Material, dark: Material, cloth: Materi
 	# Folded cloak with an uneven hem: three dimensional folds remain legible at 640p.
 	var cloak := SurfaceTool.new()
 	cloak.begin(Mesh.PRIMITIVE_TRIANGLES)
-	var xs := [-0.3, -0.13, 0.06, 0.3]
+	var xs := [-0.36, -0.15, 0.08, 0.36]
 	for i in 3:
 		var a := Vector3(xs[i] * 0.75, 1.48, 0.24 + (i % 2) * 0.06)
 		var b := Vector3(xs[i + 1] * 0.75, 1.48, 0.24 + ((i + 1) % 2) * 0.06)
@@ -36,6 +36,12 @@ static func build(visual: Node3D, steel: Material, dark: Material, cloth: Materi
 			cloak.add_vertex(point)
 	cloak.generate_normals()
 	Kit.piece(torso, Vector3.ZERO, cloak.commit(), cloth)
+	# Neck gorget and bright shoulder edging frame the burgundy cloak at game distance.
+	Kit.piece(torso, Vector3.ZERO, Meshes.profile([Vector3(0.25, 1.4, 0.2), Vector3(0.22, 1.52, 0.17)], 8), trim)
+	for side in [-1, 1]:
+		Kit.block(torso, Vector3(side * 0.19, 1.46, 0.31), Vector3(0.09, 0.065, 0.05), trim)
+		Kit.block(torso, Vector3(side * 0.13, 1.81, -0.2), Vector3(0.16, 0.035, 0.06), steel)
+	Kit.block(torso, Vector3(0, 1.9, 0), Vector3(0.035, 0.06, 0.36), trim)
 	var limbs: Dictionary = {}
 	for side in [-1, 1]:
 		var leg := _pivot(visual, Vector3(side * 0.16, 0.83, 0), "LeftLeg" if side == -1 else "RightLeg")
@@ -44,7 +50,8 @@ static func build(visual: Node3D, steel: Material, dark: Material, cloth: Materi
 		Kit.block(leg, Vector3(0, -0.52, -0.07), Vector3(0.16, 0.23, 0.1), steel)
 		Kit.block(leg, Vector3(0, -0.72, -0.075), Vector3(0.22, 0.16, 0.34), dark)
 		var arm := _pivot(visual, Vector3(side * 0.39, 1.43, 0), "LeftArm" if side == -1 else "RightArm")
-		Kit.piece(arm, Vector3.ZERO, Meshes.profile([Vector3(0.1, -0.52, 0.1), Vector3(0.12, -0.1, 0.13), Vector3(0.19, 0.03, 0.2), Vector3(0.16, 0.13, 0.17)], 7), steel)
+		Kit.piece(arm, Vector3.ZERO, Meshes.profile([Vector3(0.1, -0.52, 0.1), Vector3(0.12, -0.1, 0.13), Vector3(0.23, 0.03, 0.24), Vector3(0.19, 0.16, 0.2)], 7), steel)
+		Kit.piece(arm, Vector3.ZERO, Meshes.profile([Vector3(0.23, -0.04, 0.24), Vector3(0.22, 0.015, 0.23)], 7), trim)
 		Kit.block(arm, Vector3(0, -0.4, 0), Vector3(0.23, 0.08, 0.24), trim)
 		Kit.block(arm, Vector3(0, -0.51, -0.015), Vector3(0.2, 0.15, 0.21), dark)
 		limbs["left_leg" if side == -1 else "right_leg"] = leg
@@ -54,6 +61,8 @@ static func build(visual: Node3D, steel: Material, dark: Material, cloth: Materi
 	Kit.piece(shield, Vector3(-0.07, -0.3, -0.215), Meshes.profile([Vector3(0.014, -0.42, 0.012), Vector3(0.21, -0.1, 0.014), Vector3(0.235, 0.31, 0.014)], 4), cloth)
 	var crest := Kit.block(shield, Vector3(-0.07, -0.24, -0.24), Vector3(0.1, 0.19, 0.022), steel)
 	crest.rotation.z = PI / 4
+	Kit.block(shield, Vector3(-0.07, -0.24, -0.25), Vector3(0.045, 0.43, 0.03), trim)
+	Kit.block(shield, Vector3(-0.07, -0.18, -0.25), Vector3(0.28, 0.045, 0.03), trim)
 	var sword: Node3D = limbs.right_arm
 	Kit.piece(sword, Vector3(0, 0, -0.12), Meshes.profile([Vector3(0.005, -1.02, 0.005), Vector3(0.046, -0.84, 0.018), Vector3(0.046, -0.36, 0.018)], 4), steel)
 	Kit.block(sword, Vector3(0, -0.35, -0.12), Vector3(0.28, 0.055, 0.08), trim)

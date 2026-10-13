@@ -28,12 +28,12 @@ func _ready() -> void:
 	add_child(collider)
 	visual = Node3D.new()
 	add_child(visual)
-	var steel := Geo.material(Color("a5afac"), 0.3)
+	var steel := Geo.material(Color("b6c1b9"), 0.3)
 	steel.roughness = 0.7
 	var dark := Geo.material(Color("293339"), 0.2)
-	var red := Geo.material(Color("792d3e"))
+	var red := Geo.material(Color("91394b"))
 	red.cull_mode = BaseMaterial3D.CULL_DISABLED
-	var trim := Geo.material(Color("9d8151"), 0.5)
+	var trim := Geo.material(Color("b1945e"), 0.5)
 	for item in [[steel, "steel"], [dark, "steel"], [red, "cloth"], [trim, "steel"]]:
 		PixelMaterials.apply(item[0], item[1], 1.5)
 		item[0].uv1_world_triplanar = false

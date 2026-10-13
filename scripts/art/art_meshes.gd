@@ -40,6 +40,25 @@ static func bevel_box(size: Vector3, bevel: float = 0.04) -> ArrayMesh:
 	surface.generate_normals()
 	return surface.commit()
 
+static func worn_slab(size: Vector3, seed_value: int) -> ArrayMesh:
+	var mesh := bevel_box(size, 0.045)
+	var arrays := mesh.surface_get_arrays(0)
+	var vertices: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX]
+	for i in vertices.size():
+		var point := vertices[i]
+		var x_offset := sin(point.z * 13.0 + seed_value * 2.1) * 0.018
+		var z_offset := cos(point.x * 11.0 + seed_value * 1.7) * 0.035
+		point.x += x_offset * absf(point.x) / (size.x * 0.5)
+		point.z += z_offset * absf(point.z) / (size.z * 0.5)
+		vertices[i] = point
+	arrays[Mesh.ARRAY_VERTEX] = vertices
+	var result := ArrayMesh.new()
+	result.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
+	var surface := SurfaceTool.new()
+	surface.create_from(result, 0)
+	surface.generate_normals()
+	return surface.commit()
+
 # Each profile is (x radius, y height, z radius). Flat faces give readable planes.
 static func profile(rings: Array[Vector3], sides: int = 8, irregularity: float = 0.0) -> ArrayMesh:
 	var surface := SurfaceTool.new()
