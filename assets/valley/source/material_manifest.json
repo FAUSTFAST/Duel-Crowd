@@ -1,0 +1,7 @@
+{
+  "source": "forest_material_atlas.png",
+  "method": "built-in imagegen original atlas + authored import preparation",
+  "working_albedo": "256px / 96 colours",
+  "normal": "estimated from albedo luminance; not measured or baked high-poly",
+  "external_assets": false
+}

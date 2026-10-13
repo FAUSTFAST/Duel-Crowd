@@ -1,6 +1,8 @@
 extends Node
 
 const WORLD_SCENE = preload("res://scenes/world/forest_ruins.tscn")
+@export var world_scene: PackedScene = WORLD_SCENE
+@export var scene_title: String = "ASHEN OATH  /  THE FORSAKEN CHAPEL"
 const RESOLUTIONS := [Vector2i(480, 270), Vector2i(640, 360), Vector2i(960, 540)]
 @export var pixel_enabled: bool = true
 @export_range(0, 2) var resolution_index: int = 1
@@ -39,7 +41,7 @@ func _ready() -> void:
 	display.material = material
 	add_child(display)
 	_layout()
-	world = WORLD_SCENE.instantiate()
+	world = world_scene.instantiate()
 	viewport.add_child(world)
 	_build_hud()
 	get_viewport().size_changed.connect(_layout)
@@ -120,7 +122,7 @@ func _build_hud() -> void:
 	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	hud.add_child(panel)
 	var title := Label.new()
-	title.text = "ASHEN OATH  /  THE FORSAKEN CHAPEL"
+	title.text = scene_title
 	title.position = Vector2(38, 34)
 	title.add_theme_color_override("font_color", Color("d7cba7"))
 	title.mouse_filter = Control.MOUSE_FILTER_IGNORE

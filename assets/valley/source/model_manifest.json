@@ -1,0 +1,51 @@
+{
+  "blender_version": "4.5.9 LTS",
+  "assets": [
+    {
+      "file": "valley_terrain.glb",
+      "vertices": 4941,
+      "polygons": 9600
+    },
+    {
+      "file": "slate_a.glb",
+      "vertices": 428,
+      "polygons": 852
+    },
+    {
+      "file": "slate_b.glb",
+      "vertices": 444,
+      "polygons": 884
+    },
+    {
+      "file": "oak_a.glb",
+      "vertices": 3022,
+      "polygons": 3734
+    },
+    {
+      "file": "oak_b.glb",
+      "vertices": 3022,
+      "polygons": 3734
+    },
+    {
+      "file": "shrub.glb",
+      "vertices": 387,
+      "polygons": 468
+    },
+    {
+      "file": "grass_patch.glb",
+      "vertices": 350,
+      "polygons": 210
+    },
+    {
+      "file": "flower_patch.glb",
+      "vertices": 360,
+      "polygons": 144
+    },
+    {
+      "file": "knight_study.glb",
+      "vertices": 1416,
+      "polygons": 2517
+    }
+  ],
+  "status": "original scripted Blender visual study, not hand-sculpted production art"
+}
