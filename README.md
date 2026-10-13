@@ -4,7 +4,7 @@
 ## 启动
 使用 Godot 4.7.2 导入 `project.godot`，按 F6/F5 运行主场景。当前验证引擎版本见 docs/VALIDATION.md。
 
-WASD / 方向键移动；Shift 跑步；按住鼠标右键旋转视角；滚轮缩放；R 返回出生点；Esc 退出。
+WASD / 方向键移动；Shift 跑步；启动自动捕获鼠标，直接移动鼠标旋转视角；滚轮缩放；R 返回出生点；Esc 释放鼠标；左/右键点击游戏画面重新捕获。失去窗口焦点也会释放鼠标。关闭窗口退出。
 
 ## 结构
 - scenes/：主场景；运行时生成确定性的原创占位环境与骑士
@@ -22,4 +22,6 @@ WASD / 方向键移动；Shift 跑步；按住鼠标右键旋转视角；滚轮�
 预期私有仓库 `dark-fantasy-rpg`。仅在 CLI 授权有效时创建和推送；实际状态见验证记录。不要提交凭据。恢复授权：`gh auth login -h github.com`，随后 `tools/sync_github.sh`（会检查私有可见性）。
 
 ## 验证与预览
-`tests/prototype_test.gd` 可用 Godot `--headless --path . --script tests/prototype_test.gd` 执行。`tools/capture_preview.gd` 必须使用图形渲染运行，保存实际游戏截图至 `docs/prototype_preview.png`。
+`tests/prototype_test.gd` 可用 Godot `--path . --script tests/prototype_test.gd`（包含鼠标捕获测试，必须使用图形窗口） 执行。`tools/capture_preview.gd` 必须使用图形渲染运行，保存实际游戏截图至 `docs/prototype_preview.png`。
+
+摄像机参数在 `scripts/camera/orbit_camera.gd` 的导出变量中调整：mouse_sensitivity、俯仰上下限、follow_offset、follow_speed、rotation_speed、min/max_distance、zoom_step、zoom_speed。当前摄像机由 Knight 脚本创建；可改导出默认值，或在创建时赋值。

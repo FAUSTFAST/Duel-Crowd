@@ -120,7 +120,7 @@ func _ui() -> void:
 	var panel := ColorRect.new()
 	panel.color = Color(0.04, 0.07, 0.08, 0.82)
 	panel.position = Vector2(24, 24)
-	panel.size = Vector2(440, 98)
+	panel.size = Vector2(470, 120)
 	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	layer.add_child(panel)
 	var title := Label.new()
@@ -129,11 +129,8 @@ func _ui() -> void:
 	title.add_theme_color_override("font_color", Color("d7cba7"))
 	layer.add_child(title)
 	var help := Label.new()
-	help.text = "WASD / Arrows  Move     Shift  Run\nRMB  Orbit     Wheel  Zoom     R  Reset     Esc  Exit"
+	help.text = "WASD / Arrows  Move     Shift  Run\nMouse  Orbit     Wheel  Zoom     R  Reset
+Esc  Release mouse     Click  Capture"
 	help.position = Vector2(38, 64)
 	help.add_theme_font_size_override("font_size", 14)
 	layer.add_child(help)
-
-func _unhandled_key_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
-		get_tree().quit()
