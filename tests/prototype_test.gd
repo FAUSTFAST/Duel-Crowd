@@ -65,7 +65,7 @@ func _run() -> void:
 	check(knight.orbit.distance < before_distance, "mouse wheel zoom works")
 	knight.orbit.yaw = before_yaw + 0.2
 	await frames(30)
-	check(absf(knight.orbit.rotation.y - knight.orbit.yaw) < 0.001, "camera follows orbit yaw")
+	check(absf(angle_difference(knight.orbit.rotation.y, knight.orbit.yaw)) < 0.001, "camera follows orbit yaw")
 	var oversized := InputEventMouseMotion.new()
 	oversized.screen_relative = Vector2(0, 100000)
 	root.push_input(oversized)

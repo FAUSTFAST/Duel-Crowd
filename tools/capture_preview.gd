@@ -17,6 +17,12 @@ func save_preview(path: String) -> void:
 func _capture() -> void:
 	var game: Node = load("res://scenes/rendering/pixel_game.tscn").instantiate()
 	root.add_child(game)
+	game.world.player.orbit.set_process_input(false)
+	game.world.player.orbit.set_process_unhandled_input(false)
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	game.world.player.orbit.yaw = 0.55
+	game.world.player.orbit.pitch = -0.65
+	game.world.player.orbit.distance = 12.0
 	await settle()
 	save_preview("res://docs/prototype_preview.png")
 	save_preview("res://docs/visual_pixel_640.png")

@@ -73,3 +73,44 @@
 静止无闪烁测试通过，但截图/稀疏采样不能证明所有运动无闪烁；透视旋转、细枝、远处阴影与非整数缩放仍需真人试玩。未进行 Windows 导出、Retina 多种缩放、长时负载或全面手工输入测试。正式 GLB、骨骼骑士、粒子火焰尚未制作；当前不声称达到参考游戏商业美术质量。本轮没有新增战斗/敌人/装备。
 
 渲染依据官方文档：https://docs.godotengine.org/en/stable/classes/class_subviewport.html 、https://docs.godotengine.org/en/stable/classes/class_basematerial3d.html 。最新提交/同步结果以本轮 git log 与远程核对为准，继续使用用户指定 Duel-Crowd 仓库，不改可见性或历史。
+
+## 第三阶段：核心区域美术精修（2026-10-13）
+
+### 开始状态与范围
+- 开发前 git fetch，main 与 origin/main 同为 8b6bedc，工作区干净。此提交是可恢复检查点；没有覆盖用户修改。
+- 保留 SubViewport、三档分辨率、高清 UI、输入路由、移动/跑步/摄像机与原地图布局。只精修入口、道路边缘、树木/植被和骑士；没有战斗、AI、装备玩法或地图扩张。
+- Godot 仍为 4.7.2；Blender 未安装。本轮使用原创 Godot 网格源模块，未宣称制作 Blender GLB。
+
+### 主要实现
+- scripts/art/art_meshes.gd：倒角块和分层棱面轮廓，统一米制尺寸。
+- ruins_kit.gd：尖拱、柱头、扶壁、路沿、挂旗、不规则五层针叶树、蕨类、静态几何合批。新增装饰不阻断入口中心，原碰撞脚印保持。
+- knight_model.gd：头盔/盔顶、肩甲、胸甲、护膝、靴、镶边盾与原创菱形徽记、剑形细节、折叠披风。四肢节点仍由原控制器驱动；未添加武器玩法。
+- assets/textures：11 张可编辑原创 64px PNG，分别表现石质、石板、木材、树皮、土壤/苔草、草叶、针叶、金属和织物。颜色由材质色板调制。用 ResourceLoader 读取纹理再缓存 mipmap，修复最初直接 Image.load_from_file 的导出警告。
+- assets/models：chapel_portal.scn / pine.scn / knight_visual.scn 原生可实例化预览资源，源模块与运行时相同；不包含控制器、骨骼或动画资源。后续 GLB 需增加/烘焙 UV，不能直接假定保留 Godot 三平面投射。
+- 默认环境光 0.3、方向光 0.95、火炬 1.4、雾密度 0.01；降低近景灰雾并提高角色阴影可读性，保留冷暖对比和像素边缘。
+
+### 实图发现与修复
+- 初次合批混用有索引/无索引网格，部分路面与墙体未绘制。改为每个源表面去索引后合并，再统一索引，增加混合网格三角形数量和碰撞变换测试。已重新实际渲染确认路面和墙体完整。
+- 双面薄片最初重复反向共面三角形造成法线黑点。改为单层几何与双面材质，蕨类显式设置有效法线，披风去掉反向重复面。增加全部面法线有效性检查，已查看最终实图。
+- 捕获模式的真实系统鼠标事件干扰了首次自动截图角度。修正截图工具屏蔽真实鼠标输入后，从 git archive 8b6bedc 的独立临时目录重新生成 before，再生成 after。仅截图工具禁用输入，生产摄像机行为未改变。
+- 原控制测试将欧拉 yaw 直接相减会受角度环绕影响，改用 angle_difference。分辨率输入测试明确进入捕获模式再注入事件，避免窗口焦点变化导致测试读到可见鼠标状态；最终通过。
+- 一次自动截图等待渲染帧过长，后续进程正常完成，无错误输出；未定位其操作系统/窗口层根因，不宣称已修复此等待。后续完整截图工具和图形回归均正常完成。截图窗口应保持可见，实际游戏前台与测试运行正常。
+
+### 最终测试与性能
+- 图形 tests/prototype_test.gd：19 项通过，退出 0，原控制与碰撞不受影响。
+- 图形 tests/rendering_test.gd：28 项通过，退出 0，三档、精确 2×2 像素放大、静止逐字节稳定、高清 UI、原生对比、材质/雾调试、窗口比例与鼠标灵敏度正常。
+- headless tests/art_integrity_test.gd：14 项通过，退出 0；混合索引完整、碰撞保持、入口通行、独立四肢、网格预算、全体法线、源纹理和三份模型实例化。
+- 总计 61 项最终检查通过。新增测试工具早期的 nil 索引读取错误已修复。
+- 本机 Apple M1 / OpenGL Compatibility，640×360 预热后180帧短测：平均 8.27ms、P95 12.00ms，监控对象307、draw calls187（包含阴影绘制）。上一阶段记录1190 draw calls，本轮合批明显减少开销；两次采样不是严格同位置 GPU benchmark，不据此推算精确提升百分比。平均受约120Hz显示同步影响；不代表跨平台或长时间性能。
+- tools/bake_art_library.gd 三份资源保存返回0；tools/capture_art_review.gd 与 capture_preview.gd 最终保存全部PNG返回0、退出0。
+
+### 同角度截图
+- stage3_before_overview.png / stage3_after_overview.png：yaw0.55、pitch-0.65、距离12m。
+- stage3_before_knight.png / stage3_after_knight.png：yaw PI+0.35、pitch-0.27、距离4m。
+- 共同参数：内部640×360，1280×720输出、FOV52°、同出生点、隐藏HUD。before来自稳定版本8b6bedc。
+- 最新 prototype_preview、三档、原生与移动采样也已更新，已查看默认截图、固定角度远景和骑士近景。
+
+### 边界
+核心区域明显改善，但外圈地形与边界仍简单；细叶运动走样需真人检查。未做Windows导出、Retina多缩放、长时压力或完整手工试玩；没有正式骨骼动画、布料物理或粒子火焰，不声称达到参考游戏最终商业美术质量。静态大包围盒合批适用于目前小地图，扩大地图前应分空间块。
+
+SurfaceTool 使用依据：[Godot 4.7 官方文档](https://docs.godotengine.org/en/4.7/classes/class_surfacetool.html)。提交与同步以本轮最终 git log、push 和远程 refs 核对为准，仍使用 Duel-Crowd，不改可见性、不强推。

@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+const KnightModel = preload("res://scripts/art/knight_model.gd")
 const Geo = preload("res://scripts/world/geometry.gd")
 const PixelMaterials = preload("res://scripts/rendering/pixel_materials.gd")
 const Orbit = preload("res://scripts/camera/orbit_camera.gd")
@@ -27,36 +28,25 @@ func _ready() -> void:
 	add_child(collider)
 	visual = Node3D.new()
 	add_child(visual)
-	var steel := Geo.material(Color("8c9da5"), 0.55)
+	var steel := Geo.material(Color("a5afac"), 0.3)
+	steel.roughness = 0.7
 	var dark := Geo.material(Color("293339"), 0.2)
-	var red := Geo.material(Color("6e2632"))
-	for item in [[steel, "steel"], [dark, "steel"], [red, "cloth"]]:
+	var red := Geo.material(Color("792d3e"))
+	red.cull_mode = BaseMaterial3D.CULL_DISABLED
+	var trim := Geo.material(Color("9d8151"), 0.5)
+	for item in [[steel, "steel"], [dark, "steel"], [red, "cloth"], [trim, "steel"]]:
 		PixelMaterials.apply(item[0], item[1], 1.5)
 		item[0].uv1_world_triplanar = false
 		detailed_materials.append(item[0])
 		material_textures.append(item[0].albedo_texture)
-	Geo.box(visual, Vector3(0, 1.2, 0), Vector3(0.57, 0.6, 0.32), steel)
-	Geo.box(visual, Vector3(0, 1.68, 0), Vector3(0.4, 0.4, 0.37), steel)
-	Geo.box(visual, Vector3(0, 1.69, -0.192), Vector3(0.31, 0.055, 0.02), dark)
-	Geo.box(visual, Vector3(0, 1.33, 0.23), Vector3(0.51, 0.7, 0.06), red)
-	Geo.box(visual, Vector3(0, 0.89, 0), Vector3(0.49, 0.17, 0.34), dark)
-	left_leg = _limb(Vector3(-0.17, 0.83, 0), Vector3(0.2, 0.65, 0.24), dark)
-	right_leg = _limb(Vector3(0.17, 0.83, 0), Vector3(0.2, 0.65, 0.24), dark)
-	left_arm = _limb(Vector3(-0.4, 1.43, 0), Vector3(0.22, 0.5, 0.24), steel)
-	right_arm = _limb(Vector3(0.4, 1.43, 0), Vector3(0.22, 0.5, 0.24), steel)
-	Geo.box(left_arm, Vector3(-0.07, -0.32, -0.12), Vector3(0.13, 0.62, 0.45), red)
-	Geo.box(right_arm, Vector3(0, -0.65, -0.13), Vector3(0.07, 0.65, 0.06), steel)
-	Geo.box(right_arm, Vector3(0, -0.35, -0.13), Vector3(0.3, 0.05, 0.09), dark)
+	var limbs := KnightModel.build(visual, steel, dark, red, trim)
+	left_leg = limbs.left_leg
+	right_leg = limbs.right_leg
+	left_arm = limbs.left_arm
+	right_arm = limbs.right_arm
 	orbit = Orbit.new()
 	orbit.target = self
 	add_child(orbit)
-
-func _limb(at: Vector3, size: Vector3, mat: Material) -> Node3D:
-	var pivot := Node3D.new()
-	visual.add_child(pivot)
-	pivot.position = at
-	Geo.box(pivot, Vector3(0, -size.y / 2.0, 0), size, mat)
-	return pivot
 
 func _physics_process(delta: float) -> void:
 	var input := Input.get_vector("move_left", "move_right", "move_forward", "move_back")

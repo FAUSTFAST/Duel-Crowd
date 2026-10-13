@@ -54,6 +54,7 @@ func _run() -> void:
 		check(game.viewport.size == Renderer.RESOLUTIONS[index], "F2 cycles to %s" % game.viewport.size)
 		var rect: Rect2 = game.presentation_rect
 		check(is_equal_approx(rect.size.x / rect.size.y, 16.0 / 9.0), "resolution keeps aspect ratio")
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		var yaw: float = game.world.player.orbit.yaw
 		var motion := InputEventMouseMotion.new()
 		motion.screen_relative = Vector2(10, 0)

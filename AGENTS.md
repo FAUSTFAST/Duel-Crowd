@@ -1,6 +1,6 @@
 # 项目开发约定
 使用中文报告。每次修改先检查 Git 状态并阅读现有实现。只操作本项目，不改全局配置。
-当前范围：用户授权第二阶段像素渲染、基础材质与光照优化；禁止扩展战斗、敌人 AI、装备与 RPG 玩法。
+当前范围：用户授权第三阶段核心区域、原创模型、像素材质、骑士和光影精修；禁止扩展战斗、敌人 AI、装备玩法和地图范围。
 视觉优先：需要实际运行截图验证，不以解析成功代替视觉验收。所有内容原创。
 保持角色、摄像机、世界构建模块独立。Godot 4.x / GDScript；正式模型使用 Blender 导出的 GLB。
 每个稳定阶段测试后提交与推送，重大修改前保留检查点；禁止强推和覆盖历史。
@@ -16,3 +16,5 @@
 用户指定远程为 https://github.com/FAUSTFAST/Duel-Crowd.git；main 跟踪 origin/main。不要再创建 dark-fantasy-rpg 仓库。沙箱内授权检查可能无法读取钥匙串，网络可能无法连接本地代理；需在获准的网络执行中核实，不可将沙箱限制误报为真实凭据失效。
 
 主场景为 scenes/rendering/pixel_game.tscn。3D 世界在 SubViewport，高清 UI 在根视口；输入仅由 pixel_renderer 显式转发一次，不增加第二条输入路由。screen_relative 保持屏幕位移。图形运行 tests/rendering_test.gd 验收分辨率、像素重复、比例、UI 与输入；截图工具会生成三档、原生及移动对比。
+
+美术源模块在 scripts/art；assets/models/*.scn 是可实例化的生成预览，不含控制器。纹理 PNG 为可编辑源文件，生成器会覆盖它们，执行前保留 Git 检查点。静态合批必须先统一去索引再合并；保留碰撞变换，不能把角色四肢合进静态躯干。运行 tests/art_integrity_test.gd 检查资源/三角形/碰撞；同角度截图使用 tools/capture_art_review.gd，截图工具禁用真实鼠标干扰，不修改生产输入行为。
