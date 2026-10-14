@@ -235,5 +235,6 @@ func set_material_detail(enabled: bool) -> void:
 	player.study_materials.set_detail(enabled)
 
 func set_art_animation(enabled: bool) -> void:
+	player.set_visual_animation_enabled(enabled)
 	for flame in flames:
 		flame.set_animation_enabled(enabled)

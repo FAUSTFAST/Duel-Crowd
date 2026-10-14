@@ -26,6 +26,12 @@ func _ready() -> void:
 	collider.shape = capsule
 	collider.position.y = 0.9
 	add_child(collider)
+	_build_visual()
+	orbit = Orbit.new()
+	orbit.target = self
+	add_child(orbit)
+
+func _build_visual() -> void:
 	visual = Node3D.new()
 	add_child(visual)
 	var steel := Geo.material(Color("b6c1b9"), 0.3)
@@ -44,9 +50,6 @@ func _ready() -> void:
 	right_leg = limbs.right_leg
 	left_arm = limbs.left_arm
 	right_arm = limbs.right_arm
-	orbit = Orbit.new()
-	orbit.target = self
-	add_child(orbit)
 
 func _physics_process(delta: float) -> void:
 	var input := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
@@ -61,13 +64,16 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	if direction.length_squared() > 0.01:
 		visual.rotation.y = lerp_angle(visual.rotation.y, atan2(-direction.x, -direction.z), 12 * delta)
+	_animate_visual(delta)
+	if position.y < -8 or Input.is_action_just_pressed("reset"):
+		position = spawn_point
+		velocity = Vector3.ZERO
+		reset_physics_interpolation()
+
+func _animate_visual(delta: float) -> void:
 	phase += delta * velocity.length() * 3.0
 	var swing := sin(phase) * minf(Vector2(velocity.x, velocity.z).length() / 6.0, 0.7)
 	left_leg.rotation.x = swing
 	right_leg.rotation.x = -swing
 	left_arm.rotation.x = -swing * 0.6
 	right_arm.rotation.x = swing * 0.6
-	if position.y < -8 or Input.is_action_just_pressed("reset"):
-		position = spawn_point
-		velocity = Vector3.ZERO
-		reset_physics_interpolation()

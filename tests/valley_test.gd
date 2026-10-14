@@ -32,6 +32,8 @@ func _run() -> void:
 	root.size = Vector2i(1280, 720)
 	game = load("res://scenes/visual_lab/forest_valley.tscn").instantiate()
 	root.add_child(game)
+	# Verify startup before OS window focus changes can correctly release capture.
+	check(Input.mouse_mode == Input.MOUSE_MODE_CAPTURED, "valley starts with captured mouse")
 	if not is_instance_valid(game.world.player):
 		quit(1)
 		return
@@ -39,7 +41,6 @@ func _run() -> void:
 	var player: CharacterBody3D = world.player
 	var orbit: Node3D = player.orbit
 	await settle(180)
-	check(Input.mouse_mode == Input.MOUSE_MODE_CAPTURED, "valley starts with captured mouse")
 	# Only test fixtures disable external mouse motion for deterministic frames.
 	orbit.set_process_input(false)
 	orbit.set_process_unhandled_input(false)
@@ -76,15 +77,15 @@ func _run() -> void:
 	check(world.surface_library.cache["ValleyBark"].albedo_texture.get_image().has_mipmaps(), "actual imported texture includes mipmaps")
 	check(world.surface_library.cache["ValleySlate"].roughness_texture != null, "rock has roughness texture")
 	check(world.surface_library.cache["ValleyLeaf"].transparency == BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR, "leaf silhouette uses alpha cutout")
-	check(player.visual.find_child("HelmetShell", true, false) != null and player.left_leg != null and player.right_arm != null, "GLB knight preserves independent animated limbs")
+	check(player.visual.skeleton.get_bone_count() == 38 and player.visual.animation_player.has_animation("walk"), "GLB knight imports its humanoid skeleton and locomotion clips")
 	check(game.viewport.size == Vector2i(640, 360) and game.hud.get_viewport() == root, "shared pixel viewport and separate HD UI")
 	await settle(30)
 	var before: PackedByteArray = game.viewport.get_texture().get_image().get_data()
 	await settle(30)
-	check(before == game.viewport.get_texture().get_image().get_data(), "stationary valley pixels stable with fire frozen")
+	check(before == game.viewport.get_texture().get_image().get_data(), "stationary valley pixels stable with art animation frozen")
 	world.set_art_animation(true)
 	await settle(13)
-	check(before != game.viewport.get_texture().get_image().get_data(), "real fire animation changes rendered image")
+	check(before != game.viewport.get_texture().get_image().get_data(), "real fire and knight animation change rendered image")
 	world.set_art_animation(false)
 	for i in 3:
 		game.set_resolution(i)
@@ -99,6 +100,7 @@ func _run() -> void:
 	check(world.terrain_material.get_shader_parameter("detail_enabled") == false and not world.surface_library.cache["ValleyBark"].normal_enabled, "F3 compares albedo, normals and roughness")
 	key(KEY_F3)
 	check(world.surface_library.cache["ValleyBark"].normal_enabled, "F3 restores material detail")
+	check(player.study_materials.cache["steel"].normal_enabled and player.study_materials.cache["cloth"].albedo_texture.get_image().has_mipmaps(), "F3 restores knight material detail and true mipmaps")
 	var image := root.get_texture().get_image()
 	var repeat_ok := true
 	await settle()
@@ -134,6 +136,7 @@ func _run() -> void:
 	orbit.set_process_unhandled_input(false)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	orbit.yaw = 0
+	world.set_art_animation(true)
 	# Traverse the actual curved trail with the original player controller, not teleportation.
 	player.position = world.trail[0] + Vector3.UP * 0.08
 	player.velocity = Vector3.ZERO

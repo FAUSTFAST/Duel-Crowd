@@ -1,19 +1,17 @@
 extends "res://scripts/characters/knight.gd"
 
-const Materials = preload("res://scripts/valley/valley_materials.gd")
-var study_materials := Materials.new()
+@export var visual_scene: PackedScene = preload("res://scenes/characters/ashen_knight_visual.tscn")
+var study_materials: RefCounted
 
-func _ready() -> void:
-	super._ready()
-	# Replace only the visual. Movement, capsule, camera and limb animation remain inherited.
-	remove_child(visual)
-	visual.free()
-	visual = preload("res://assets/valley/models/knight_study.glb").instantiate()
+func _build_visual() -> void:
+	visual = visual_scene.instantiate()
 	add_child(visual)
-	left_leg = visual.find_child("LeftLeg", true, false)
-	right_leg = visual.find_child("RightLeg", true, false)
-	left_arm = visual.find_child("LeftArm", true, false)
-	right_arm = visual.find_child("RightArm", true, false)
-	study_materials.apply(visual)
+	study_materials = visual.materials
 	detailed_materials = study_materials.materials
 	material_textures = study_materials.textures
+
+func _animate_visual(delta: float) -> void:
+	visual.update_locomotion(delta, Vector2(velocity.x, velocity.z).length())
+
+func set_visual_animation_enabled(enabled: bool) -> void:
+	visual.set_animation_enabled(enabled)

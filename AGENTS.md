@@ -1,6 +1,6 @@
 # 项目开发约定
 使用中文报告。每次修改先检查 Git 状态并阅读现有实现。只操作本项目，不改全局配置。
-当前范围：用户已重新授权独立森林山谷视觉样板，保留旧教堂地图；暂停一般性Low Poly装饰扩充，优先形体、高差、纹理和光影。禁止战斗、敌人AI、装备玩法和开放世界。
+当前范围：森林山谷视觉样板保留，用户已授权骑士模型、材质与骨骼动画重制；保留旧教堂地图和原控制，不扩建环境。暂停一般性Low Poly装饰扩充。禁止战斗、敌人AI、装备玩法和开放世界。
 视觉优先：需要实际运行截图验证，不以解析成功代替视觉验收。所有内容原创。
 保持角色、摄像机、世界构建模块独立。Godot 4.x / GDScript；正式模型使用 Blender 导出的 GLB。
 每个稳定阶段测试后提交与推送，重大修改前保留检查点；禁止强推和覆盖历史。
@@ -24,3 +24,9 @@
 森林山谷独立场景为 scenes/visual_lab/forest_valley.tscn（编辑器选中F6；F5旧地图不变）。scripts/valley复用原控制与摄像机，pixel_renderer的world_scene可配置，输入路由仍只有一条。assets/valley/source/blender/.gdignore排除原生源自动导入，运行时使用9份GLB与heightfield.tres。原始材质图来自built-in imagegen，工作贴图及估计法线/粗糙度明确标记研究用途，不称高模烘焙或最终美术。
 
 重做前检查Git并保存手工编辑；tools/valley/prepare_materials.py、build_assets.py会覆盖山谷生成资源。configure_imports.py只改山谷sidecar，GLB嵌入模式3、PNG真实mipmap。tests/valley_test.gd必须图形运行，验证实际曲线路径游览、碰撞、GLB权重/切线、输入/渲染与短时性能；tools/valley/capture_valley.gd产生三档/原生/同镜头材质/移动截图。没有参考图时不得声称逐图匹配完成。
+
+山谷新骑士：assets/characters/ashen_knight/ashen_knight.glb、打包source/blender/ashen_knight.blend（.gdignore）、五套128px纹理及五段Action。38骨、五个按材质合并的蒙皮表面；骨骼权重不能在合批中丢失，所有Action须Fake User保留。tools/characters两个生成器会覆盖本角色资源，执行前保存手工编辑；configure_imports只作用本角色sidecar。Normal为绘制浅高度细节，不称高模烘焙；美术首版需人工精修，不称参考游戏商业成品。
+
+基础knight.gd仅提供_build_visual/_animate_visual扩展点，原移动/碰撞/摄像机不变；valley_knight导出visual_scene指向scenes/characters/ashen_knight_visual.tscn，rigged_knight_visual管理AnimationTree/速度倍率/低速换向，knight_materials管理局部材质。不能把新骨架塞入旧四肢正弦动画，也不增加第二条输入路由。world.set_art_animation仅作为调试/截图冻结新骑士和火光，生产默认启用；冻结像素测试之后必须恢复动画再做实际游览/性能。
+
+执行python3 tests/knight_asset_test.py与图形tests/knight_animation_test.gd，回归原控制/渲染/valley。同镜头工具tools/characters/capture_knight_review.gd（-- --before仅在改造前执行），截图保存在docs/knight；它会覆盖本轮截图，先保留稳定对比。步态脚滑移测试针对平地参考高度，不代替坡地IK和真人试玩。保留旧教堂角色，F5旧地图；F6或停止按钮右侧“运行当前场景”播放场记板运行forest_valley。
