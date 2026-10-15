@@ -1,0 +1,6 @@
+{
+  "mode": "built-in image_gen",
+  "prompt": "Original game texture asset: ONE small forest fern clump, flat 2D hand-drawn PIXEL ART cutout on a genuinely transparent background. A compact fan of five individually readable narrow arching fern fronds emerging from one root at bottom center. Forest dark sage, olive and pale cool green, 5 colors only. Precisely stepped hard pixel silhouettes and chunky leaflets, target sprite 64x64 pixels enlarged nearest neighbor, no blur, no glow, no cast shadow, no pot, no ground, no scenery, no text, no frame. All five fronds contained inside image with small transparent margin. Neutral even light, light from upper left just one shade brighter, designed for crossed alpha-scissor planes in a retro 3D fantasy game. No black or colored backdrop.",
+  "output": "assets/characters/thorn_knight/textures/fern_cutout.png",
+  "use": "three crossed alpha-scissor cards in the independent atelier only"
+}

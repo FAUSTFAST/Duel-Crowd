@@ -1,0 +1,22 @@
+{
+  "bones": 38,
+  "preserved_actions": [
+    "idle",
+    "run",
+    "turn_left",
+    "turn_right",
+    "walk"
+  ],
+  "editable_surface_patches": 70,
+  "packed_images": [
+    "equipment_albedo.png",
+    "EquipmentRoughness"
+  ],
+  "atlas_uv": "EquipmentUV",
+  "source_reopen": "PASS",
+  "flat_ground_blade_min_z": {
+    "idle": 0.26788878440856934,
+    "walk": 0.13426128029823303,
+    "run": 0.07877929508686066
+  }
+}

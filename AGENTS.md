@@ -1,4 +1,8 @@
 # 项目开发约定
+
+混合美术新实验仅在 scenes/visual_lab/knight_atelier.tscn，B切换原Ashen Knight/新Thorn Warden，L灯光，0正常移动、1/2/3动作预览；Forest Valley和旧角色不替换。scripts/atelier 独立继承已有控制/动画/渲染，仍只有pixel_renderer一条输入转发。
+assets/characters/thorn_knight 为候选，不能称正式商业美术。保留70编辑曲面、用途UV与原38骨/5Action复用；有意镜像UV不称无重叠烘焙UV。imagegen辅助Albedo/蕨叶提示和实际规格在source/art；没有新高模法线烘焙，不以生成提示当作实际像素尺寸/色数。
+tools/atelier/build_thorn_knight.py 默认拒绝覆盖；手工修改先存Git，再考虑 -- --replace-generated。Blender脚本加 --python-exit-code 1；audit_source.py必须重新打开源文件检查动作/打包图/剑尖余量。运行 python3 tests/atelier_asset_test.py 与图形 tests/atelier_test.gd；截图 capture_atelier.gd / capture_forest_context.gd 仅改运行夹具，会覆盖docs/atelier截图，先保留稳定比较。不自动推进到正式场景替换。
 使用中文报告。每次修改先检查 Git 状态并阅读现有实现。只操作本项目，不改全局配置。
 当前范围：森林山谷视觉样板保留，用户已授权骑士模型、材质与骨骼动画重制；保留旧教堂地图和原控制，不扩建环境。暂停一般性Low Poly装饰扩充。禁止战斗、敌人AI、装备玩法和开放世界。
 视觉优先：需要实际运行截图验证，不以解析成功代替视觉验收。所有内容原创。

@@ -1,5 +1,24 @@
 # 灰誓 / Ashen Oath — Duel-Crowd
-原创暗黑奇幻 3D 动作 RPG。当前重新确立美术方向：保留旧教堂地图，另建可游览的森林山谷视觉样板，以连续高差地形、Blender GLB 形体与多通道像素材质验证方向。未使用 Duel Corp 素材；样板仍需人工美术精修。
+原创暗黑奇幻 3D 动作 RPG。当前路线：精细 3D 形体 + 装备用途 UV 图集 + 2D 像素元素 + 3D 光照 + 统一像素呈现。旧教堂、Forest Valley 与上一版骑士保留；新角色只在独立美术实验中验证。未使用 Duel Corp 素材；候选资产仍需人工美术精修。
+
+## 新：独立骑士美术对比实验
+打开 `scenes/visual_lab/knight_atelier.tscn`，双击进入场景后按 **F6 / 运行当前场景的场记板按钮**。F5 仍运行旧教堂；运行游戏后 F6 的含义是切换整数缩放。
+
+```sh
+Godot --path . scenes/visual_lab/knight_atelier.tscn
+```
+
+B 在原 Ashen Knight 与新 Thorn Warden 候选之间切换，位置、摄像机、碰撞和灯光不变；L 比较中性/森林灯光，0 返回正常可移动状态，1/2/3 预览待机/原地行走/原地奔跑。原有 WASD、Shift、鼠标、滚轮、Esc、R 及 F1–F4 继续有效。
+
+新资产使用独立 Blender 曲面源文件、装甲/盾徽/刺绣专用 UV 图集与粗糙度图；复用本项目原有38骨/五段原创动作，不冒称新动作捕捉。另有透明裁切蕨叶贴图平面。**这是新路线的可运行美术候选，尚未达到正式角色验收标准，也没有替换山谷角色。**
+
+| 同镜头实际运行图 | 原角色 | 新候选 |
+| --- | --- | --- |
+| 640×360 近景 | [old](docs/atelier/old_front_640.png) | [new](docs/atelier/new_front_640.png) |
+| 原生近景 | [old](docs/atelier/old_front_native.png) | [new](docs/atelier/new_front_native.png) |
+| 山谷环境 | [old](docs/atelier/old_forest_context.png) | [new](docs/atelier/new_forest_context.png) |
+
+[动作采样](docs/atelier/new_run_poses.png)、[山谷实际奔跑](docs/atelier/new_forest_running.png)、[实验 UI](docs/atelier/lab_ui.png)。所有对比图来自 Godot；imagegen 输出仅用作材质草案和蕨叶素材。[制作/人工精修流程与资源状态](assets/characters/thorn_knight/README.md)，[实际测试记录](docs/VALIDATION.md)。
 
 ## 运行与操作
 使用 **Godot 4.7.2** 导入 `project.godot`，按 F5 运行 `scenes/rendering/pixel_game.tscn`。WASD / 方向键移动，Shift 跑步，移动鼠标旋转摄像机，滚轮缩放，R 返回出生点。启动自动捕获鼠标；Esc 释放，点击游戏画面重新捕获；失焦释放，关闭窗口退出。
