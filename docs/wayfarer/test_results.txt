@@ -1,0 +1,377 @@
+Final successful executable results, 2026-10-15. See VALIDATION.md for earlier failures and fixes.
+
+source_audit_final.log
+SOURCE_AUDIT {"source_reopen": "PASS", "bones": 32, "actions": ["idle", "run", "turn_left", "turn_right", "walk"], "editable_parts": 60, "packed_images": 8, "no_animated_bone_scaling": true}
+Blender 4.5.9 LTS (hash 8bf95cbd38d1 built 2026-04-21 01:30:46)
+Read blend: "/Users/mac/Documents/ChatGPT/3d game/assets/characters/wayfarer/source/blender/wayfarer.blend"
+
+Blender quit
+
+asset_tests_final.log
+tests/wayfarer_asset_test.py
+PASS WAYFARER ASSETS {"base": {"triangles": 64520, "vertices": 35118}, "helmet": {"triangles": 6032, "vertices": 3250}, "chest": {"triangles": 7928, "vertices": 4280}, "sword": {"triangles": 2724, "vertices": 1580}, "shield": {"triangles": 4348, "vertices": 2533}} blended base vertices 3823
+exit=0
+
+tests/knight_asset_test.py
+PASS GLB: 38 bones, 5 surfaces, 26765 triangles, 19183 vertices, 622 blended vertices; maximum weight error 0.00000010; 5 in-place clips.
+exit=0
+
+tests/atelier_asset_test.py
+PASS ATELIER ASSET: 59060 triangles, 34135 vertices, 38 bones, 5 surfaces, 16 padded UV regions, 2883 blended vertices, max weight error 0.00000012, 5 in-place clips.
+exit=0
+
+
+equipment_test_final.log
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M1
+
+PASS: startup captures mouse
+PASS: default no equipment or item instances
+PASS: eight slots and four data resources
+PASS: new unified 32-bone humanoid
+PASS: original controller on floor
+PASS: base has exactly one skeleton
+PASS: interactive UI in HD root, 3D in SubViewport
+PASS: base hair and tunic visible
+PASS: under-cloth body hidden from rendering
+PASS: actual working textures contain mipmaps
+PASS: imported fresh clip idle
+PASS: imported fresh clip walk
+PASS: imported fresh clip run
+PASS: imported fresh clip turn_left
+PASS: imported fresh clip turn_right
+PASS: unknown ID rejected without state change
+PASS: unknown slot rejected
+PASS: helmet equips and hides hair
+PASS: chest hides covered upper garment
+PASS: chest preserves uncovered sleeves and lower garment
+PASS: all four IDs equip immediately by single input route
+PASS: armor source skeletons removed; one live skeleton
+PASS: all armor skin binds resolve by name to base skeleton
+PASS: sword and shield use non-overriding hand bone attachments
+PASS: equipping same ID is idempotent
+PASS: incompatible armor rejected atomically, existing helmet retained
+PASS: 40 full equip/clear cycles leave no mounts or extra skeletons
+PASS: repeated swaps reuse bounded material cache
+PASS: equip never reloads actor, skeleton, animation tree or camera
+PASS: clear restores exact base visibility
+PASS: HD GUI click equips without forwarding click to mouse capture
+PASS: GUI click unequips immediately
+PASS: click game recaptures mouse
+PASS: one relative mouse route at resolution 0
+PASS: one relative mouse route at resolution 1
+PASS: one relative mouse route at resolution 2
+PASS: wheel zoom preserved
+PASS: newly equipped material respects F3 disabled state
+PASS: F3 restores original maps
+PASS: lighting comparison works
+PASS: equipped WASD walking and original collision
+PASS: equipped Shift run state
+PASS: rigid sword moves with actual animation
+PASS: socket matches animated hand pose
+PASS: unequip while running retains animation
+PASS: base decelerates to idle
+PASS: reset remains functional
+PASS: frozen base actual pixels stable
+PASS: real skeletal idle changes image
+PERF equipped=false mean_ms=11.9426555555556 p95_ms=24.467 draw_calls=63.0
+PERF equipped=true mean_ms=11.1762166666667 p95_ms=14.112 draw_calls=69.0
+PASS: real animations enabled during performance sampling
+EQUIPMENT RESULT 50 checks, 0 failures
+
+clean_equipment_final.log
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M1
+
+PASS: startup captures mouse
+PASS: default no equipment or item instances
+PASS: eight slots and four data resources
+PASS: new unified 32-bone humanoid
+PASS: original controller on floor
+PASS: base has exactly one skeleton
+PASS: interactive UI in HD root, 3D in SubViewport
+PASS: base hair and tunic visible
+PASS: under-cloth body hidden from rendering
+PASS: actual working textures contain mipmaps
+PASS: imported fresh clip idle
+PASS: imported fresh clip walk
+PASS: imported fresh clip run
+PASS: imported fresh clip turn_left
+PASS: imported fresh clip turn_right
+PASS: unknown ID rejected without state change
+PASS: unknown slot rejected
+PASS: helmet equips and hides hair
+PASS: chest hides covered upper garment
+PASS: chest preserves uncovered sleeves and lower garment
+PASS: all four IDs equip immediately by single input route
+PASS: armor source skeletons removed; one live skeleton
+PASS: all armor skin binds resolve by name to base skeleton
+PASS: sword and shield use non-overriding hand bone attachments
+PASS: equipping same ID is idempotent
+PASS: incompatible armor rejected atomically, existing helmet retained
+PASS: 40 full equip/clear cycles leave no mounts or extra skeletons
+PASS: repeated swaps reuse bounded material cache
+PASS: equip never reloads actor, skeleton, animation tree or camera
+PASS: clear restores exact base visibility
+PASS: HD GUI click equips without forwarding click to mouse capture
+PASS: GUI click unequips immediately
+PASS: click game recaptures mouse
+PASS: one relative mouse route at resolution 0
+PASS: one relative mouse route at resolution 1
+PASS: one relative mouse route at resolution 2
+PASS: wheel zoom preserved
+PASS: newly equipped material respects F3 disabled state
+PASS: F3 restores original maps
+PASS: lighting comparison works
+PASS: equipped WASD walking and original collision
+PASS: equipped Shift run state
+PASS: rigid sword moves with actual animation
+PASS: socket matches animated hand pose
+PASS: unequip while running retains animation
+PASS: base decelerates to idle
+PASS: reset remains functional
+PASS: frozen base actual pixels stable
+PASS: real skeletal idle changes image
+PERF equipped=false mean_ms=8.46795 p95_ms=12.689 draw_calls=63.0
+PERF equipped=true mean_ms=8.30171111111111 p95_ms=11.174 draw_calls=69.0
+PASS: real animations enabled during performance sampling
+EQUIPMENT RESULT 50 checks, 0 failures
+
+prototype_test_regression.log
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M1
+
+PASS: knight settles on ground
+PASS: third person camera active
+PASS: startup captures mouse
+PASS: mouse rotates without held buttons
+PASS: Escape releases mouse without quitting
+PASS: released cursor does not rotate camera
+PASS: click recaptures mouse
+PASS: follow moves smoothly towards player
+PASS: follow converges to player
+PASS: mouse wheel zoom works
+PASS: camera follows orbit yaw
+PASS: pitch limit prevents flipping
+PASS: zoom respects minimum
+PASS: zoom respects maximum
+PASS: camera relative walking works
+PASS: sprint faster than walk
+PASS: chapel wall blocks movement
+PASS: reset restores spawn
+PASS: fall recovery works
+RESULT: 0 failures
+
+rendering_test_regression.log
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M1
+
+PASS: default internal resolution 640x360
+PASS: camera renders only in world viewport
+PASS: HD UI separate from low resolution world
+PASS: no post antialias blur
+PASS: 640p presentation repeats exact 2x2 texels
+PASS: stationary view has no temporal flicker with effects frozen
+PASS: four independently animated original pixel flames
+PASS: enabled flame animation changes the actual rendered pixels
+PASS: F2 cycles to (960, 540)
+PASS: resolution keeps aspect ratio
+PASS: mouse sensitivity unchanged by resolution
+PASS: F2 cycles to (480, 270)
+PASS: resolution keeps aspect ratio
+PASS: mouse sensitivity unchanged by resolution
+PASS: F2 cycles to (640, 360)
+PASS: resolution keeps aspect ratio
+PASS: mouse sensitivity unchanged by resolution
+PASS: F1 native resolution comparison
+PASS: F1 restores chosen pixel resolution
+PASS: F3 disables texture detail
+PASS: F3 restores original pixel texture
+PASS: F4 fog comparison
+PASS: ambient parameter adjustment
+PASS: non 16:9 window keeps integer pixel sizes
+PASS: non 16:9 view centered with letterbox
+PASS: letterbox click does not capture mouse
+PASS: game image click recaptures mouse after resize
+PASS: fit mode preserves aspect without stretching
+PASS: native comparison uses exact 16:9 whole pixel dimensions
+PASS: small window downsizes 960p without distortion
+PERF: 640x360 average frame 8.30 ms, p95 12.17 ms, objects 315, draw calls 209
+RESULT: 0 failures
+
+art_integrity_test_regression.log
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: same material collapses to one mesh
+PASS: mixed indexed/non-indexed triangles all preserved
+PASS: nested collision transform preserved
+PASS: all original colliders retained
+PASS: character still rests on original ground
+PASS: limb animation pivots remain separate from static torso
+PASS: side wall collision survives world batching
+PASS: main doorway remains traversable
+PASS: verge collision matches visible terrain height
+PASS: character physically settles on raised verge without falling through
+PASS: road and chapel retain original flat traversable height
+PASS: lower perimeter visuals retain the original 1.2m safety collision
+PASS: pixel flame atlas is independent and uses sharp alpha cutout
+PASS: capture freeze keeps a deterministic flame frame
+PASS: static draw mesh budget remains bounded
+PASS: all art faces retain valid nonzero unit normals
+PASS: required source textures are loadable 64x64 resources
+PASS: saved module chapel_portal instantiates with meshes
+PASS: saved module pine instantiates with meshes
+PASS: saved module knight_visual instantiates with meshes
+PASS: saved module old_tree instantiates with meshes
+PASS: saved module shrub instantiates with meshes
+RESULT: 0 failures
+
+knight_animation_test_regression.log
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M1
+
+PASS: 38-bone imported humanoid skeleton
+PASS: five reusable skinned materials
+PASS: original collision capsule unchanged
+PASS: imports clip idle
+PASS: imports clip walk
+PASS: imports clip run
+PASS: imports clip turn_left
+PASS: imports clip turn_right
+PASS: idle breathes through the skeleton
+STANCE walk a=(-0.14, 0.13, -0.151466) b=(-0.14, 0.13, 0.168533) world-slip=0.00000027537346
+PASS: walk planted heel tracks authored movement within 3.5cm
+PASS: walk heel stays at ground reference height
+STANCE run a=(-0.14, 0.120044, -0.343171) b=(-0.14, 0.123167, 0.149213) world-slip=0.00061522352695
+PASS: run planted heel tracks authored movement within 3.5cm
+PASS: run heel stays at ground reference height
+CAPE (0.005937, 0.840322, 0.294049) (0.000987, 0.822705, 0.31265)
+PASS: cape bones deform during locomotion
+PASS: left and right turn clips have different orientations
+PASS: controller chooses walking
+PASS: walking cadence follows actual velocity
+PASS: resuming animation restores the actual locomotion state
+PASS: Shift selects running animation
+PASS: deceleration returns to idle
+PASS: heading reversal selects a turn lead-in
+PASS: animated player retains terrain contact
+PASS: test-only animation freeze yields stable pixels
+KNIGHT_ANIMATION_FAILURES 0
+
+valley_test_regression.log
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M1
+
+PASS: valley starts with captured mouse
+PASS: knight grounded on imported terrain collision
+PASS: terrain has >5m of actual elevation range
+PASS: terrain is an authored continuous mesh
+PASS: terrain has UV coordinates
+PASS: terrain has exported tangent basis
+PASS: GLB retains distinct moss and cliff weights
+PASS: 13 trail samples match the rendered terrain collision
+PASS: original branching trees and stratified rock modules loaded
+PASS: ground cover uses two MultiMesh batches
+PASS: bark has normal map enabled
+PASS: actual imported texture includes mipmaps
+PASS: rock has roughness texture
+PASS: leaf silhouette uses alpha cutout
+PASS: GLB knight imports its humanoid skeleton and locomotion clips
+PASS: shared pixel viewport and separate HD UI
+PASS: stationary valley pixels stable with art animation frozen
+PASS: real fire and knight animation change rendered image
+PASS: resolution (480, 270) preserves aspect
+PASS: resolution (640, 360) preserves aspect
+PASS: resolution (960, 540) preserves aspect
+PASS: native comparison is true native rendering
+PASS: F3 compares albedo, normals and roughness
+PASS: F3 restores material detail
+PASS: F3 restores knight material detail and true mipmaps
+PASS: presentation uses exact nearest 2x2 texels
+PASS: mouse orbit uses a single forwarded screen-relative event
+PASS: wheel zoom retained
+PASS: Esc releases mouse
+PASS: image click recaptures mouse
+PASS: knight physically traverses all 12 curved trail segments
+PASS: Shift running retains higher speed
+PASS: camera smoothly follows moving knight
+PASS: R returns to valley spawn point
+PERF valley640 mean 8.38 ms p95 9.71 ms draws 684 objects 823
+RESULT: 34 checks, 0 failures
+
+atelier_test_regression.log
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M1
+
+PASS: independent lab defaults to new candidate
+PASS: startup mouse capture
+PASS: original controller settles on lab collision
+PASS: original capsule dimensions
+PASS: new imported skeleton has 38 bones
+PASS: new GLB has five skinned materials
+PASS: new clip idle
+PASS: new clip walk
+PASS: new clip run
+PASS: new clip turn_left
+PASS: new clip turn_right
+PASS: HD UI remains outside world viewport
+PASS: three reusable cutout cards, no new map dressing
+PASS: real alpha cutout uses hard-edge scissor
+PASS: single mouse event route at resolution 0
+PASS: single mouse event route at resolution 1
+PASS: single mouse event route at resolution 2
+PASS: B swaps to preserved previous knight once
+PASS: comparison preserves player, camera, collision and position
+PASS: material isolation comparison disables atlas
+PASS: variant swap preserves material comparison state
+PASS: atlas comparison restores original texture
+PASS: forest light preset
+PASS: neutral lighting restored
+PASS: in-place walk inspection uses animation state machine
+PASS: in-place run inspection
+PASS: WASD movement drives walking
+PASS: Shift running drives speed-matched animation
+PASS: deceleration returns to breathing idle
+PASS: Escape releases cursor
+PASS: click recaptures cursor
+PASS: wheel zoom preserved
+PASS: frozen character has stable actual pixels
+PASS: real skeletal animation changes rendered pixels
+PERF old frame_interval mean_ms=8.28541666666667 p95_ms=12.44 draw_calls=34.0
+PERF new frame_interval mean_ms=8.3047 p95_ms=12.171 draw_calls=34.0
+PASS: animation restored before performance sampling
+ATELIER RESULT 35 checks, 0 failures
+
+capture_final.log
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M1
+
+CAPTURE base_front_640
+CAPTURE base_front_native
+CAPTURE base_front_480
+CAPTURE base_front_960
+CAPTURE base_rear_640
+CAPTURE base_gameplay_640
+CAPTURE equipped_front_640
+CAPTURE equipped_front_native
+CAPTURE equipped_front_480
+CAPTURE equipped_front_960
+CAPTURE equipped_rear_640
+CAPTURE equipped_gameplay_640
+CAPTURE unequipped_front_640
+CAPTURE unequipped_front_native
+CAPTURE unequipped_rear_640
+CAPTURE unequipped_gameplay_640
+CAPTURE study_helmet
+CAPTURE study_chest
+CAPTURE study_sword
+CAPTURE study_shield
+CAPTURE debug_ui
+CAPTURE actual_running
+RUNNING on_floor=true state=run
+CAPTURE previous_knight_front_640
+CAPTURE previous_knight_gameplay_640
+CAPTURE base_forest_context
+CAPTURE equipped_forest_context
+CAPTURE forest_running
+FOREST RUN on_floor=true state=run

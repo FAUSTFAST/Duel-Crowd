@@ -1,7 +1,29 @@
 # 灰誓 / Ashen Oath — Duel-Crowd
 原创暗黑奇幻 3D 动作 RPG。当前路线：精细 3D 形体 + 装备用途 UV 图集 + 2D 像素元素 + 3D 光照 + 统一像素呈现。旧教堂、Forest Valley 与上一版骑士保留；新角色只在独立美术实验中验证。未使用 Duel Corp 素材；候选资产仍需人工美术精修。
 
-## 新：独立骑士美术对比实验
+## 新：布衣人物与模块化装备外观实验
+
+打开 **`scenes/visual_lab/character_equipment_lab.tscn`**，双击场景后按 **F6 / 运行当前场景的场记板按钮**。普通三角形/F5仍是旧教堂；Forest Valley和Knight Art Atelier完全保留。
+
+初始为布衣、长裤、软鞋的原创成年人物，没有金属护甲或手持物。新32骨、独立idle/walk/run及转向周期；身体、头发和衣物有独立遮挡分区。此角色属于**可编辑美术候选**，人物面部、手型与动作尚需人工精修，不能当作正式高质量角色完成。
+
+| 操作 | 功能 |
+| --- | --- |
+| 1 / 2 / 3 / 4 | 穿戴/卸下头盔、胸甲、长剑、盾牌 |
+| 0 | 卸下全部，恢复布衣和头发 |
+| Esc 后点击右侧按钮 | 同样可以实时切换；界面点击不捕获鼠标 |
+| 点击游戏中央 | 重新捕获鼠标 |
+| P | 正常移动 → 待机 → 原地行走 → 原地跑步预览 |
+| L | 中性/森林灯光比较 |
+
+WASD、Shift、移动鼠标、滚轮、R及F1–F4/F6沿用原功能。装备切换不重载人物：盔甲按骨名重绑唯一Skeleton3D，武器/盾牌挂到手部BoneAttachment3D。数据资源在 `assets/equipment`；预留head/body/hands/legs/feet/back/main_hand/off_hand八槽，当前只制作四件。没有背包、属性、掉落或战斗系统。
+
+同镜头Godot实图：[无装备](docs/wayfarer/base_front_640.png)、[穿戴四件](docs/wayfarer/equipped_front_640.png)、[卸下](docs/wayfarer/unequipped_front_640.png)、[旧骑士](docs/wayfarer/previous_knight_front_640.png)。
+[默认游戏距离基础人物](docs/wayfarer/base_gameplay_640.png)、[装备后](docs/wayfarer/equipped_gameplay_640.png)、[高清按钮](docs/wayfarer/debug_ui.png)、[基础跑姿](docs/wayfarer/base_run.png)、[山谷临时外观检查](docs/wayfarer/base_forest_context.png)。截图工具只在运行内暂换山谷外观，不保存生产替换。
+
+制作源、资源状态、扩展约定和重做流程见 [Wayfarer说明](assets/characters/wayfarer/README.md)，实际测试见 [验证记录](docs/VALIDATION.md)。
+
+## 保留：独立骑士美术对比实验
 打开 `scenes/visual_lab/knight_atelier.tscn`，双击进入场景后按 **F6 / 运行当前场景的场记板按钮**。F5 仍运行旧教堂；运行游戏后 F6 的含义是切换整数缩放。
 
 ```sh

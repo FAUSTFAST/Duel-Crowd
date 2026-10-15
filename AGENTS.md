@@ -1,10 +1,15 @@
 # 项目开发约定
 
+当前授权新增：只在 scenes/visual_lab/character_equipment_lab.tscn 开发布衣基础人物与四件装备外观切换原型（头盔/胸甲/剑/盾），八个预留槽位。禁止完整背包、属性、掉落或战斗扩展。Forest Valley、旧教堂、两版旧骑士和原控制不替换。
+assets/characters/wayfarer 是新32骨/独立动作/局部UV人物候选，不能称正式精修人物。tools/wayfarer/build_wayfarer.py 默认拒绝覆盖；保存手工编辑后才使用 -- --replace-generated；.blend源在source/blender/.gdignore内，运行使用五份独立GLB。128px像素色板纹理为原创程序绘制，无新AI图或高模烘焙。
+scripts/equipment只处理视觉：装备Resource ID/槽位/模型/遮挡/挂点；蒙皮按骨名+rest验证并重绑基础Skeleton3D，剑盾BoneAttachment3D；失败保持原装备，穿卸不得重建人物、动画树或摄像机。身体遮挡取所有穿戴物品mask并集，卸下恢复布衣/头发。输入仍只有pixel_renderer一条转发，高清按钮应消费点击，避免触发重新捕获。
+运行 python3 tests/wayfarer_asset_test.py、图形 tests/equipment_test.gd；tools/wayfarer/audit_source.py独立重开源文件；capture_equipment.gd会覆盖docs/wayfarer本轮图，保留稳定对比再使用。实际无装备/穿卸/走跑/相同游戏距离截图与源权重测试分别验收。不能把自动周期、平地短测当作手工动画、坡地IK或全姿态无穿插。
+
 混合美术新实验仅在 scenes/visual_lab/knight_atelier.tscn，B切换原Ashen Knight/新Thorn Warden，L灯光，0正常移动、1/2/3动作预览；Forest Valley和旧角色不替换。scripts/atelier 独立继承已有控制/动画/渲染，仍只有pixel_renderer一条输入转发。
 assets/characters/thorn_knight 为候选，不能称正式商业美术。保留70编辑曲面、用途UV与原38骨/5Action复用；有意镜像UV不称无重叠烘焙UV。imagegen辅助Albedo/蕨叶提示和实际规格在source/art；没有新高模法线烘焙，不以生成提示当作实际像素尺寸/色数。
 tools/atelier/build_thorn_knight.py 默认拒绝覆盖；手工修改先存Git，再考虑 -- --replace-generated。Blender脚本加 --python-exit-code 1；audit_source.py必须重新打开源文件检查动作/打包图/剑尖余量。运行 python3 tests/atelier_asset_test.py 与图形 tests/atelier_test.gd；截图 capture_atelier.gd / capture_forest_context.gd 仅改运行夹具，会覆盖docs/atelier截图，先保留稳定比较。不自动推进到正式场景替换。
 使用中文报告。每次修改先检查 Git 状态并阅读现有实现。只操作本项目，不改全局配置。
-当前范围：森林山谷视觉样板保留，用户已授权骑士模型、材质与骨骼动画重制；保留旧教堂地图和原控制，不扩建环境。暂停一般性Low Poly装饰扩充。禁止战斗、敌人AI、装备玩法和开放世界。
+当前范围：森林山谷视觉样板保留，用户已授权布衣基础人物、材质、骨骼动画与四件装备外观切换原型；保留旧教堂地图和原控制，不扩建环境。暂停一般性Low Poly装饰扩充。禁止战斗、敌人AI、完整装备玩法和开放世界。
 视觉优先：需要实际运行截图验证，不以解析成功代替视觉验收。所有内容原创。
 保持角色、摄像机、世界构建模块独立。Godot 4.x / GDScript；正式模型使用 Blender 导出的 GLB。
 每个稳定阶段测试后提交与推送，重大修改前保留检查点；禁止强推和覆盖历史。

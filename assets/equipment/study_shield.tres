@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="VisualEquipmentItem" load_steps=3 format=3]
+[ext_resource type="Script" path="res://scripts/equipment/equipment_item.gd" id="1"]
+[ext_resource type="PackedScene" path="res://assets/characters/wayfarer/equipment/shield.glb" id="2"]
+[resource]
+script = ExtResource("1")
+item_id = &"study_shield"
+display_name = "Heater shield"
+slot = "off_hand"
+model = ExtResource("2")
+mount_type = "bone"
+attachment_bone = &"Hand_L"

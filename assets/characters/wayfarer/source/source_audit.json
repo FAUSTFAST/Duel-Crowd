@@ -1,0 +1,14 @@
+{
+  "source_reopen": "PASS",
+  "bones": 32,
+  "actions": [
+    "idle",
+    "run",
+    "turn_left",
+    "turn_right",
+    "walk"
+  ],
+  "editable_parts": 60,
+  "packed_images": 8,
+  "no_animated_bone_scaling": true
+}
