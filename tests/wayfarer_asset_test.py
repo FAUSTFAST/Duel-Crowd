@@ -63,4 +63,6 @@ for import_file in BASE.rglob('*.glb.import'):
     assert 'gltf/embedded_image_handling=3' in import_file.read_text()
 audit=json.loads((BASE/'source/source_audit.json').read_text())
 assert audit['source_reopen']=='PASS' and audit['bones']==32 and audit['packed_images']==8
+assert 6.8<audit['proportions']['head_units_excluding_hair']<7.3
+assert audit['proportions']['connected_shirt_components']==audit['proportions']['connected_trousers_components']==1
 print('PASS WAYFARER ASSETS',json.dumps(totals),'blended base vertices',mixed)

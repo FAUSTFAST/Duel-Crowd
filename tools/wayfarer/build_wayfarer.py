@@ -6,6 +6,7 @@ a finished hand-sculpted production human. Never reads old knight geometry.
 Default refuses regeneration; save hand edits before -- --replace-generated.
 """
 import bpy, math, json, sys
+sys.dont_write_bytecode=True  # Local build helper import; no project cache files.
 from pathlib import Path
 from mathutils import Vector, Quaternion, Euler, Matrix
 
@@ -22,10 +23,10 @@ for action in list(bpy.data.actions): bpy.data.actions.remove(action)
 # Small, deliberately quiet palette fields, not photographic random noise.
 # Individual 128px PNGs are editable sources; surface seams/folds are geometry.
 PALETTES = {
- 'skin':['a67957','b68b65','c29872','cba580','d3ae88'],
- 'hair':['282623','332c24','3c3328','483d2e','534633'],
- 'linen':['666150','706c58','77745e','7e7b65','86836c'],
- 'trousers':['353c40','3d4548','454d50','4d5557','545c5d'],
+ 'skin':['b38a67','b9906d','bf9672','c49b77','c9a07c'],
+ 'hair':['1d2224','222729','272c2d','2c3131','323734'],
+ 'linen':['5e4334','6c4e3b','795a42','87664b','947254'],
+ 'trousers':['323234','3d3b3a','484440','534d46','60584f'],
  'leather':['302820','3d3025','493b2d','574635','624f3c'],
  'steel':['59646b','6b7980','7b8990','8e9ba0','9eaaad'],
  'wood':['39352b','494334','554d39','62583f','706448'],
@@ -42,7 +43,9 @@ for kind, palette in PALETTES.items():
             if kind in ('linen','trousers'):
                 k=2+(1 if (x%12==0 and y%6<2) else -1 if (y%12==0 and x%6<2) else 0)
                 if hash2(x//7,y//9)%19==0:k-=1
-            elif kind in ('wood','hair'):
+            elif kind=='hair':
+                k=2-int(x%29<2)+int((x+3)%43==0)
+            elif kind=='wood':
                 k=1+int((math.sin(x*.48+math.sin(y*.055)*.9)+1)*1.45)
             elif kind=='steel':
                 k=2+int(hash2(x//11,y//8)%13==0)-int(hash2(x//9,y//12)%17==0)
@@ -64,7 +67,12 @@ for name,color in [('dark',(0.055,.045,.034,1)),('lip',(.36,.20,.15,1)),('iris',
     mat.node_tree.nodes.get('Principled BSDF').inputs['Roughness'].default_value=.85
     MATS[name]=mat
 
-# Human proportions: 1.79m crown, ~7.5 heads, .44m shoulders. No armor rig reuse.
+# Reference-guided silhouette, not a reproduction of the reference costume.
+# These landmarks drive BOTH the rest rig and animation IK. Never scale bones
+# to repair proportions after skinning. Clothing/gear are refitted below.
+ANATOMY={'crown':1.80,'chin':1.545,'shoulder':1.435,'hip':.935,
+         'knee':.515,'ankle':.105,'hip_half_width':.103,
+         'elbow':1.155,'wrist':.910,'head_width':.181}
 adata=bpy.data.armatures.new('WayfarerSkeleton');rig=bpy.data.objects.new('WayfarerRig',adata)
 bpy.context.collection.objects.link(rig);bpy.context.view_layer.objects.active=rig
 rig.select_set(True);bpy.ops.object.mode_set(mode='EDIT')
@@ -72,23 +80,23 @@ def bone(name,head,tail,parent=None):
     b=adata.edit_bones.new(name);b.head=head;b.tail=tail
     if parent:b.parent=adata.edit_bones[parent]
 bone('Root',(0,0,0),(0,0,.16))
-bone('Pelvis',(0,0,.92),(0,0,1.045),'Root')
-bone('Spine',(0,0,1.045),(0,0,1.24),'Pelvis')
-bone('Chest',(0,0,1.24),(0,0,1.455),'Spine')
-bone('Neck',(0,0,1.455),(0,0,1.555),'Chest')
-bone('Head',(0,0,1.555),(0,0,1.78),'Neck')
+bone('Pelvis',(0,0,ANATOMY['hip']),(0,0,1.075),'Root')
+bone('Spine',(0,0,1.075),(0,0,1.275),'Pelvis')
+bone('Chest',(0,0,1.275),(0,0,1.475),'Spine')
+bone('Neck',(0,0,1.475),(0,0,1.56),'Chest')
+bone('Head',(0,0,1.56),(0,0,1.795),'Neck')
 for s,side in [(-1,'L'),(1,'R')]:
-    bone('Thigh_'+side,(s*.105,0,.92),(s*.105,.015,.52),'Pelvis')
-    bone('Shin_'+side,(s*.105,.015,.52),(s*.105,0,.10),'Thigh_'+side)
-    bone('Foot_'+side,(s*.105,0,.10),(s*.105,.19,.055),'Shin_'+side)
-    bone('Toe_'+side,(s*.105,.19,.055),(s*.105,.27,.055),'Foot_'+side)
-    bone('Clavicle_'+side,(s*.065,0,1.425),(s*.215,0,1.425),'Chest')
-    bone('UpperArm_'+side,(s*.215,0,1.425),(s*.285,.008,1.13),'Clavicle_'+side)
-    bone('Forearm_'+side,(s*.285,.008,1.13),(s*.315,.025,.89),'UpperArm_'+side)
-    bone('Hand_'+side,(s*.315,.025,.89),(s*.32,.045,.775),'Forearm_'+side)
+    bone('Thigh_'+side,(s*.103,0,ANATOMY['hip']),(s*.103,.018,ANATOMY['knee']),'Pelvis')
+    bone('Shin_'+side,(s*.103,.018,ANATOMY['knee']),(s*.103,0,ANATOMY['ankle']),'Thigh_'+side)
+    bone('Foot_'+side,(s*.103,0,ANATOMY['ankle']),(s*.103,.18,.055),'Shin_'+side)
+    bone('Toe_'+side,(s*.103,.18,.055),(s*.103,.23,.055),'Foot_'+side)
+    bone('Clavicle_'+side,(s*.06,0,1.465),(s*.188,0,ANATOMY['shoulder']),'Chest')
+    bone('UpperArm_'+side,(s*.188,0,ANATOMY['shoulder']),(s*.218,.018,ANATOMY['elbow']),'Clavicle_'+side)
+    bone('Forearm_'+side,(s*.218,.018,ANATOMY['elbow']),(s*.231,.025,ANATOMY['wrist']),'UpperArm_'+side)
+    bone('Hand_'+side,(s*.231,.025,ANATOMY['wrist']),(s*.236,.045,.802),'Forearm_'+side)
     for i,fn in enumerate(['Index','Middle','Ring','Little']):
-        bone(fn+'_'+side,(s*(.284+i*.022),.046,.792),(s*(.284+i*.022),.055,.727+(i%3)*.004),'Hand_'+side)
-    bone('Thumb_'+side,(s*.28,.03,.845),(s*.263,.08,.80),'Hand_'+side)
+        bone(fn+'_'+side,(s*(.206+i*.020),.043,.807),(s*(.206+i*.020),.060,.807-[.055,.064,.059,.044][i]),'Hand_'+side)
+    bone('Thumb_'+side,(s*.205,.03,.870),(s*.182,.07,.815),'Hand_'+side)
 bpy.ops.object.mode_set(mode='OBJECT')
 objects=[]; entries=[]
 def clamp(x):return max(0,min(1,x))
@@ -105,7 +113,7 @@ def mesh(name,vs,fs,uv,kind,weights,category='base',solid=0):
     if weights:
         ob.parent=rig
         for i,p in enumerate(vs):
-            ws=weights(p) if callable(weights) else {weights:1}
+            ws=weights(p) if callable(weights) else weights[i] if isinstance(weights,list) else {weights:1}
             for bn,w in ws.items():
                 if w>1e-5:(ob.vertex_groups.get(bn) or ob.vertex_groups.new(name=bn)).add([i],w,'REPLACE')
     bpy.ops.object.select_all(action='DESELECT');ob.select_set(True);bpy.context.view_layer.objects.active=ob
@@ -133,106 +141,45 @@ def loft(name,profiles,kind,weights,category='base',fold=0,nu=24,nv=24,solid=.00
         return (x+(rx+ripple)*math.sin(a),y+(ry+ripple)*math.cos(a),z)
     return patch(name,fn,nu,nv,kind,weights,category,solid)
 def torso(p):
-    t=clamp((p[2]-1.08)/.25)
+    t=clamp((p[2]-1.10)/.25)
     return {'Spine':1-t,'Chest':t}
 def arm_weights(side,p):
-    t=clamp((p[2]-1.075)/.12)
+    t=clamp((p[2]-1.095)/.12)
     return {'UpperArm_'+side:t,'Forearm_'+side:1-t}
 def leg_weights(side,p):
-    t=clamp((p[2]-.46)/.14)
-    pelvis=clamp((p[2]-.84)/.12)
+    t=clamp((p[2]-.46)/.12)
+    pelvis=clamp((p[2]-.84)/.16)
     return {'Pelvis':pelvis,'Thigh_'+side:t*(1-pelvis),'Shin_'+side:(1-t)*(1-pelvis)}
 
-# Continuous face: shaped jaw/cheek/forehead; bridge, nostrils, lips and sockets
-# deform the actual head surface. No separate ball-head or glued-on box nose.
-head_profile=[(1.548,.035,.042,.006),(1.572,.061,.063,.005),(1.617,.078,.076,0),(1.665,.081,.078,0),(1.712,.079,.075,-.003),(1.76,.053,.055,-.006),(1.782,.001,.002,-.008)]
-def face(u,v):
-    z,rx,ry,cy=interp(head_profile,v);a=(u-.5)*math.tau;x=rx*math.sin(a);y=cy+ry*math.cos(a)
-    front=max(0,math.cos(a))**14
-    bridge=.018*math.exp(-((z-1.659)/.030)**2)
-    tip=.030*math.exp(-((z-1.632)/.012)**2)
-    mouth=.008*math.exp(-((z-1.593)/.008)**2)
-    sockets=-.010*(math.exp(-((x-.033)/.018)**2)+math.exp(-((x+.033)/.018)**2))*math.exp(-((z-1.671)/.011)**2)
-    y+=(bridge+tip)*front+mouth*max(0,math.cos(a))**5+sockets*max(0,math.cos(a))**3
-    return (x,y,z)
-patch('Head',face,64,50,'skin','Head',category='head')
-loft('NeckSkin',[(0,0,1.435,.065,.055),(0,0,1.50,.045,.044),(0,.003,1.58,.042,.045)],'skin','Neck','neck',nu=24,nv=12)
-for s in [-1,1]:
-    # Almond-shaped sclera, dark iris, fine upper lid and brow are surface inlays.
-    def eye(u,v,s=s):
-        x=s*.033+(u-.5)*.027;h=.006*math.sin(math.pi*u)
-        return (x,.077+.004*math.sin(math.pi*u),1.671+(v-.5)*h*2)
-    patch('EyeWhite'+str(s),eye,12,4,'eye','Head','head')
-    patch('Iris'+str(s),lambda u,v,s=s:(s*.033+(u-.5)*.009,.082,1.671+(v-.5)*.008),4,4,'iris','Head','head')
-    patch('UpperLid'+str(s),lambda u,v,s=s:(s*.033+(u-.5)*.030,.078+.004*math.sin(math.pi*u),1.672+.006*math.sin(math.pi*u)+v*.0016),14,2,'leather','Head','head')
-    patch('Brow'+str(s),lambda u,v,s=s:(s*.034+(u-.5)*.034,.077+.004*math.sin(math.pi*u),1.690+.004*math.sin(math.pi*u)+v*.002),16,2,'hair','Head','head')
-    def ear(u,v,s=s):
-        a=u*math.tau;r=math.sin(v*math.pi/2)
-        return (s*(.079+.016*r*math.cos(a)),.002+.010*r*math.sin(a),1.646+.030*r*math.sin(a))
-    patch('Ear'+str(s),ear,20,8,'skin','Head','head',solid=.004)
-    patch('Nostril'+str(s),lambda u,v,s=s:(s*.009+(u-.5)*.009,.101,1.624+(v-.5)*.003),6,2,'lip','Head','head')
-patch('Mouth',lambda u,v:((u-.5)*.041,.077+.004*math.cos((u-.5)*math.pi),1.594+(v-.5)*.003-.001*math.cos(u*math.pi*2)),20,3,'lip','Head','head')
-
-# Groomed short hair with an asymmetrical hairline, taper and directional ridges.
-head_samples=[interp(head_profile,i/500) for i in range(501)]
-def skull_radius(z):
-    if z>=1.782:return (.001,.001,-.008)
-    row=min(head_samples,key=lambda p:abs(p[0]-z))
-    return (row[1],row[2],row[3])
-def hair(u,v):
-    a=(u-.5)*math.tau;front=max(0,math.cos(a));bottom=1.603+.113*front**2+.004*math.sin(a*3)
-    z=bottom+(1.790-bottom)*v;rx,ry,cy=skull_radius(z-.006)
-    ripple=.0011*math.sin(a*25+v*10)*math.sin(math.pi*v)
-    return ((rx+.004+ripple)*math.sin(a),cy+(ry+.004+ripple)*math.cos(a),z)
-patch('Hair',hair,64,28,'hair','Head','hair',solid=.002)
-
-# Body includes a closed underlying torso/hips; clothing has its own hide groups.
-loft('BodyUnderTunic',[(0,0,.86,.16,.095),(0,0,1.04,.14,.085),(0,0,1.25,.18,.107),(0,0,1.40,.202,.087),(0,0,1.46,.07,.053)],'skin',torso,'body_under_cloth',nu=24,nv=24)
-loft('Tunic',[(0,0,1.035,.16,.113),(0,0,1.075,.155,.108),(0,0,1.25,.188,.12),(0,0,1.385,.202,.105),(0,0,1.435,.176,.076),(0,0,1.465,.061,.052)],'linen',torso,'torso_cloth',fold=.0035,nu=40,nv=32)
-loft('TunicHem',[(0,0,.806,.233,.148),(0,0,.88,.224,.143),(0,0,.97,.195,.129),(0,0,1.085,.162,.115)],'linen',lambda p:{'Pelvis':1-clamp((p[2]-1.01)/.08),'Spine':clamp((p[2]-1.01)/.08)},'tunic_hem',fold=.004,nu=40,nv=20)
-loft('LinenCollar',[(0,0,1.451,.065,.057),(0,0,1.482,.053,.05)],'linen','Neck','collar',nu=28,nv=5)
-# The seam ribbon is intentionally restrained. Belt is cloth, not armor.
-loft('ClothWaistTie',[(0,0,1.015,.163,.114),(0,0,1.047,.161,.111)],'leather','Spine','waist_tie',nu=36,nv=5)
-patch('TunicPlacket',lambda u,v:((u-.5)*.018,.077+(.12-.077)*(1-v),1.31+v*.13),4,10,'leather','Chest','torso_cloth',solid=.002)
-for s,side in [(-1,'L'),(1,'R')]:
-    aw=lambda p,side=side:arm_weights(side,p)
-    loft('Sleeve_'+side,[(s*.198,0,1.416,.063,.070),(s*.246,0,1.35,.064,.068),(s*.273,0,1.235,.057,.059),(s*.287,.008,1.13,.053,.055),(s*.30,.016,1.027,.049,.049)],'linen',aw,'sleeves',fold=.0035,nu=28,nv=28)
-    loft('ForearmSkin_'+side,[(s*.295,.013,1.07,.042,.044),(s*.312,.022,.98,.039,.041),(s*.315,.025,.885,.029,.032)],'skin','Forearm_'+side,'forearms',nu=24,nv=18)
-    # Oval knuckles/palm blend to four individually tapered fingers, with thumb.
-    loft('Palm_'+side,[(s*.315,.025,.901,.03,.031),(s*.318,.036,.849,.04,.023),(s*.32,.046,.794,.038,.019),(s*.32,.047,.779,.030,.017)],'skin','Hand_'+side,'hands',nu=28,nv=14)
-    for i,fn in enumerate(['Index','Middle','Ring','Little']):
-        x=s*(.284+i*.022);low=.729+abs(i-1)*.007
-        loft(fn+'_'+side,[(x,.046,.799,.0108,.016),(x,.06,.764,.010,.013),(x,.067,low+.006,.008,.011),(x,.065,low,.003,.005)],'skin',fn+'_'+side,'hands',nu=12,nv=10)
-    loft('Thumb_'+side,[(s*.286,.035,.856,.018,.020),(s*.265,.066,.824,.014,.016),(s*.263,.082,.802,.008,.011)],'skin','Thumb_'+side,'hands',nu=14,nv=12)
-    lw=lambda p,side=side:leg_weights(side,p)
-    loft('Trousers_'+side,[(s*.075,0,1.035,.076,.094),(s*.089,0,.95,.084,.100),(s*.109,0,.83,.095,.104),(s*.109,.012,.68,.09,.089),(s*.105,.015,.53,.066,.071),(s*.105,.001,.40,.069,.069),(s*.105,-.003,.24,.053,.053),(s*.105,0,.17,.043,.048)],'trousers',lw,'legs_cloth',fold=.003,nu=28,nv=34)
-    loft('Shoe_'+side,[(s*.105,.066,.024,.055,.119),(s*.105,.083,.052,.066,.148),(s*.105,.068,.094,.061,.129),(s*.105,.012,.142,.041,.055),(s*.105,0,.192,.041,.047)],'leather','Foot_'+side,'feet_shoes',nu=32,nv=16)
-    loft('Sole_'+side,[(s*.105,.079,.015,.059,.126),(s*.105,.083,.035,.066,.144)],'leather','Foot_'+side,'feet_shoes',nu=32,nv=4)
+# Anatomical surfaces are kept separate from rig/export code for hand editing.
+sys.path.insert(0,str(Path(__file__).parent))
+from human_surfaces import build as build_human_surfaces
+skull_radius=build_human_surfaces(patch,loft,mesh,interp,clamp,torso,arm_weights,leg_weights)
 
 # Armor is export-separated, same exact rig and rest transforms; body garment
 # gets hidden on equip. No metal/weapon mesh exists in the base export.
 def cuirass(u,v):
     a=(u-.5)*math.tau
-    z,rx,ry=interp([(1.035,.17,.123),(1.12,.174,.136),(1.27,.214,.148),(1.38,.229,.128),(1.443,.177,.09)],v)
+    z,rx,ry=interp([(1.067,.161,.125),(1.15,.168,.138),(1.29,.193,.143),(1.39,.206,.124),(1.470,.092,.065)],v)
     z-=.023*max(0,(v-.8)/.2)*abs(math.sin(a))**4
     y=ry*math.cos(a)+.012*max(0,math.cos(a))**10*math.sin(math.pi*v)
     return (rx*math.sin(a),y,z)
 patch('Chestplate',cuirass,48,30,'steel',torso,'chest',solid=.008)
-loft('ChestplateRolledWaist',[(0,0,1.035,.172,.125),(0,0,1.053,.174,.127)],'steel','Spine','chest',nu=40,nv=4,solid=.005)
-loft('ChestplateGorget',[(0,0,1.433,.077,.066),(0,0,1.481,.058,.054)],'steel','Neck','chest',nu=28,nv=8,solid=.004)
+loft('ChestplateRolledWaist',[(0,0,1.066,.164,.127),(0,0,1.083,.165,.130)],'steel','Spine','chest',nu=40,nv=4,solid=.005)
+loft('ChestplateGorget',[(0,0,1.467,.081,.069),(0,0,1.517,.060,.060)],'steel','Neck','chest',nu=28,nv=8,solid=.004)
 # Open-face helmet, preserving readable face. Hair is hidden when worn.
 def helm(u,v):
     a=(u-.5)*math.tau;front=max(0,math.cos(a))**3
-    bottom=1.604+.101*front;z=bottom+(1.803-bottom)*v
-    rx,ry,cy=skull_radius(z-.014)
+    bottom=1.610+.110*front;z=bottom+(1.825-bottom)*v
+    rx,ry,cy=skull_radius(z-.022)
     return ((rx+.010)*math.sin(a),cy+(ry+.011)*math.cos(a),z)
 patch('Helmet',helm,48,24,'steel','Head','helmet',solid=.006)
 for s in [-1,1]:
-    patch('HelmetCheek'+str(s),lambda u,v,s=s:(s*(.076+u*.020),.023+v*.025,1.608+v*.104+.009*math.sin(u*math.pi)),10,12,'steel','Head','helmet',solid=.005)
+    patch('HelmetCheek'+str(s),lambda u,v,s=s:(s*(.087+u*.017),.023+v*.025,1.611+v*.105+.009*math.sin(u*math.pi)),10,12,'steel','Head','helmet',solid=.005)
 
 # Grip-origin rigid items. Bone local transforms are exported in a manifest,
 # not baked into the character skin. Grip pose uses a modest finger curl later.
-grip=Vector((.315,.055,.815))
+grip=Vector((.232,.055,.830))
 def swordpoint(p):
     # Carry blade diagonally, away from thigh and clear of the floor.
     return grip+Euler((0,-.76,0),'XYZ').to_matrix()@Vector(p)
@@ -245,7 +192,7 @@ for name,profile,kind in [('SwordGrip',[(0,0,-.038,.018,.021),(0,0,.09,.017,.020
     ob=loft(name,profile,kind,None,'sword',nu=16,nv=10)
     for vertex in ob.data.vertices:vertex.co=swordpoint(vertex.co)
 # Curved, smaller heater shield: a plank body, forged rim, original twin stripe.
-shield_center=Vector((-.34,.095,.91))
+shield_center=Vector((-.252,.095,.925))
 def shield_shape(u,v):
     z=.20-v*.50;width=.195*(1 if v<.45 else 1-.92*(v-.45)/.55)
     return shield_center+Vector(((u-.5)*width*2,.018+.050*(1-(u*2-1)**2),z))
@@ -266,11 +213,14 @@ def world_rotation(bn,direction):
     pb.rotation_quaternion=local_rest.inverted()@parent.inverted()@q
     bpy.context.view_layer.update()
 def leg_pose(side,y,z,bob):
-    s=-1 if side=='L' else 1;hip=Vector((s*.105,0,.92+bob));foot=Vector((s*.105,y,z))
-    axis=(foot-hip).normalized();d=min(.819,max(.2,(foot-hip).length))
-    along=(.40028**2-.42027**2+d*d)/(2*d)
+    s=-1 if side=='L' else 1
+    hip=Vector((s*ANATOMY['hip_half_width'],0,ANATOMY['hip']+bob))
+    foot=Vector((s*ANATOMY['hip_half_width'],y,z))
+    upper=adata.bones['Thigh_'+side].length;lower=adata.bones['Shin_'+side].length
+    axis=(foot-hip).normalized();d=min(upper+lower-.001,max(.2,(foot-hip).length))
+    along=(upper**2-lower**2+d*d)/(2*d)
     front=(Vector((0,1,0))-axis*axis.y).normalized()
-    knee=hip+axis*along+front*math.sqrt(max(0,.40028**2-along*along))
+    knee=hip+axis*along+front*math.sqrt(max(0,upper**2-along*along))
     world_rotation('Thigh_'+side,knee-hip);world_rotation('Shin_'+side,foot-knee)
     world_rotation('Foot_'+side,(0,.19,-.045))
 rig.animation_data_create();fps=30;metrics={}
@@ -293,10 +243,10 @@ for clip,duration,speed in [('idle',2.4,0),('walk',.60,3.2),('run',.60,5.8),('tu
         for side,offset in [('L',0),('R',.5)]:
             p=(t+offset)%1;stance=.25 if running else .48;travel=speed*duration*stance
             if moving:
-                if p<stance:y=travel*(.5-p/stance);z=.10
+                if p<stance:y=travel*(.5-p/stance);z=ANATOMY['ankle']
                 else:
-                    u=(p-stance)/(1-stance);y=travel*(-.5+u);z=.10+(.20 if running else .09)*math.sin(math.pi*u)
-            else:y=0;z=.10
+                    u=(p-stance)/(1-stance);y=travel*(-.5+u);z=ANATOMY['ankle']+(.20 if running else .09)*math.sin(math.pi*u)
+            else:y=0;z=ANATOMY['ankle']
             leg_pose(side,y,z,bob)
             swing=(-1 if side=='L' else 1)*math.sin(phase)*(.42 if running else .24 if moving else .012)
             rig.pose.bones['UpperArm_'+side].rotation_quaternion=Euler((swing,0,0)).to_quaternion()
@@ -309,12 +259,29 @@ for clip,duration,speed in [('idle',2.4,0),('walk',.60,3.2),('run',.60,5.8),('tu
 # One export surface per visibility region/material. Do not merge distinct hide
 # regions, nor put armor in the base asset. Keep editable, unmerged source too.
 source_collection=bpy.data.collections.new('EDITABLE_SURFACES');bpy.context.scene.collection.children.link(source_collection)
+for ob in list(objects):
+    backup=ob.copy();backup.data=ob.data.copy();source_collection.objects.link(backup)
+    backup.hide_viewport=True;backup.hide_render=True
+    if ob.get('split_sleeves'):
+        # Keep the connected authored mesh in the editable collection. Only
+        # split the export at the armhole for runtime chest visibility masks.
+        import bmesh
+        bpy.ops.object.select_all(action='DESELECT');ob.select_set(True)
+        bpy.context.view_layer.objects.active=ob
+        group_index=ob.vertex_groups['VIS_SLEEVES'].index
+        bpy.ops.object.mode_set(mode='EDIT');bpy.ops.mesh.select_all(action='DESELECT')
+        bm=bmesh.from_edit_mesh(ob.data);deform=bm.verts.layers.deform.active
+        for f in bm.faces:
+            f.select_set(all(v[deform].get(group_index,0)>.5 for v in f.verts))
+        bmesh.update_edit_mesh(ob.data)
+        before=set(bpy.data.objects)
+        bpy.ops.mesh.separate(type='SELECTED');bpy.ops.object.mode_set(mode='OBJECT')
+        sleeves=(set(bpy.data.objects)-before).pop();sleeves.name='ContinuousSleeves'
+        sleeves['region']='sleeves';objects.append(sleeves)
 groups={}
 for ob in objects:
     category=ob['region'];kind=ob.data.materials[0].name
     groups.setdefault((category,kind),[]).append(ob)
-    backup=ob.copy();backup.data=ob.data.copy();source_collection.objects.link(backup)
-    backup.hide_viewport=True;backup.hide_render=True
 merged=[]
 for (category,kind),group in groups.items():
     bpy.ops.object.select_all(action='DESELECT')
@@ -346,8 +313,14 @@ for pb in rig.pose.bones:pb.rotation_quaternion=Quaternion();pb.location=(0,0,0)
 bpy.context.view_layer.update()
 for cat in ['chest','helmet','sword','shield']:
     export(BASE/'equipment'/f'{cat}.glb',{cat},False,cat in ['chest','helmet'])
+base_points=[v.co for ob in merged if ob['region'] in base_regions for v in ob.data.vertices]
+rest_bounds=[[min(p[i] for p in base_points),max(p[i] for p in base_points)] for i in range(3)]
+shoulders=[p for ob in merged if ob['region'] in ['torso_cloth','sleeves'] for p in (v.co for v in ob.data.vertices) if 1.38<p.z<1.48]
 manifest={'asset_status':'editable art candidate / equipment visual prototype',
- 'blender':bpy.app.version_string,'height_m':1.795,'shoulder_width_m':.44,
+ 'blender':bpy.app.version_string,'height_m':rest_bounds[2][1]-rest_bounds[2][0],
+ 'shoulder_width_m':max(p.x for p in shoulders)-min(p.x for p in shoulders),'rest_bounds_m':rest_bounds,
+ 'anatomical_landmarks_m':ANATOMY,'head_units_to_anatomical_crown':round(ANATOMY['crown']/(ANATOMY['crown']-ANATOMY['chin']),3),
+ 'revision':'reference-guided natural proportions; short cloth shirt; connected shoulders and trouser seat',
  'bones':len(adata.bones),'actions':metrics,'parts':entries,
  'regions':sorted(base_regions),'hidden_by_default':['body_under_cloth'],
  'bone_rest':{b.name:[list(row) for row in b.matrix_local] for b in adata.bones},

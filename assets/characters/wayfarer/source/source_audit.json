@@ -8,7 +8,15 @@
     "turn_right",
     "walk"
   ],
-  "editable_parts": 60,
+  "editable_parts": 74,
   "packed_images": 8,
-  "no_animated_bone_scaling": true
+  "no_animated_bone_scaling": true,
+  "proportions": {
+    "head_height_m": 0.2549999952316284,
+    "head_width_m": 0.18272839486598969,
+    "head_units_excluding_hair": 7.058823474413245,
+    "connected_shirt_components": 1,
+    "connected_trousers_components": 1,
+    "note": "rest-geometry checks; not an art approval"
+  }
 }

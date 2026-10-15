@@ -1,5 +1,8 @@
 # 项目开发约定
 
+人体参考修订：用户2026-10-15提供的成年冒险者图用于人体比例/轮廓，不自动采用图中的盔甲或佩剑；初始布衣空手仍有效。Wayfarer约7.06头身，曲面在tools/wayfarer/human_surfaces.py；build_wayfarer.py管理32骨/动作/五份GLB。修改骨长时同步IK、蒙皮与装备rest，不以缩放骨骼修形。连续衣袖源保留整体，导出按遮挡分离；袖子蒙皮按拓扑区分，不能只凭x坐标判断贴近躯干的手臂。audit_source记录实际头部尺寸与衣袖/裤裆连通性，不代表美术批准。
+docs/proportions/before_*是f3165be布衣人物稳定实图，不能用新截图覆盖。capture_proportions.gd只覆盖after_*，正侧审阅摄像机临时从SpringArm移出，不能改生产相机。capture_equipment会覆盖docs/wayfarer；先保留稳定图。无新玩法或地图替换，仍需正常游戏距离、走跑与装备实图。
+
 当前授权新增：只在 scenes/visual_lab/character_equipment_lab.tscn 开发布衣基础人物与四件装备外观切换原型（头盔/胸甲/剑/盾），八个预留槽位。禁止完整背包、属性、掉落或战斗扩展。Forest Valley、旧教堂、两版旧骑士和原控制不替换。
 assets/characters/wayfarer 是新32骨/独立动作/局部UV人物候选，不能称正式精修人物。tools/wayfarer/build_wayfarer.py 默认拒绝覆盖；保存手工编辑后才使用 -- --replace-generated；.blend源在source/blender/.gdignore内，运行使用五份独立GLB。128px像素色板纹理为原创程序绘制，无新AI图或高模烘焙。
 scripts/equipment只处理视觉：装备Resource ID/槽位/模型/遮挡/挂点；蒙皮按骨名+rest验证并重绑基础Skeleton3D，剑盾BoneAttachment3D；失败保持原装备，穿卸不得重建人物、动画树或摄像机。身体遮挡取所有穿戴物品mask并集，卸下恢复布衣/头发。输入仍只有pixel_renderer一条转发，高清按钮应消费点击，避免触发重新捕获。
