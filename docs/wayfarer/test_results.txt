@@ -1,68 +1,11 @@
-Reference-guided human proportions revision / 2026-10-15
-Godot 4.7.2 / Blender 4.5.9 LTS / macOS Apple M1
-Asset/source checks and screenshots are distinct from art approval.
-Python binary asset checks: wayfarer_asset_test, knight_asset_test, atelier_asset_test PASS (captured in task output).
+=== audit ===
+SOURCE_AUDIT {"source_reopen": "PASS", "bones": 32, "actions": ["idle", "run", "turn_left", "turn_right", "walk"], "editable_parts": 85, "packed_images": 10, "no_animated_bone_scaling": true, "proportions": {"head_height_m": 0.2549999952316284, "head_width_m": 0.18336625397205353, "head_units_excluding_hair": 7.058823474413245, "connected_shirt_components": 1, "connected_trousers_components": 1, "note": "rest-geometry checks; not an art approval"}}
+Blender 4.5.9 LTS (hash 8bf95cbd38d1 built 2026-04-21 01:30:46)
+Read blend: "/Users/mac/Documents/ChatGPT/3d game/assets/characters/wayfarer/source/blender/wayfarer.blend"
 
---- equipment_test ---
-Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
-OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M1
+Blender quit
 
-PASS: startup captures mouse
-PASS: default no equipment or item instances
-PASS: eight slots and four data resources
-PASS: new unified 32-bone humanoid
-PASS: original controller on floor
-PASS: base has exactly one skeleton
-PASS: interactive UI in HD root, 3D in SubViewport
-PASS: base hair and tunic visible
-PASS: under-cloth body hidden from rendering
-PASS: actual working textures contain mipmaps
-PASS: imported fresh clip idle
-PASS: imported fresh clip walk
-PASS: imported fresh clip run
-PASS: imported fresh clip turn_left
-PASS: imported fresh clip turn_right
-PASS: unknown ID rejected without state change
-PASS: unknown slot rejected
-PASS: helmet equips and hides hair
-PASS: chest hides covered upper garment
-PASS: chest preserves uncovered sleeves and lower garment
-PASS: all four IDs equip immediately by single input route
-PASS: armor source skeletons removed; one live skeleton
-PASS: all armor skin binds resolve by name to base skeleton
-PASS: sword and shield use non-overriding hand bone attachments
-PASS: equipping same ID is idempotent
-PASS: incompatible armor rejected atomically, existing helmet retained
-PASS: 40 full equip/clear cycles leave no mounts or extra skeletons
-PASS: repeated swaps reuse bounded material cache
-PASS: equip never reloads actor, skeleton, animation tree or camera
-PASS: clear restores exact base visibility
-PASS: HD GUI click equips without forwarding click to mouse capture
-PASS: GUI click unequips immediately
-PASS: click game recaptures mouse
-PASS: one relative mouse route at resolution 0
-PASS: one relative mouse route at resolution 1
-PASS: one relative mouse route at resolution 2
-PASS: wheel zoom preserved
-PASS: newly equipped material respects F3 disabled state
-PASS: F3 restores original maps
-PASS: lighting comparison works
-PASS: equipped WASD walking and original collision
-PASS: equipped Shift run state
-PASS: rigid sword moves with actual animation
-PASS: socket matches animated hand pose
-PASS: unequip while running retains animation
-PASS: base decelerates to idle
-PASS: reset remains functional
-PASS: frozen base actual pixels stable
-PASS: real skeletal idle changes image
-PERF equipped=false mean_ms=9.35571111111111 p95_ms=14.187 draw_calls=65.0
-PERF equipped=true mean_ms=8.70404444444445 p95_ms=14.005 draw_calls=71.0
-PASS: real animations enabled during performance sampling
-EQUIPMENT RESULT 50 checks, 0 failures
-
-
---- prototype_test ---
+=== prototype ===
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M1
 
@@ -87,8 +30,7 @@ PASS: reset restores spawn
 PASS: fall recovery works
 RESULT: 0 failures
 
-
---- rendering_test ---
+=== rendering ===
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M1
 
@@ -122,11 +64,10 @@ PASS: game image click recaptures mouse after resize
 PASS: fit mode preserves aspect without stretching
 PASS: native comparison uses exact 16:9 whole pixel dimensions
 PASS: small window downsizes 960p without distortion
-PERF: 640x360 average frame 8.27 ms, p95 12.40 ms, objects 315, draw calls 209
+PERF: 640x360 average frame 8.27 ms, p95 12.32 ms, objects 315, draw calls 209
 RESULT: 0 failures
 
-
---- art_integrity_test ---
+=== art_integrity ===
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M1
 
@@ -154,8 +95,7 @@ PASS: saved module old_tree instantiates with meshes
 PASS: saved module shrub instantiates with meshes
 RESULT: 0 failures
 
-
---- knight_animation_test ---
+=== knight_animation ===
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M1
 
@@ -187,8 +127,7 @@ PASS: animated player retains terrain contact
 PASS: test-only animation freeze yields stable pixels
 KNIGHT_ANIMATION_FAILURES 0
 
-
---- valley_test ---
+=== valley ===
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M1
 
@@ -226,11 +165,10 @@ PASS: knight physically traverses all 12 curved trail segments
 PASS: Shift running retains higher speed
 PASS: camera smoothly follows moving knight
 PASS: R returns to valley spawn point
-PERF valley640 mean 8.98 ms p95 11.86 ms draws 741 objects 880
+PERF valley640 mean 8.33 ms p95 11.25 ms draws 684 objects 823
 RESULT: 34 checks, 0 failures
 
-
---- atelier_test ---
+=== atelier ===
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M1
 
@@ -268,23 +206,75 @@ PASS: click recaptures cursor
 PASS: wheel zoom preserved
 PASS: frozen character has stable actual pixels
 PASS: real skeletal animation changes rendered pixels
-PERF old frame_interval mean_ms=8.29339444444444 p95_ms=11.796 draw_calls=34.0
-PERF new frame_interval mean_ms=8.30562222222223 p95_ms=11.745 draw_calls=34.0
+PERF old frame_interval mean_ms=8.30353333333333 p95_ms=13.062 draw_calls=34.0
+PERF new frame_interval mean_ms=8.29627222222222 p95_ms=12.64 draw_calls=34.0
 PASS: animation restored before performance sampling
 ATELIER RESULT 35 checks, 0 failures
 
-
---- capture_proportions ---
+=== equipment ===
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M1
 
-PROPORTION_CAPTURE after_ortho_front
-PROPORTION_CAPTURE after_ortho_side
-PROPORTION_CAPTURE after_ortho_three_quarter
-PROPORTION_CAPTURE after_portrait_native
+PASS: startup captures mouse
+PASS: default no equipment or item instances
+PASS: eight slots and four data resources
+PASS: new unified 32-bone humanoid
+PASS: original controller on floor
+PASS: base has exactly one skeleton
+PASS: interactive UI in HD root, 3D in SubViewport
+PASS: base hair and tunic visible
+PASS: under-cloth body hidden from rendering
+PASS: actual working textures contain mipmaps
+PASS: imported fresh clip idle
+PASS: imported fresh clip walk
+PASS: imported fresh clip run
+PASS: imported fresh clip turn_left
+PASS: imported fresh clip turn_right
+PASS: unknown ID rejected without state change
+PASS: unknown slot rejected
+PASS: helmet equips and hides hair
+PASS: chest hides covered upper garment
+PASS: chest also hides folded neck cloth and leather belt attachments
+PASS: chest preserves uncovered sleeves and lower garment
+PASS: all four IDs equip immediately by single input route
+PASS: armor source skeletons removed; one live skeleton
+PASS: all armor skin binds resolve by name to base skeleton
+PASS: sword and shield use non-overriding hand bone attachments
+PASS: equipping same ID is idempotent
+PASS: incompatible armor rejected atomically, existing helmet retained
+PASS: 40 full equip/clear cycles leave no mounts or extra skeletons
+PASS: repeated swaps reuse bounded material cache
+PASS: equip never reloads actor, skeleton, animation tree or camera
+PASS: clear restores exact base visibility
+PASS: clear restores all traveler collar and belt surfaces
+PASS: HD GUI click equips without forwarding click to mouse capture
+PASS: GUI click unequips immediately
+PASS: click game recaptures mouse
+PASS: one relative mouse route at resolution 0
+PASS: one relative mouse route at resolution 1
+PASS: one relative mouse route at resolution 2
+PASS: wheel zoom preserved
+PASS: newly equipped material respects F3 disabled state
+PASS: F3 restores original maps
+PASS: lighting comparison works
+PASS: equipped WASD walking and original collision
+PASS: equipped Shift run state
+PASS: rigid sword moves with actual animation
+PASS: socket matches animated hand pose
+PASS: unequip while running retains animation
+PASS: base decelerates to idle
+PASS: reset remains functional
+PASS: frozen base actual pixels stable
+PASS: real skeletal idle changes image
+PERF equipped=false mean_ms=10.2038111111111 p95_ms=17.069 draw_calls=73.0
+PERF equipped=true mean_ms=8.42678888888889 p95_ms=13.434 draw_calls=73.0
+PASS: real animations enabled during performance sampling
+EQUIPMENT RESULT 52 checks, 0 failures
 
+=== rest compatibility ===
+PASS all 32 bone rest matrices exactly match 5ca2f4d
 
---- capture_equipment ---
+=== captures ===
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M1
 
@@ -318,173 +308,10 @@ CAPTURE equipped_forest_context
 CAPTURE forest_running
 FOREST RUN on_floor=true state=run
 
-
---- source ---
-SOURCE_AUDIT {"source_reopen": "PASS", "bones": 32, "actions": ["idle", "run", "turn_left", "turn_right", "walk"], "editable_parts": 74, "packed_images": 8, "no_animated_bone_scaling": true, "proportions": {"head_height_m": 0.2549999952316284, "head_width_m": 0.18272839486598969, "head_units_excluding_hair": 7.058823474413245, "connected_shirt_components": 1, "connected_trousers_components": 1, "note": "rest-geometry checks; not an art approval"}}
-Blender 4.5.9 LTS (hash 8bf95cbd38d1 built 2026-04-21 01:30:46)
-Read blend: "/Users/mac/Documents/ChatGPT/3d game/assets/characters/wayfarer/source/blender/wayfarer.blend"
-
-Blender quit
-
-
---- import ---
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M1
 
-[   0% ] first_scan_filesystem | Started 项目初始化 (5 steps)
-[   0% ] first_scan_filesystem | 正在扫描文件结构……
-[  16% ] first_scan_filesystem | 正在加载全局类名……
-[  33% ] first_scan_filesystem | 正在校验 GDExtension……
-[  50% ] first_scan_filesystem | 正在创建自动加载脚本……
-[  66% ] first_scan_filesystem | 正在初始化插件……
-[  83% ] first_scan_filesystem | 正在启动文件扫描……
-[ DONE ] first_scan_filesystem
-
-[   0% ] _update_scan_actions | Started 正在扫描动作…… (48 steps)
-[   0% ] _update_scan_actions | chest.glb
-[   2% ] _update_scan_actions | helmet.glb
-[   4% ] _update_scan_actions | shield.glb
-[   6% ] _update_scan_actions | sword.glb
-[   8% ] _update_scan_actions | eye_albedo.png
-[  10% ] _update_scan_actions | hair_albedo.png
-[  12% ] _update_scan_actions | leather_albedo.png
-[  14% ] _update_scan_actions | linen_albedo.png
-[  16% ] _update_scan_actions | skin_albedo.png
-[  18% ] _update_scan_actions | steel_albedo.png
-[  20% ] _update_scan_actions | trousers_albedo.png
-[  22% ] _update_scan_actions | wood_albedo.png
-[  24% ] _update_scan_actions | wayfarer.glb
-[  26% ] _update_scan_actions | after_ortho_front.png
-[  28% ] _update_scan_actions | after_ortho_side.png
-[  30% ] _update_scan_actions | after_ortho_three_quarter.png
-[  32% ] _update_scan_actions | after_portrait_native.png
-[  34% ] _update_scan_actions | actual_running.png
-[  36% ] _update_scan_actions | base_forest_context.png
-[  38% ] _update_scan_actions | base_front_480.png
-[  40% ] _update_scan_actions | base_front_640.png
-[  42% ] _update_scan_actions | base_front_960.png
-[  44% ] _update_scan_actions | base_front_native.png
-[  46% ] _update_scan_actions | base_gameplay_640.png
-[  48% ] _update_scan_actions | base_rear_640.png
-[  51% ] _update_scan_actions | base_run.png
-[  53% ] _update_scan_actions | base_walk.png
-[  55% ] _update_scan_actions | debug_ui.png
-[  57% ] _update_scan_actions | equipped_forest_context.png
-[  59% ] _update_scan_actions | equipped_front_480.png
-[  61% ] _update_scan_actions | equipped_front_640.png
-[  63% ] _update_scan_actions | equipped_front_960.png
-[  65% ] _update_scan_actions | equipped_front_native.png
-[  67% ] _update_scan_actions | equipped_gameplay_640.png
-[  69% ] _update_scan_actions | equipped_rear_640.png
-[  71% ] _update_scan_actions | equipped_run.png
-[  73% ] _update_scan_actions | equipped_walk.png
-[  75% ] _update_scan_actions | forest_running.png
-[  77% ] _update_scan_actions | previous_knight_front_640.png
-[  79% ] _update_scan_actions | previous_knight_gameplay_640.png
-[  81% ] _update_scan_actions | study_chest.png
-[  83% ] _update_scan_actions | study_helmet.png
-[  85% ] _update_scan_actions | study_shield.png
-[  87% ] _update_scan_actions | study_sword.png
-[  89% ] _update_scan_actions | unequipped_front_640.png
-[  91% ] _update_scan_actions | unequipped_front_native.png
-[  93% ] _update_scan_actions | unequipped_gameplay_640.png
-[  95% ] _update_scan_actions | unequipped_rear_640.png
-[ DONE ] _update_scan_actions
-
-[   0% ] reimport | Started 正在导入或重新导入资产 (35 steps)
-[   0% ] reimport | 正在准备重新导入文件……
-[   2% ] reimport | 正在准备重新导入文件……
-[   5% ] reimport | 正在准备重新导入文件……
-[   8% ] reimport | 正在准备重新导入文件……
-[  11% ] reimport | 正在准备重新导入文件……
-[  13% ] reimport | 正在准备重新导入文件……
-[  16% ] reimport | 正在准备重新导入文件……
-[  19% ] reimport | 正在准备重新导入文件……
-[  22% ] reimport | 正在准备重新导入文件……
-[  25% ] reimport | 正在准备重新导入文件……
-[  27% ] reimport | 正在准备重新导入文件……
-[  30% ] reimport | 正在准备重新导入文件……
-[  33% ] reimport | 正在准备重新导入文件……
-[  36% ] reimport | 正在准备重新导入文件……
-[  38% ] reimport | 正在准备重新导入文件……
-[  41% ] reimport | 正在准备重新导入文件……
-[  44% ] reimport | 正在准备重新导入文件……
-[  47% ] reimport | 正在准备重新导入文件……
-[  50% ] reimport | 正在准备重新导入文件……
-[  52% ] reimport | 正在准备重新导入文件……
-[  55% ] reimport | 正在准备重新导入文件……
-[  58% ] reimport | 正在准备重新导入文件……
-[  61% ] reimport | 正在准备重新导入文件……
-[  63% ] reimport | 正在准备重新导入文件……
-[  66% ] reimport | 正在准备重新导入文件……
-[  69% ] reimport | 正在准备重新导入文件……
-[  72% ] reimport | 正在准备重新导入文件……
-[  75% ] reimport | 正在准备重新导入文件……
-[  77% ] reimport | 正在准备重新导入文件……
-[  80% ] reimport | 正在准备重新导入文件……
-[  83% ] reimport | 正在准备重新导入文件……
-[  86% ] reimport | 正在准备重新导入文件……
-[  88% ] reimport | 正在准备重新导入文件……
-[  91% ] reimport | 正在准备重新导入文件……
-[  94% ] reimport | 正在准备重新导入文件……
-[   0% ] reimport | 正在执行重新导入的前置操作……
-[   0% ] preload_reimporting_scene | Started 正在准备重新加载场景 (1 steps)
-[   0% ] preload_reimporting_scene | 正在分析场景 [空]
-[  50% ] preload_reimporting_scene | 准备完成。
-[ DONE ] preload_reimporting_scene
-
-[   0% ] reimport | equipped_front_640.png
-[   2% ] reimport | equipped_front_960.png
-[   5% ] reimport | equipped_front_native.png
-[   8% ] reimport | equipped_gameplay_640.png
-[  11% ] reimport | equipped_rear_640.png
-[  13% ] reimport | equipped_run.png
-[  16% ] reimport | equipped_walk.png
-[  19% ] reimport | forest_running.png
-[  22% ] reimport | previous_knight_front_640.png
-[  25% ] reimport | study_chest.png
-[  27% ] reimport | study_helmet.png
-[  30% ] reimport | study_shield.png
-[  33% ] reimport | study_sword.png
-[  36% ] reimport | unequipped_front_640.png
-[  38% ] reimport | unequipped_front_native.png
-[  41% ] reimport | unequipped_gameplay_640.png
-[  44% ] reimport | unequipped_rear_640.png
-[  47% ] reimport | after_ortho_front.png
-[  50% ] reimport | after_ortho_side.png
-[  52% ] reimport | after_ortho_three_quarter.png
-[  55% ] reimport | after_portrait_native.png
-[  58% ] reimport | actual_running.png
-[  61% ] reimport | base_forest_context.png
-[  63% ] reimport | base_front_480.png
-[  66% ] reimport | base_front_640.png
-[  69% ] reimport | base_front_960.png
-[  72% ] reimport | base_front_native.png
-[  75% ] reimport | base_gameplay_640.png
-[  77% ] reimport | base_rear_640.png
-[  80% ] reimport | base_run.png
-[  83% ] reimport | base_walk.png
-[  86% ] reimport | debug_ui.png
-[  88% ] reimport | equipped_forest_context.png
-[  91% ] reimport | equipped_front_480.png
-[  94% ] reimport | wayfarer.glb
-[   0% ] import | Started 导入场景 (104 steps)
-[   0% ] import | 导入场景中...
-[   1% ] import | 执行自定义脚本...
-[  99% ] import | 保存中...
-[ DONE ] import
-
-[  97% ] reimport | 正在结束资产导入……
-[ DONE ] reimport
-
-[   0% ] reimport | Started 正在导入或重新导入资产 (35 steps)
-[   0% ] reimport | 正在执行重新导入的后置操作……
-[ DONE ] reimport
-
-[   0% ] loading_editor_layout | Started 正在加载编辑器 (5 steps)
-[   0% ] loading_editor_layout | 正在加载编辑器布局……
-[  16% ] loading_editor_layout | 正在加载停靠面板……
-[  33% ] loading_editor_layout | 正在重新打开场景……
-[  50% ] loading_editor_layout | 正在加载中央编辑器布局……
-[  66% ] loading_editor_layout | 正在加载插件窗口布局……
-[  83% ] loading_editor_layout | 编辑器布局就绪。
-[ DONE ] loading_editor_layout
+PROPORTION_CAPTURE after_ortho_front
+PROPORTION_CAPTURE after_ortho_side
+PROPORTION_CAPTURE after_ortho_three_quarter
+PROPORTION_CAPTURE after_portrait_native

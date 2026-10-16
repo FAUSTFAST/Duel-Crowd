@@ -1,20 +1,20 @@
 {
   "asset_status": "editable art candidate / equipment visual prototype",
   "blender": "4.5.9 LTS",
-  "height_m": 1.7995572220534086,
-  "shoulder_width_m": 0.5064955949783325,
+  "height_m": 1.801374121569097,
+  "shoulder_width_m": 0.5066148042678833,
   "rest_bounds_m": [
     [
-      -0.2755603790283203,
-      0.2755603790283203
+      -0.27751871943473816,
+      0.27751871943473816
     ],
     [
-      -0.13498695194721222,
-      0.19369731843471527
+      -0.1483512818813324,
+      0.19671876728534698
     ],
     [
-      0.013239489868283272,
-      1.812796711921692
+      0.013330892659723759,
+      1.8147050142288208
     ]
   ],
   "anatomical_landmarks_m": {
@@ -30,7 +30,7 @@
     "head_width": 0.181
   },
   "head_units_to_anatomical_crown": 7.059,
-  "revision": "reference-guided natural proportions; short cloth shirt; connected shoulders and trouser seat",
+  "revision": "western traveler: split linen tunic, draped neck cloth, leather calf boots, mature face and open-forehead crop; unchanged 32-bone rest",
   "bones": 32,
   "actions": {
     "idle": {
@@ -58,7 +58,7 @@
     {
       "name": "SculptedHead",
       "category": "head",
-      "kind": "skin",
+      "kind": "face",
       "source_vertices": 4015
     },
     {
@@ -146,76 +146,10 @@
       "source_vertices": 84
     },
     {
-      "name": "LayeredHairScalp",
+      "name": "CroppedHairScalp",
       "category": "hair",
       "kind": "hair",
-      "source_vertices": 2409
-    },
-    {
-      "name": "Forelock0",
-      "category": "hair",
-      "kind": "hair",
-      "source_vertices": 119
-    },
-    {
-      "name": "Forelock1",
-      "category": "hair",
-      "kind": "hair",
-      "source_vertices": 119
-    },
-    {
-      "name": "Forelock2",
-      "category": "hair",
-      "kind": "hair",
-      "source_vertices": 119
-    },
-    {
-      "name": "Forelock3",
-      "category": "hair",
-      "kind": "hair",
-      "source_vertices": 119
-    },
-    {
-      "name": "Forelock4",
-      "category": "hair",
-      "kind": "hair",
-      "source_vertices": 119
-    },
-    {
-      "name": "Forelock5",
-      "category": "hair",
-      "kind": "hair",
-      "source_vertices": 119
-    },
-    {
-      "name": "Forelock6",
-      "category": "hair",
-      "kind": "hair",
-      "source_vertices": 119
-    },
-    {
-      "name": "TempleLock-1_0",
-      "category": "hair",
-      "kind": "hair",
-      "source_vertices": 119
-    },
-    {
-      "name": "TempleLock-1_1",
-      "category": "hair",
-      "kind": "hair",
-      "source_vertices": 119
-    },
-    {
-      "name": "TempleLock1_0",
-      "category": "hair",
-      "kind": "hair",
-      "source_vertices": 119
-    },
-    {
-      "name": "TempleLock1_1",
-      "category": "hair",
-      "kind": "hair",
-      "source_vertices": 119
+      "source_vertices": 1885
     },
     {
       "name": "BodyUnderTunic",
@@ -230,28 +164,160 @@
       "source_vertices": 5201
     },
     {
-      "name": "ShortShirtHem",
+      "name": "SplitTunicSkirt_L",
       "category": "tunic_hem",
       "kind": "linen",
-      "source_vertices": 931
+      "source_vertices": 957
     },
     {
-      "name": "SoftStandingCollar",
-      "category": "collar",
-      "kind": "linen",
-      "source_vertices": 297
-    },
-    {
-      "name": "ClothWaistTie",
-      "category": "waist_tie",
+      "name": "HemBinding_L",
+      "category": "tunic_hem",
       "kind": "leather",
-      "source_vertices": 246
+      "source_vertices": 99
     },
     {
-      "name": "TunicPlacket",
+      "name": "SplitTunicSkirt_R",
+      "category": "tunic_hem",
+      "kind": "linen",
+      "source_vertices": 957
+    },
+    {
+      "name": "HemBinding_R",
+      "category": "tunic_hem",
+      "kind": "leather",
+      "source_vertices": 99
+    },
+    {
+      "name": "FoldedCowl0",
+      "category": "collar",
+      "kind": "wool",
+      "source_vertices": 369
+    },
+    {
+      "name": "FoldedCowl1",
+      "category": "collar",
+      "kind": "wool",
+      "source_vertices": 369
+    },
+    {
+      "name": "FoldedCowl2",
+      "category": "collar",
+      "kind": "wool",
+      "source_vertices": 369
+    },
+    {
+      "name": "DrapedScarfFront",
+      "category": "torso_cloth",
+      "kind": "wool",
+      "source_vertices": 713
+    },
+    {
+      "name": "DrapedScarfBack",
+      "category": "torso_cloth",
+      "kind": "wool",
+      "source_vertices": 475
+    },
+    {
+      "name": "ScarfFrontHem",
+      "category": "torso_cloth",
+      "kind": "wool",
+      "source_vertices": 69
+    },
+    {
+      "name": "ScarfBackHem",
+      "category": "torso_cloth",
+      "kind": "wool",
+      "source_vertices": 57
+    },
+    {
+      "name": "LaceOpening",
+      "category": "torso_cloth",
+      "kind": "trousers",
+      "source_vertices": 85
+    },
+    {
+      "name": "NeckLace0_-1",
       "category": "torso_cloth",
       "kind": "leather",
-      "source_vertices": 95
+      "source_vertices": 27
+    },
+    {
+      "name": "NeckLace0_1",
+      "category": "torso_cloth",
+      "kind": "leather",
+      "source_vertices": 27
+    },
+    {
+      "name": "NeckLace1_-1",
+      "category": "torso_cloth",
+      "kind": "leather",
+      "source_vertices": 27
+    },
+    {
+      "name": "NeckLace1_1",
+      "category": "torso_cloth",
+      "kind": "leather",
+      "source_vertices": 27
+    },
+    {
+      "name": "NeckLace2_-1",
+      "category": "torso_cloth",
+      "kind": "leather",
+      "source_vertices": 27
+    },
+    {
+      "name": "NeckLace2_1",
+      "category": "torso_cloth",
+      "kind": "leather",
+      "source_vertices": 27
+    },
+    {
+      "name": "NeckLace3_-1",
+      "category": "torso_cloth",
+      "kind": "leather",
+      "source_vertices": 27
+    },
+    {
+      "name": "NeckLace3_1",
+      "category": "torso_cloth",
+      "kind": "leather",
+      "source_vertices": 27
+    },
+    {
+      "name": "WideWornBelt",
+      "category": "waist_tie",
+      "kind": "leather",
+      "source_vertices": 441
+    },
+    {
+      "name": "BeltTail",
+      "category": "waist_tie",
+      "kind": "leather",
+      "source_vertices": 171
+    },
+    {
+      "name": "TravelPouch",
+      "category": "waist_tie",
+      "kind": "leather",
+      "source_vertices": 493
+    },
+    {
+      "name": "PouchFlap",
+      "category": "waist_tie",
+      "kind": "leather",
+      "source_vertices": 135
+    },
+    {
+      "name": "RolledCuff_L",
+      "category": "sleeves",
+      "kind": "linen",
+      "source_vertices": 225
+    },
+    {
+      "name": "RolledCuff_R",
+      "category": "sleeves",
+      "kind": "linen",
+      "source_vertices": 225
     },
     {
       "name": "TailoredTrousers",
@@ -302,34 +368,34 @@
       "source_vertices": 255
     },
     {
-      "name": "LacedSoftShoe_L",
+      "name": "TravelBoot_L",
       "category": "feet_shoes",
       "kind": "leather",
-      "source_vertices": 851
+      "source_vertices": 1353
+    },
+    {
+      "name": "BootTurnedRim_L",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 231
     },
     {
       "name": "Sole_L",
       "category": "feet_shoes",
-      "kind": "leather",
+      "kind": "dark",
       "source_vertices": 185
     },
     {
-      "name": "LaceL0",
+      "name": "BootStrap_L0",
       "category": "feet_shoes",
-      "kind": "linen",
-      "source_vertices": 21
+      "kind": "leather",
+      "source_vertices": 165
     },
     {
-      "name": "LaceL1",
+      "name": "BootStrap_L1",
       "category": "feet_shoes",
-      "kind": "linen",
-      "source_vertices": 21
-    },
-    {
-      "name": "LaceL2",
-      "category": "feet_shoes",
-      "kind": "linen",
-      "source_vertices": 21
+      "kind": "leather",
+      "source_vertices": 165
     },
     {
       "name": "Wrist_R",
@@ -374,34 +440,34 @@
       "source_vertices": 255
     },
     {
-      "name": "LacedSoftShoe_R",
+      "name": "TravelBoot_R",
       "category": "feet_shoes",
       "kind": "leather",
-      "source_vertices": 851
+      "source_vertices": 1353
+    },
+    {
+      "name": "BootTurnedRim_R",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 231
     },
     {
       "name": "Sole_R",
       "category": "feet_shoes",
-      "kind": "leather",
+      "kind": "dark",
       "source_vertices": 185
     },
     {
-      "name": "LaceR0",
+      "name": "BootStrap_R0",
       "category": "feet_shoes",
-      "kind": "linen",
-      "source_vertices": 21
+      "kind": "leather",
+      "source_vertices": 165
     },
     {
-      "name": "LaceR1",
+      "name": "BootStrap_R1",
       "category": "feet_shoes",
-      "kind": "linen",
-      "source_vertices": 21
-    },
-    {
-      "name": "LaceR2",
-      "category": "feet_shoes",
-      "kind": "linen",
-      "source_vertices": 21
+      "kind": "leather",
+      "source_vertices": 165
     },
     {
       "name": "Chestplate",
@@ -1356,6 +1422,6 @@
     "sword": "Hand_R",
     "shield": "Hand_L"
   },
-  "materials": "original procedural 128px palette fields; no high-poly bake",
+  "materials": "ten original 128px UV material maps: low-contrast woven cloth, dyed wool, stitched leather; no high-poly bake",
   "source": "assets/characters/wayfarer/source/blender/wayfarer.blend"
 }

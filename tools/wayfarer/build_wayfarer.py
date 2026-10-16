@@ -1,7 +1,7 @@
 """Original clothed adult + four SEPARATE equipment assets, Blender 4.5 LTS.
 
 Authored anatomical/tailoring profiles, coherent facial surface, explicit UVs,
-new relaxed humanoid rig and in-place actions. An editable art candidate, NOT
+compatible 32-bone humanoid rig and revised in-place actions. An editable art candidate, NOT
 a finished hand-sculpted production human. Never reads old knight geometry.
 Default refuses regeneration; save hand edits before -- --replace-generated.
 """
@@ -22,36 +22,16 @@ for action in list(bpy.data.actions): bpy.data.actions.remove(action)
 
 # Small, deliberately quiet palette fields, not photographic random noise.
 # Individual 128px PNGs are editable sources; surface seams/folds are geometry.
-PALETTES = {
- 'skin':['b38a67','b9906d','bf9672','c49b77','c9a07c'],
- 'hair':['1d2224','222729','272c2d','2c3131','323734'],
- 'linen':['5e4334','6c4e3b','795a42','87664b','947254'],
- 'trousers':['323234','3d3b3a','484440','534d46','60584f'],
- 'leather':['302820','3d3025','493b2d','574635','624f3c'],
- 'steel':['59646b','6b7980','7b8990','8e9ba0','9eaaad'],
- 'wood':['39352b','494334','554d39','62583f','706448'],
- 'eye':['a4957c','c4b89e','ddd4ba','e2d9bf','b9af98'],
-}
+sys.path.insert(0,str(Path(__file__).parent))
+from traveler_textures import PALETTES, pixel
 MATS={}
-def hash2(x,y): return ((x*374761393+y*668265263+19349663)^((x+y*15731)<<3)) & 65535
 for kind, palette in PALETTES.items():
     rgb=[tuple(int(c[i:i+2],16)/255 for i in (0,2,4)) for c in palette]
     image=bpy.data.images.new('Way_'+kind+'_albedo',128,128,alpha=False)
     pixels=[]
     for y in range(128):
         for x in range(128):
-            if kind in ('linen','trousers'):
-                k=2+(1 if (x%12==0 and y%6<2) else -1 if (y%12==0 and x%6<2) else 0)
-                if hash2(x//7,y//9)%19==0:k-=1
-            elif kind=='hair':
-                k=2-int(x%29<2)+int((x+3)%43==0)
-            elif kind=='wood':
-                k=1+int((math.sin(x*.48+math.sin(y*.055)*.9)+1)*1.45)
-            elif kind=='steel':
-                k=2+int(hash2(x//11,y//8)%13==0)-int(hash2(x//9,y//12)%17==0)
-            else:
-                k=2+int(hash2(x//9,y//7)%17==0)-int(hash2(x//8,y//11)%19==0)
-            c=rgb[max(0,min(4,k))]; pixels.extend((*c,1))
+            c=pixel(kind,x,y,rgb); pixels.extend((*c,1))
     image.pixels[:]=pixels; image.filepath_raw=str(BASE/'textures'/f'{kind}_albedo.png')
     image.file_format='PNG'; image.save(); image.pack()
     mat=bpy.data.materials.new('Way_'+kind);mat.use_nodes=True
@@ -61,7 +41,7 @@ for kind, palette in PALETTES.items():
     tex=mat.node_tree.nodes.new('ShaderNodeTexImage');tex.image=image;tex.interpolation='Closest'
     mat.node_tree.links.new(tex.outputs['Color'],bs.inputs['Base Color'])
     MATS[kind]=mat
-for name,color in [('dark',(0.055,.045,.034,1)),('lip',(.36,.20,.15,1)),('iris',(.12,.16,.12,1))]:
+for name,color in [('dark',(0.055,.045,.034,1)),('lip',(.36,.20,.15,1)),('iris',(.12,.15,.12,1))]:
     mat=bpy.data.materials.new('Way_'+name);mat.diffuse_color=color;mat.use_nodes=True
     mat.node_tree.nodes.get('Principled BSDF').inputs['Base Color'].default_value=color
     mat.node_tree.nodes.get('Principled BSDF').inputs['Roughness'].default_value=.85
@@ -153,7 +133,7 @@ def leg_weights(side,p):
 
 # Anatomical surfaces are kept separate from rig/export code for hand editing.
 sys.path.insert(0,str(Path(__file__).parent))
-from human_surfaces import build as build_human_surfaces
+from traveler_surfaces import build as build_human_surfaces
 skull_radius=build_human_surfaces(patch,loft,mesh,interp,clamp,torso,arm_weights,leg_weights)
 
 # Armor is export-separated, same exact rig and rest transforms; body garment
@@ -214,7 +194,7 @@ def world_rotation(bn,direction):
     bpy.context.view_layer.update()
 def leg_pose(side,y,z,bob):
     s=-1 if side=='L' else 1
-    hip=Vector((s*ANATOMY['hip_half_width'],0,ANATOMY['hip']+bob))
+    hip=rig.pose.bones['Thigh_'+side].head.copy()
     foot=Vector((s*ANATOMY['hip_half_width'],y,z))
     upper=adata.bones['Thigh_'+side].length;lower=adata.bones['Shin_'+side].length
     axis=(foot-hip).normalized();d=min(upper+lower-.001,max(.2,(foot-hip).length))
@@ -231,10 +211,11 @@ for clip,duration,speed in [('idle',2.4,0),('walk',.60,3.2),('run',.60,5.8),('tu
         t=frame/end;phase=t*math.tau;moving=clip in ('walk','run');running=clip=='run'
         for pb in rig.pose.bones:
             pb.rotation_mode='QUATERNION';pb.rotation_quaternion=Quaternion();pb.location=(0,0,0);pb.scale=(1,1,1)
-        bob=(-.105 if running else -.094)+(.025 if running else .008)*(1-math.cos(phase*2)) if moving else -.006+.002*math.sin(phase)
+        bob=(-.105 if running else -.094)+(.025 if running else .008)*(1-math.cos(phase*2)) if moving else -.016+.002*math.sin(phase)
         rig.pose.bones['Pelvis'].location.y=bob
+        if clip=='idle':rig.pose.bones['Pelvis'].location.x=.007+.0015*math.sin(phase)
         lean=.13 if running else .025 if moving else .004*math.sin(phase)
-        twist=(.055 if running else .035)*math.sin(phase) if moving else .008*math.sin(phase)
+        twist=(.055 if running else .035)*math.sin(phase) if moving else .023+.008*math.sin(phase)
         if clip.startswith('turn'):twist=(.18 if clip=='turn_left' else -.18)*math.sin(math.pi*t)
         rig.pose.bones['Spine'].rotation_quaternion=Euler((lean,twist,0)).to_quaternion()
         rig.pose.bones['Chest'].rotation_quaternion=Euler((-.02,-twist*.5,0)).to_quaternion()
@@ -246,11 +227,11 @@ for clip,duration,speed in [('idle',2.4,0),('walk',.60,3.2),('run',.60,5.8),('tu
                 if p<stance:y=travel*(.5-p/stance);z=ANATOMY['ankle']
                 else:
                     u=(p-stance)/(1-stance);y=travel*(-.5+u);z=ANATOMY['ankle']+(.20 if running else .09)*math.sin(math.pi*u)
-            else:y=0;z=ANATOMY['ankle']
+            else:y=.018 if side=='L' else -.018;z=ANATOMY['ankle']
             leg_pose(side,y,z,bob)
             swing=(-1 if side=='L' else 1)*math.sin(phase)*(.42 if running else .24 if moving else .012)
             rig.pose.bones['UpperArm_'+side].rotation_quaternion=Euler((swing,0,0)).to_quaternion()
-            rig.pose.bones['Forearm_'+side].rotation_quaternion=Euler((-.75 if running else -.07,0,0)).to_quaternion()
+            rig.pose.bones['Forearm_'+side].rotation_quaternion=Euler((-.75 if running else -.10 if moving else -.14 if side=='L' else -.09,0,0)).to_quaternion()
         for pb in rig.pose.bones:
             pb.keyframe_insert('rotation_quaternion',frame=frame,group=pb.name)
             if pb.name=='Pelvis':pb.keyframe_insert('location',frame=frame,group=pb.name)
@@ -320,12 +301,12 @@ manifest={'asset_status':'editable art candidate / equipment visual prototype',
  'blender':bpy.app.version_string,'height_m':rest_bounds[2][1]-rest_bounds[2][0],
  'shoulder_width_m':max(p.x for p in shoulders)-min(p.x for p in shoulders),'rest_bounds_m':rest_bounds,
  'anatomical_landmarks_m':ANATOMY,'head_units_to_anatomical_crown':round(ANATOMY['crown']/(ANATOMY['crown']-ANATOMY['chin']),3),
- 'revision':'reference-guided natural proportions; short cloth shirt; connected shoulders and trouser seat',
+ 'revision':'western traveler: split linen tunic, draped neck cloth, leather calf boots, mature face and open-forehead crop; unchanged 32-bone rest',
  'bones':len(adata.bones),'actions':metrics,'parts':entries,
  'regions':sorted(base_regions),'hidden_by_default':['body_under_cloth'],
  'bone_rest':{b.name:[list(row) for row in b.matrix_local] for b in adata.bones},
  'rigid_rest_alignment':{'sword':'Hand_R','shield':'Hand_L'},
- 'materials':'original procedural 128px palette fields; no high-poly bake',
+ 'materials':'ten original 128px UV material maps: low-contrast woven cloth, dyed wool, stitched leather; no high-poly bake',
  'source':str(source.relative_to(ROOT))}
 (BASE/'source/build_manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
 print('WAYFARER_BUILD',json.dumps({k:v for k,v in manifest.items() if k not in ['parts','bone_rest']}))

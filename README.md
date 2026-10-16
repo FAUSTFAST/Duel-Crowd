@@ -3,13 +3,13 @@
 
 ## 新：布衣人物与模块化装备外观实验
 
-本轮按用户提供的人物参考修正头身、肩腰、四肢与衣物比例：约七头身，加宽头颅/下颌，收拢放松的手臂，重塑肩袖和完整裤裆，缩短衣摆、调整腿形与软鞋。参考用于人体关系；初始仍是简单布衣、空手，没有照搬参考图的盔甲和佩剑。
+本轮重新定义为西式奇幻旅人：燕麦色粗布系带长衫、分叉下摆、暗赭色垂挂领巾、皮腰带/小袋、长裤与高筒皮靴。重做露额短发、下颌/鼻部及面部UV肤色；初始仍没有盔甲、武器或盾牌。保留上一版32骨rest、五段动作接口和装备承载方式，调整待机重心与肘部姿态。
 
-同镜头实图：[修改前](docs/proportions/before_base_front_native.png) / [修改后](docs/wayfarer/base_front_native.png)；[当前正面](docs/proportions/after_ortho_front.png)、[侧面](docs/proportions/after_ortho_side.png)。[比例审阅记录](docs/proportions/README.md)。这是比例修正版候选，面部、服装绘制与动作仍待精修。
+实际同机位：[旧现代布衣](docs/traveler/before_base_front_native.png) / [新旅人](docs/wayfarer/base_front_native.png)；[游戏距离旧](docs/traveler/before_base_gameplay_640.png) / [新](docs/wayfarer/base_gameplay_640.png)。[本轮审阅与限制](docs/traveler/README.md)。这是新的**可运行美术候选**，不是正式人物美术通过验收；面部精雕、布料褶皱、UV密度与完整动作仍需人工精修。
 
 打开 **`scenes/visual_lab/character_equipment_lab.tscn`**，双击场景后按 **F6 / 运行当前场景的场记板按钮**。普通三角形/F5仍是旧教堂；Forest Valley和Knight Art Atelier完全保留。
 
-初始为布衣、长裤、软鞋的原创成年人物，没有金属护甲或手持物。新32骨、独立idle/walk/run及转向周期；身体、头发和衣物有独立遮挡分区。此角色属于**可编辑美术候选**，人物面部、手型与动作尚需人工精修，不能当作正式高质量角色完成。
+初始为粗布长衫、长裤、皮靴的原创成年旅人，没有金属护甲或手持物。兼容既有32骨、idle/walk/run及转向周期；身体、头发和衣物有独立遮挡分区。此角色属于**可编辑美术候选**，人物面部、手型与动作尚需人工精修，不能当作正式高质量角色完成。
 
 | 操作 | 功能 |
 | --- | --- |

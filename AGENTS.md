@@ -1,7 +1,8 @@
 # 项目开发约定
 
-人体参考修订：用户2026-10-15提供的成年冒险者图用于人体比例/轮廓，不自动采用图中的盔甲或佩剑；初始布衣空手仍有效。Wayfarer约7.06头身，曲面在tools/wayfarer/human_surfaces.py；build_wayfarer.py管理32骨/动作/五份GLB。修改骨长时同步IK、蒙皮与装备rest，不以缩放骨骼修形。连续衣袖源保留整体，导出按遮挡分离；袖子蒙皮按拓扑区分，不能只凭x坐标判断贴近躯干的手臂。audit_source记录实际头部尺寸与衣袖/裤裆连通性，不代表美术批准。
-docs/proportions/before_*是f3165be布衣人物稳定实图，不能用新截图覆盖。capture_proportions.gd只覆盖after_*，正侧审阅摄像机临时从SpringArm移出，不能改生产相机。capture_equipment会覆盖docs/wayfarer；先保留稳定图。无新玩法或地图替换，仍需正常游戏距离、走跑与装备实图。
+当前美术方向（2026-10-16）：西式奇幻起始旅人，粗布系带长衫、分叉下摆、垂挂毛织领巾、皮带小袋、长裤和皮靴；初始无盔甲/武器/盾牌。禁止退回现代短衫或尖束动漫刘海。新曲面在tools/wayfarer/traveler_surfaces.py，十套128px原创材质图由traveler_textures.py制作；human_surfaces.py是旧设计源。保留5ca2f4d的32骨rest，build_wayfarer.py管理动作/装备/导出。分叉衣摆混合Pelvis/Thigh，靴筒混合Foot/Shin；不能缩放骨骼纠正比例。
+胸甲遮挡torso_cloth/waist_tie/collar，保留袖子和衣摆；卸下恢复领巾与小袋。tests/equipment_test.gd包含该遮挡回归。此版本仍是候选，不能因测试通过声称正式角色美术达标。
+docs/traveler/before_*是5ca2f4d稳定实图，不可覆盖；docs/proportions也保留历史。capture_proportions.gd只输出docs/traveler/after_*，正侧摄像机临时从SpringArm移出，不改生产相机。capture_equipment覆盖docs/wayfarer，运行前保存稳定比较。源头部尺寸和拓扑连通性检查不代表美术批准。
 
 当前授权新增：只在 scenes/visual_lab/character_equipment_lab.tscn 开发布衣基础人物与四件装备外观切换原型（头盔/胸甲/剑/盾），八个预留槽位。禁止完整背包、属性、掉落或战斗扩展。Forest Valley、旧教堂、两版旧骑士和原控制不替换。
 assets/characters/wayfarer 是新32骨/独立动作/局部UV人物候选，不能称正式精修人物。tools/wayfarer/build_wayfarer.py 默认拒绝覆盖；保存手工编辑后才使用 -- --replace-generated；.blend源在source/blender/.gdignore内，运行使用五份独立GLB。128px像素色板纹理为原创程序绘制，无新AI图或高模烘焙。

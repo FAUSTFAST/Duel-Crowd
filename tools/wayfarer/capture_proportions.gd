@@ -15,11 +15,11 @@ func settle(count: int = 8) -> void:
 	await RenderingServer.frame_post_draw
 
 func save(label: String) -> void:
-	assert(root.get_texture().get_image().save_png("res://docs/proportions/" + label + ".png") == OK)
+	assert(root.get_texture().get_image().save_png("res://docs/traveler/" + label + ".png") == OK)
 	print("PROPORTION_CAPTURE ", label)
 
 func capture() -> void:
-	DirAccess.make_dir_recursive_absolute("res://docs/proportions")
+	DirAccess.make_dir_recursive_absolute("res://docs/traveler")
 	root.size = Vector2i(1280, 720)
 	game = load("res://scenes/visual_lab/character_equipment_lab.tscn").instantiate()
 	root.add_child(game)

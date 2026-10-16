@@ -10,7 +10,7 @@ assert set(actions)=={'idle','walk','run','turn_left','turn_right'}
 parts=list(bpy.data.collections['EDITABLE_SURFACES'].objects)
 assert len(parts)>40 and all(ob.data.uv_layers.active.name=='TailoredUV' for ob in parts)
 packed=[image for image in bpy.data.images if image.packed_file]
-assert len(packed)==8
+assert len(packed)==10
 assert all(len(ob.vertex_groups)>0 for ob in parts if ob['region'] not in ('sword','shield'))
 def part(prefix):return next(ob for ob in parts if ob.name.startswith(prefix))
 def bounds(ob):

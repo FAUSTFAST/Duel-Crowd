@@ -13,7 +13,7 @@ func apply(node: Node) -> void:
 				if ResourceLoader.exists(texture_path):
 					mat.albedo_texture = load(texture_path)
 				mat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST_WITH_MIPMAPS
-				mat.roughness = 0.63 if key == "Way_steel" else 0.92
+				mat.roughness = 0.63 if key == "Way_steel" else (0.84 if key == "Way_leather" else 0.92)
 				mat.metallic = 0.38 if key == "Way_steel" else 0.0
 				cache[key] = mat
 				materials.append(mat)

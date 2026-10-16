@@ -8,4 +8,4 @@ display_name = "Fitted cuirass"
 slot = "body"
 model = ExtResource("2")
 mount_type = "skin"
-hidden_regions = Array[StringName]([&"torso_cloth", &"waist_tie"])
+hidden_regions = Array[StringName]([&"torso_cloth", &"waist_tie", &"collar"])

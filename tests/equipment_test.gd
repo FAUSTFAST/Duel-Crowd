@@ -67,6 +67,7 @@ func run() -> void:
 	check(equipment.get_equipped(&"head") == &"study_helmet" and not equipment.regions[&"hair"][0].visible, "helmet equips and hides hair")
 	key(KEY_2)
 	check(equipment.get_equipped(&"body") == &"study_chest" and not equipment.regions[&"torso_cloth"][0].visible, "chest hides covered upper garment")
+	check(equipment.regions[&"collar"].all(func(mesh): return not mesh.visible) and equipment.regions[&"waist_tie"].all(func(mesh): return not mesh.visible), "chest also hides folded neck cloth and leather belt attachments")
 	check(equipment.regions[&"sleeves"][0].visible and equipment.regions[&"tunic_hem"][0].visible, "chest preserves uncovered sleeves and lower garment")
 	key(KEY_3)
 	key(KEY_4)
@@ -101,6 +102,7 @@ func run() -> void:
 	check(visual.materials.materials.size() == material_count, "repeated swaps reuse bounded material cache")
 	check(identities == [player.get_instance_id(), visual.get_instance_id(), skeleton.get_instance_id(), visual.animation_tree.get_instance_id(), orbit.get_instance_id()] and player.position == location, "equip never reloads actor, skeleton, animation tree or camera")
 	check(equipment.regions[&"hair"][0].visible and equipment.regions[&"torso_cloth"][0].visible and not equipment.regions[&"body_under_cloth"][0].visible, "clear restores exact base visibility")
+	check(equipment.regions[&"collar"].all(func(mesh): return mesh.visible) and equipment.regions[&"waist_tie"].all(func(mesh): return mesh.visible), "clear restores all traveler collar and belt surfaces")
 	# Actual root GUI click after releasing cursor. Buttons must not recapture.
 	key(KEY_ESCAPE)
 	await frames(2)
