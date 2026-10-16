@@ -1,20 +1,20 @@
 {
   "asset_status": "editable art candidate / equipment visual prototype",
   "blender": "4.5.9 LTS",
-  "height_m": 1.801374121569097,
-  "shoulder_width_m": 0.5066148042678833,
+  "height_m": 1.841353524592705,
+  "shoulder_width_m": 0.5069994926452637,
   "rest_bounds_m": [
     [
-      -0.27751871943473816,
-      0.27751871943473816
+      -0.2766018509864807,
+      0.278141587972641
     ],
     [
-      -0.1483512818813324,
+      -0.14335770905017853,
       0.19671876728534698
     ],
     [
-      0.013330892659723759,
-      1.8147050142288208
+      0.00039304408710449934,
+      1.8417465686798096
     ]
   ],
   "anatomical_landmarks_m": {
@@ -30,7 +30,7 @@
     "head_width": 0.181
   },
   "head_units_to_anatomical_crown": 7.059,
-  "revision": "western traveler: split linen tunic, draped neck cloth, leather calf boots, mature face and open-forehead crop; unchanged 32-bone rest",
+  "revision": "user turnaround guided adventurer: layered hair, rolled sleeves, exposed forearms and leather wraps, short split tunic, scarf, brass belt buckle, cuffed boots; unchanged rest",
   "bones": 32,
   "actions": {
     "idle": {
@@ -146,10 +146,214 @@
       "source_vertices": 84
     },
     {
-      "name": "CroppedHairScalp",
+      "name": "LayeredScalp",
       "category": "hair",
       "kind": "hair",
-      "source_vertices": 1885
+      "source_vertices": 1425
+    },
+    {
+      "name": "Forelock0",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "Forelock1",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "Forelock2",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "Forelock3",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "Forelock4",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "Forelock5",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "CrownSweep0",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "CrownSweep1",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "CrownSweep2",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "CrownSweep3",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "CrownSweep4",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "CrownSweep5",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "CrownSweep6",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "CrownSweep7",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "CrownSweep8",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "CrownSweep9",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "CrownSweep10",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "SideLayer-1_0",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "SideLayer-1_1",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "SideLayer-1_2",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "SideLayer-1_3",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "SideLayer-1_4",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "SideLayer1_0",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "SideLayer1_1",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "SideLayer1_2",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "SideLayer1_3",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "SideLayer1_4",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "NapeLayer0",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "NapeLayer1",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "NapeLayer2",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "NapeLayer3",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "NapeLayer4",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "NapeLayer5",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "NapeLayer6",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
     },
     {
       "name": "BodyUnderTunic",
@@ -188,22 +392,10 @@
       "source_vertices": 99
     },
     {
-      "name": "FoldedCowl0",
+      "name": "FoldedNeckScarf",
       "category": "collar",
       "kind": "wool",
-      "source_vertices": 369
-    },
-    {
-      "name": "FoldedCowl1",
-      "category": "collar",
-      "kind": "wool",
-      "source_vertices": 369
-    },
-    {
-      "name": "FoldedCowl2",
-      "category": "collar",
-      "kind": "wool",
-      "source_vertices": 369
+      "source_vertices": 1127
     },
     {
       "name": "DrapedScarfFront",
@@ -232,7 +424,7 @@
     {
       "name": "LaceOpening",
       "category": "torso_cloth",
-      "kind": "trousers",
+      "kind": "skin",
       "source_vertices": 85
     },
     {
@@ -311,13 +503,103 @@
       "name": "RolledCuff_L",
       "category": "sleeves",
       "kind": "linen",
-      "source_vertices": 225
+      "source_vertices": 429
+    },
+    {
+      "name": "WristWrap_L0",
+      "category": "forearms",
+      "kind": "leather",
+      "source_vertices": 125
+    },
+    {
+      "name": "WristWrap_L1",
+      "category": "forearms",
+      "kind": "leather",
+      "source_vertices": 125
+    },
+    {
+      "name": "WristWrap_L2",
+      "category": "forearms",
+      "kind": "leather",
+      "source_vertices": 125
+    },
+    {
+      "name": "WristWrap_L3",
+      "category": "forearms",
+      "kind": "leather",
+      "source_vertices": 125
     },
     {
       "name": "RolledCuff_R",
       "category": "sleeves",
       "kind": "linen",
-      "source_vertices": 225
+      "source_vertices": 429
+    },
+    {
+      "name": "WristWrap_R0",
+      "category": "forearms",
+      "kind": "leather",
+      "source_vertices": 125
+    },
+    {
+      "name": "WristWrap_R1",
+      "category": "forearms",
+      "kind": "leather",
+      "source_vertices": 125
+    },
+    {
+      "name": "WristWrap_R2",
+      "category": "forearms",
+      "kind": "leather",
+      "source_vertices": 125
+    },
+    {
+      "name": "WristWrap_R3",
+      "category": "forearms",
+      "kind": "leather",
+      "source_vertices": 125
+    },
+    {
+      "name": "BrassBeltBuckle",
+      "category": "waist_tie",
+      "kind": "bronze",
+      "source_vertices": 75
+    },
+    {
+      "name": "BuckleProng",
+      "category": "waist_tie",
+      "kind": "bronze",
+      "source_vertices": 75
+    },
+    {
+      "name": "BeltKeeper-0.065",
+      "category": "waist_tie",
+      "kind": "leather",
+      "source_vertices": 36
+    },
+    {
+      "name": "BeltKeeper0.06",
+      "category": "waist_tie",
+      "kind": "leather",
+      "source_vertices": 36
+    },
+    {
+      "name": "BeltKeeper0.104",
+      "category": "waist_tie",
+      "kind": "leather",
+      "source_vertices": 36
+    },
+    {
+      "name": "PouchStitch",
+      "category": "waist_tie",
+      "kind": "linen",
+      "source_vertices": 75
+    },
+    {
+      "name": "PouchToggle",
+      "category": "waist_tie",
+      "kind": "bronze",
+      "source_vertices": 16
     },
     {
       "name": "TailoredTrousers",
@@ -329,7 +611,7 @@
       "name": "Wrist_L",
       "category": "forearms",
       "kind": "skin",
-      "source_vertices": 319
+      "source_vertices": 609
     },
     {
       "name": "Palm_L",
@@ -398,10 +680,64 @@
       "source_vertices": 165
     },
     {
+      "name": "BootLace_L0_-1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootLace_L0_1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootLace_L1_-1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootLace_L1_1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootLace_L2_-1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootLace_L2_1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootLace_L3_-1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootLace_L3_1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootCuffBuckle_L",
+      "category": "feet_shoes",
+      "kind": "bronze",
+      "source_vertices": 75
+    },
+    {
       "name": "Wrist_R",
       "category": "forearms",
       "kind": "skin",
-      "source_vertices": 319
+      "source_vertices": 609
     },
     {
       "name": "Palm_R",
@@ -468,6 +804,60 @@
       "category": "feet_shoes",
       "kind": "leather",
       "source_vertices": 165
+    },
+    {
+      "name": "BootLace_R0_-1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootLace_R0_1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootLace_R1_-1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootLace_R1_1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootLace_R2_-1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootLace_R2_1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootLace_R3_-1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootLace_R3_1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootCuffBuckle_R",
+      "category": "feet_shoes",
+      "kind": "bronze",
+      "source_vertices": 75
     },
     {
       "name": "Chestplate",

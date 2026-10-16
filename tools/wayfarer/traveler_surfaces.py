@@ -1,4 +1,5 @@
-"""Western road-worn traveler: redesigned face, crop, draped tunic, neck cloth and boots.
+"""Adventurer modeled from the user-supplied turnaround: rolled sleeves,
+scarf, leather wraps, brass buckle, loose trousers and cuffed boots.
 
 The connected shirt/pants and hand topology is retained from human_surfaces;
 the visible costume is a new design. The shared 32-bone REST is unchanged.
@@ -27,8 +28,8 @@ def build(patch, loft, mesh, interp, clamp, torso, arm_weights, leg_weights):
         c=math.sqrt(max(.001,1-(x/max(.001,rx))**2))
         # Broader cheek planes, chin and a restrained brow/nose projection.
         y=cy+ry*c**.67
-        y+=(.018*math.exp(-((z-1.671)/.034)**2)
-            +.022*math.exp(-((z-1.642)/.016)**2))*c**34
+        y+=(.014*math.exp(-((z-1.671)/.034)**2)
+            +.017*math.exp(-((z-1.642)/.016)**2))*c**34
         y+=.008*math.exp(-((z-1.592)/.012)**2)*c**8
         y-=.007*(math.exp(-((x-.035)/.018)**2)
                     +math.exp(-((x+.035)/.018)**2))*math.exp(-((z-1.686)/.013)**2)
@@ -46,17 +47,17 @@ def build(patch, loft, mesh, interp, clamp, torso, arm_weights, leg_weights):
     for s in [-1,1]:
         def eye(u,v,s=s):
             x=s*.035+(u-.5)*.027
-            z=1.686+(v-.5)*.007*math.sin(math.pi*u)
+            z=1.686+(v-.5)*.009*math.sin(math.pi*u)
             return x,facial_y(x,z)+.0016,z
         patch('EyeWhite'+str(s),eye,16,6,'eye','Head','head')
         def iris(u,v,s=s):
-            a=u*math.tau;r=v*.0032
+            a=u*math.tau;r=v*.0038
             x=s*.035+r*math.cos(a);z=1.686+r*math.sin(a)
             return x,facial_y(x,z)+.0026,z
         patch('Iris'+str(s),iris,16,4,'iris','Head','head')
         def lid(u,v,s=s):
             x=s*.035+(u-.5)*.032
-            z=1.686+.0036*math.sin(math.pi*u)+v*.0018
+            z=1.686+.0046*math.sin(math.pi*u)+v*.0018
             return x,facial_y(x,z)+.0022,z
         patch('UpperLid'+str(s),lid,16,2,'dark','Head','head')
         def brow(u,v,s=s):
@@ -78,15 +79,44 @@ def build(patch, loft, mesh, interp, clamp, torso, arm_weights, leg_weights):
         return x,facial_y(x,z)+.0013,z
     patch('Mouth',mouth,20,3,'lip','Head','head')
 
-    # Cropped, side-swept hair: open forehead, close temples, broad scalp
-    # planes. Small ridges follow the crown; no pointed anime fringe strands.
+    # Broad swept clumps over a continuous scalp, with deliberately varied
+    # curvature/tips following the supplied turnaround. No sphere/cone hair.
     def hair(u,v):
         a=(u-.5)*math.tau;front=max(0,math.cos(a))
-        bottom=1.632+.108*front**.35+.003*math.sin(a*2)
-        z=bottom+(1.813-bottom)*v;rx,ry,cy=skull(z-.010)
-        ridge=(.0009*math.sin(a*19+v*8)+.003*math.sin(a+v*3))*math.sin(math.pi*v)
-        return (rx+.003+ridge)*math.sin(a),cy+(ry+.004+ridge)*math.cos(a),z
-    patch('CroppedHairScalp',hair,64,28,'hair','Head','hair',solid=.002)
+        bottom=1.635+.100*front**.55
+        z=bottom+(1.824-bottom)*v;rx,ry,cy=skull(z-.024)
+        ridge=.002*math.sin(a*13+v*4)*math.sin(math.pi*v)
+        return (rx+.005+ridge)*math.sin(a),cy+(ry+.005+ridge)*math.cos(a),z
+    patch('LayeredScalp',hair,56,24,'hair','Head','hair',solid=.002)
+    def lock(name,points,width,depth,normal):
+        n=Vector(normal).normalized()
+        def shape(u,v):
+            c=interp(points,v)
+            tangent=(interp(points,min(1,v+.005))-interp(points,max(0,v-.005))).normalized()
+            across=tangent.cross(n).normalized();out=across.cross(tangent).normalized()
+            a=u*math.tau;taper=max(.012,(1-v)**.58)*(.72+.50*math.sin(math.pi*v))
+            return c+across*(math.cos(a)*width*taper)+out*(math.sin(a)*depth*taper)
+        patch(name,shape,8,14,'hair','Head','hair')
+    for i,x in enumerate([-.076,-.049,-.022,.008,.040,.071]):
+        tip=[1.698,1.708,1.688,1.714,1.700,1.691][i]
+        lock('Forelock'+str(i),[(x*.7,.025,1.791),(x-.009,.069,1.774),
+             (x+.007,.091,1.738),(x-.007,.095-abs(x)*.22,tip)],.019,.005,(0,1,0))
+    for i in range(11):
+        a=i*math.tau/11+.13;d=Vector((math.sin(a),math.cos(a),0))
+        root=d*.035+Vector((0,-.009,1.789))
+        middle=d*.080+Vector((0,-.005,1.817+.003*math.sin(i*2.3)))
+        tip=d*(.104+.009*math.sin(i*1.8))+Vector((0,-.003,1.778+.018*math.cos(i*1.3)))
+        lock('CrownSweep'+str(i),[root,middle,tip],.027,.009,tuple(d))
+    for side in [-1,1]:
+        for i in range(5):
+            y=.037-i*.026
+            lock('SideLayer'+str(side)+'_'+str(i),[(side*.075,y,1.767),
+                 (side*.103,y-.008,1.742),(side*(.111+.005*math.sin(i)),y-.011,1.698),
+                 (side*.094,y+.005,1.659+.009*math.sin(i*2))],.019,.005,(side,0,0))
+    for i in range(7):
+        x=-.072+i*.024
+        lock('NapeLayer'+str(i),[(x*.8,-.055,1.765),(x,-.087,1.720),
+              (x+.006,-.092,1.646+.007*math.sin(i*2))],.020,.004,(0,-1,0))
     loft('BodyUnderTunic',[(0,0,.86,.16,.103),(0,0,1.07,.140,.099),
           (0,0,1.29,.177,.112),(0,0,1.425,.172,.090),
           (0,0,1.50,.055,.052)],'skin',torso,'body_under_cloth',nu=32,nv=32)
@@ -103,7 +133,7 @@ def build(patch, loft, mesh, interp, clamp, torso, arm_weights, leg_weights):
         for i in range(nu+1):
             a=(i/nu-.5)*math.tau
             fold=.0035*(math.sin(a*9+v*3)+.35*math.sin(a*17-v*4))*math.sin(math.pi*v)
-            vs.append((rx*math.sin(a)+fold,ry*math.cos(a),z));uv.append((i/nu,v))
+            vs.append(((rx+fold)*math.sin(a),(ry+fold)*math.cos(a),z));uv.append((i/nu,v))
     holes=[(10,22,18,31,-1,'L'),(42,54,18,31,1,'R')]
     def idx(i,j):return j*(nu+1)+i
     for j in range(nv):
@@ -118,9 +148,9 @@ def build(patch, loft, mesh, interp, clamp, torso, arm_weights, leg_weights):
         angles=[math.atan2(vs[i][1]/.085,(vs[i][2]-center.z)/.080) for i in boundary]
         rings=[boundary];new_ids=[]
         path=[(s*.180,.002,1.423,.046,.059),(s*.200,.005,1.396,.050,.061),
-              (s*.207,.010,1.350,.053,.061),
-              (s*.216,.018,1.179,.047,.053),(s*.220,.022,1.126,.048,.051),
-              (s*.228,.023,1.026,.047,.049),(s*.231,.025,.941,.034,.037)]
+              (s*.207,.010,1.350,.057,.065),
+              (s*.213,.016,1.270,.060,.068),(s*.216,.018,1.211,.057,.061),
+              (s*.218,.019,1.178,.046,.050)]
         for row in range(1,29):
             v=row/28;x,y,z,rx,ry=interp(path,v)
             blend=min(1,v*8)
@@ -176,9 +206,9 @@ def build(patch, loft, mesh, interp, clamp, torso, arm_weights, leg_weights):
     for s,side in [(-1,'L'),(1,'R')]:
         def hem(u,v,s=s):
             a=s*(.055+u*(math.pi-.11))
-            z=.722+v*.359+.018*math.sin(a*3)*(1-v)
-            rx=.204-(.204-.154)*v**1.7
-            ry=.141-(.141-.115)*v**1.5
+            z=.822+v*.259+.018*math.sin(a*3)*(1-v)
+            rx=.193-(.193-.154)*v**1.7
+            ry=.136-(.136-.115)*v**1.5
             fold=.005*(math.sin(a*11+v)+.4*math.sin(a*19-v*2))*(1-v)
             return (rx+fold)*math.sin(a),(ry+fold)*math.cos(a),z
         patch('SplitTunicSkirt_'+side,hem,32,28,'linen',
@@ -189,20 +219,24 @@ def build(patch, loft, mesh, interp, clamp, torso, arm_weights, leg_weights):
     # A soft folded neck cloth with offset hanging ends. The first review's
     # broad radial mantle read like a stiff armor plate, so this redesign uses
     # gravity-led drape on the chest/back and leaves the natural shoulders free.
-    for i in range(3):
-        loft('FoldedCowl'+str(i),[(0,-.004,1.477+i*.016,.076-i*.006,.068-i*.004),
-               (0,-.003,1.498+i*.016,.071-i*.005,.065-i*.004)],
-               'wool','Chest','collar',fold=.0025,nu=40,nv=8)
+    def wrapped_scarf(u,v):
+        a=(u-.5)*math.tau
+        z=1.472+.054*v-.018*math.cos(a)+.005*math.sin(a*2+v*3)
+        fold=.003*math.cos(v*math.tau*2+a*.4)
+        rx=.065+.016*math.sin(math.pi*v)+fold
+        ry=.061+.017*math.sin(math.pi*v)+fold
+        return rx*math.sin(a),ry*math.cos(a),z
+    patch('FoldedNeckScarf',wrapped_scarf,48,22,'wool','Chest','collar',solid=.003)
     def scarf_front(u,v):
         x=-.047-.038*math.sin(v*math.pi*.7)+(u-.5)*(.086-.018*v)
-        z=1.488-v*.273+.015*(u-.5)*v
+        z=1.488-v*.155+.015*(u-.5)*v
         y=.078+.066*math.sin(min(1,v*2)*math.pi/2)
         y+=.0045*math.cos(u*math.tau*2+v)*math.sin(math.pi*v)
         return x,y,z
     patch('DrapedScarfFront',scarf_front,22,30,'wool',torso,'torso_cloth',solid=.003)
     def scarf_back(u,v):
         x=.038+.018*v+(u-.5)*(.075-.020*v)
-        z=1.483-v*.202-.014*(u-.5)*v
+        z=1.483-v*.095-.014*(u-.5)*v
         y=-.072-.055*math.sin(min(1,v*2)*math.pi/2)-.004*math.sin(u*math.tau*2)*math.sin(math.pi*v)
         return x,y,z
     patch('DrapedScarfBack',scarf_back,18,24,'wool',torso,'torso_cloth',solid=.003)
@@ -211,12 +245,12 @@ def build(patch, loft, mesh, interp, clamp, torso, arm_weights, leg_weights):
     patch('ScarfBackHem',lambda u,v:scarf_back(u,.965+.035*v),18,2,'wool',torso,'torso_cloth',solid=.004)
     # The lace opening sits below the wrap; original zig-zag cords are modeled
     # as flat ribbons and backed by a dark cloth inset (not a modern zipper).
-    def slit(u,v):return (u-.5)*(.022+v*.015),.127+v*.008,1.225+v*.13
-    patch('LaceOpening',slit,4,16,'trousers','Chest','torso_cloth',solid=.001)
+    def slit(u,v):return (u-.5)*(.003+v*.037),.126-.025*v,1.345+v*.13
+    patch('LaceOpening',slit,4,16,'skin','Chest','torso_cloth',solid=.001)
     for i in range(4):
         for sign in [-1,1]:
             patch('NeckLace'+str(i)+'_'+str(sign),lambda u,v,i=i,sign=sign:
-                ((u-.5)*.033,.138+v*.001,1.245+i*.023+sign*(u-.5)*.018+v*.003),
+                ((u-.5)*(.013+i*.008),.128-i*.005+v*.001,1.357+i*.027+sign*(u-.5)*.020+v*.003),
                 8,2,'leather','Chest','torso_cloth',solid=.001)
     loft('WideWornBelt',[(0,0,1.058,.159,.120),(0,0,1.107,.159,.120)],
           'leather','Spine','waist_tie',nu=48,nv=8)
@@ -230,11 +264,35 @@ def build(patch, loft, mesh, interp, clamp, torso, arm_weights, leg_weights):
     patch('PouchFlap',lambda u,v:(-.097+(u-.5)*.073,
           .162+.003*math.sin(v*math.pi),1.036-v*.057),14,8,
           'leather','Pelvis','waist_tie',solid=.003)
-    # Soft cloth cuffs and leather stitch bands at the wrist.
-    for s,side in [(-1,'L'),(1,'R')]:
-        loft('RolledCuff_'+side,[(s*.231,.025,.941,.037,.040),
-              (s*.230,.024,.972,.039,.041)],'linen','Forearm_'+side,
-              'sleeves',fold=.001,nu=24,nv=8)
+    # Rolled linen sleeve hems and leather wrist wraps leave forearms exposed.
+    for side_sign,side in [(-1,'L'),(1,'R')]:
+        loft('RolledCuff_'+side,[(side_sign*.218,.019,1.163,.048,.053),
+              (side_sign*.218,.019,1.177,.055,.059),(side_sign*.216,.018,1.202,.055,.060),
+              (side_sign*.215,.018,1.211,.048,.053)],'linen',
+              lambda p,side=side:arm_weights(side,p),'sleeves',fold=.003,nu=32,nv=12)
+        for row in range(4):
+            loft('WristWrap_'+side+str(row),[(side_sign*.231,.025,.944+row*.015,.035,.036),
+                  (side_sign*.230,.025,.964+row*.015,.036,.037)],'leather',
+                  'Forearm_'+side,'forearms',fold=.001,nu=24,nv=4)
+
+    # Buckle and practical leather keepers: small accessories, not armor.
+    def ribbon(name,points,width,kind,region,weights):
+        def strip(u,v):
+            c=interp(points,u)
+            tangent=interp(points,min(1,u+.005))-interp(points,max(0,u-.005))
+            across=tangent.cross(Vector((0,1,0))).normalized()
+            return c+across*((v-.5)*width)
+        patch(name,strip,24,2,kind,weights,region,solid=.003)
+    ribbon('BrassBeltBuckle',[(-.027,.125,1.062),(-.027,.127,1.101),
+            (.027,.127,1.101),(.027,.125,1.062),(-.027,.125,1.062)],
+            .007,'bronze','waist_tie','Spine')
+    ribbon('BuckleProng',[(-.017,.132,1.081),(.027,.132,1.081)],.004,'bronze','waist_tie','Spine')
+    for x in [-.065,.060,.104]:
+        patch('BeltKeeper'+str(x),lambda u,v,x=x:(x+(u-.5)*.013,.123+v*.003,1.054+v*.057),
+              3,8,'leather','Spine','waist_tie',solid=.004)
+    ribbon('PouchStitch',[(-.130,.168,1.026),(-.130,.168,.988),
+            (-.065,.168,.988),(-.065,.168,1.026)],.002,'linen','waist_tie','Pelvis')
+    patch('PouchToggle',lambda u,v:(-.100+u*.008,.171,.995+v*.008),3,3,'bronze','Pelvis','waist_tie',solid=.003)
 
     # Joined waist/seat with a real crotch bridge, then two anatomical legs.
     # Unlike two overlapping hip tubes, this gives one coherent pelvis volume.
@@ -256,14 +314,15 @@ def build(patch, loft, mesh, interp, clamp, torso, arm_weights, leg_weights):
         angles=[]
         for q in loop:
             p=vs[q];angles.append(math.atan2((p[0]-s*.093)/.085,p[1]/.108))
-        profiles=[(s*.098,0,.806,.085,.104),(s*.103,.010,.715,.087,.096),
-                  (s*.103,.021,.588,.073,.080),(s*.103,.018,.515,.063,.070),
+        profiles=[(s*.098,0,.806,.085,.104),(s*.103,.010,.715,.091,.104),
+                  (s*.103,.021,.588,.083,.091),(s*.103,.018,.515,.078,.085),
                   (s*.103,-.008,.407,.068,.073),(s*.103,-.010,.292,.057,.063),
                   (s*.103,0,.170,.042,.049)]
         for j in range(1,37):
             v=j/36;x,y,z,rx,ry=interp(profiles,v);ring=[]
             for k,a in enumerate(angles):
-                dest=Vector((x+rx*math.sin(a),y+ry*math.cos(a),z))
+                fold=.004*math.sin(a*7+v*16)*math.sin(math.pi*v)
+                dest=Vector((x+(rx+fold)*math.sin(a),y+(ry+fold)*math.cos(a),z))
                 if v<.14:dest=Vector(vs[loop[k]]).lerp(dest,v/.14)
                 ring.append(len(vs));vs.append(dest);uv.append((k/len(loop),.35+v*.63))
             for k in range(len(loop)):
@@ -273,8 +332,8 @@ def build(patch, loft, mesh, interp, clamp, torso, arm_weights, leg_weights):
         return leg_weights('L' if p[0]<0 else 'R',p)
     mesh('TailoredTrousers',vs,fs,uv,'trousers',pants_weights,'legs_cloth',solid=.002)
     for s,side in [(-1,'L'),(1,'R')]:
-        loft('Wrist_'+side,[(s*.230,.025,.965,.032,.034),
-              (s*.231,.025,.905,.028,.030)],'skin','Forearm_'+side,'forearms',nu=28,nv=10)
+        loft('Wrist_'+side,[(s*.216,.018,1.188,.041,.044),(s*.221,.022,1.118,.041,.043),
+              (s*.227,.025,1.030,.034,.037),(s*.231,.025,.905,.028,.030)],'skin',lambda p,side=side:arm_weights(side,p),'forearms',nu=28,nv=20)
         loft('Palm_'+side,[(s*.231,.025,.918,.028,.030),(s*.234,.032,.866,.037,.023),
               (s*.236,.043,.813,.035,.019),(s*.236,.045,.798,.029,.016)],
               'skin','Hand_'+side,'hands',nu=32,nv=16)
@@ -302,11 +361,27 @@ def build(patch, loft, mesh, interp, clamp, torso, arm_weights, leg_weights):
         loft('BootTurnedRim_'+side,[(s*.103,-.008,.405,.074,.080),
               (s*.103,-.008,.437,.074,.079)],'leather','Shin_'+side,
               'feet_shoes',nu=32,nv=6)
-        loft('Sole_'+side,[(s*.103,.054,.015,.058,.125),
-              (s*.103,.060,.033,.064,.131)],'dark','Foot_'+side,'feet_shoes',nu=36,nv=4)
+        loft('Sole_'+side,[(s*.103,.054,.002,.058,.125),
+              (s*.103,.060,.021,.064,.131)],'dark','Foot_'+side,'feet_shoes',nu=36,nv=4)
         # Back seam and the two leather binding straps are low contrast.
         for j in range(2):
             loft('BootStrap_'+side+str(j),[(s*.103,-.009,.265+j*.085,.063+j*.008,.070+j*.006),
                   (s*.103,-.009,.278+j*.085,.064+j*.008,.071+j*.006)],
                   'leather','Shin_'+side,'feet_shoes',nu=32,nv=4)
+        # Project each lace ribbon onto the authored vamp surface. Arbitrary
+        # straight cords previously dipped into the boot and left dark dots.
+        boot_samples=[interp(boot_profile,j/800) for j in range(801)]
+        for row in range(4):
+            for direction in [-1,1]:
+                def lace(u,v,s=s,row=row,direction=direction):
+                    x=s*.103+(u-.5)*.052
+                    z=.132-row*.014+direction*(u-.5)*.006+v*.002
+                    bx,by,bz,rx,ry=min(boot_samples,key=lambda r:abs(r[2]-z))
+                    y=by+ry*math.sqrt(max(0,1-((x-bx)/rx)**2))+.0028
+                    return x,y,z
+                patch('BootLace_'+side+str(row)+'_'+str(direction),lace,
+                      10,2,'leather','Foot_'+side,'feet_shoes',solid=.001)
+        ribbon('BootCuffBuckle_'+side,[(s*.103-.022,.073,.408),(s*.103-.022,.073,.435),
+              (s*.103+.022,.073,.435),(s*.103+.022,.073,.408),(s*.103-.022,.073,.408)],
+              .005,'bronze','feet_shoes','Shin_'+side)
     return skull

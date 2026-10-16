@@ -1,8 +1,9 @@
 # 项目开发约定
 
-当前美术方向（2026-10-16）：西式奇幻起始旅人，粗布系带长衫、分叉下摆、垂挂毛织领巾、皮带小袋、长裤和皮靴；初始无盔甲/武器/盾牌。禁止退回现代短衫或尖束动漫刘海。新曲面在tools/wayfarer/traveler_surfaces.py，十套128px原创材质图由traveler_textures.py制作；human_surfaces.py是旧设计源。保留5ca2f4d的32骨rest，build_wayfarer.py管理动作/装备/导出。分叉衣摆混合Pelvis/Thigh，靴筒混合Foot/Shin；不能缩放骨骼纠正比例。
-胸甲遮挡torso_cloth/waist_tie/collar，保留袖子和衣摆；卸下恢复领巾与小袋。tests/equipment_test.gd包含该遮挡回归。此版本仍是候选，不能因测试通过声称正式角色美术达标。
-docs/traveler/before_*是5ca2f4d稳定实图，不可覆盖；docs/proportions也保留历史。capture_proportions.gd只输出docs/traveler/after_*，正侧摄像机临时从SpringArm移出，不改生产相机。capture_equipment覆盖docs/wayfarer，运行前保存稳定比较。源头部尺寸和拓扑连通性检查不代表美术批准。
+当前参考更新：用户提供冒险者多视图并明确要求Blender建模；发型和服饰以本轮图为准，替代上一版露额短发/长袖约定。卷袖、裸露前臂/皮护腕、短分叉布衣、棕红围巾、黄铜腰扣/皮包、折边靴；初始无盔甲/武器/盾牌。traveler_surfaces.py和traveler_textures.py为生成入口，32骨rest保持；不要以骨骼缩放改变比例。
+setup_blender_review.py只在游戏GLB导出之后创建原生审阅摄影棚和用户参考图。TEST_EQUIPMENT_optional默认隐藏，衣内躯干默认隐藏；Review四相机、摄影棚地面/灯光和用户图不能进入GLB。150未合并编辑曲面在EDITABLE_SURFACES；用户设定图不是本项目原创，不能当游戏纹理或实际3D渲染成果。
+docs/adventurer_reference/before_*是2d69e80稳定图；旧docs/traveler与docs/proportions不覆盖。capture_proportions当前输出docs/adventurer_reference/after_*；render_blender_review输出blender_*。capture_equipment仍覆盖docs/wayfarer，先保留稳定比较。源码重开审计验证原生默认无装备与四相机，GLB测试检查审阅物件未泄漏。
+胸甲遮挡torso_cloth/waist_tie/collar，保留袖子与衣摆，卸下恢复。此版本是参考图指导的模型候选，脸/手、布褶和绘制仍需人工精修，不能因测试通过声称美术达标。
 
 当前授权新增：只在 scenes/visual_lab/character_equipment_lab.tscn 开发布衣基础人物与四件装备外观切换原型（头盔/胸甲/剑/盾），八个预留槽位。禁止完整背包、属性、掉落或战斗扩展。Forest Valley、旧教堂、两版旧骑士和原控制不替换。
 assets/characters/wayfarer 是新32骨/独立动作/局部UV人物候选，不能称正式精修人物。tools/wayfarer/build_wayfarer.py 默认拒绝覆盖；保存手工编辑后才使用 -- --replace-generated；.blend源在source/blender/.gdignore内，运行使用五份独立GLB。128px像素色板纹理为原创程序绘制，无新AI图或高模烘焙。

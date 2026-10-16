@@ -21,6 +21,7 @@ assert len(doc['skins'])==1 and len(doc['skins'][0]['joints'])==32
 assert {a['name'] for a in doc['animations']}=={'idle','walk','run','turn_left','turn_right'}
 assert not any('steel' in mat['name'] or 'wood' in mat['name'] for mat in doc['materials'])
 base_names={n['name'] for n in doc['nodes']}
+assert not any(n.startswith(('Studio','Review_','User supplied')) for n in base_names), 'Blender review-only objects leaked into game GLB'
 assert not any(any(item in name.lower() for item in ['helmet','chestplate','sword','shield']) for name in base_names)
 assert {'Head','Neck','Hand_L','Hand_R','Foot_L','Foot_R'}<=set(base.rig())
 totals={};mixed=0

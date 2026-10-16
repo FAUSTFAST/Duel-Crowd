@@ -41,10 +41,13 @@ for kind, palette in PALETTES.items():
     tex=mat.node_tree.nodes.new('ShaderNodeTexImage');tex.image=image;tex.interpolation='Closest'
     mat.node_tree.links.new(tex.outputs['Color'],bs.inputs['Base Color'])
     MATS[kind]=mat
-for name,color in [('dark',(0.055,.045,.034,1)),('lip',(.36,.20,.15,1)),('iris',(.12,.15,.12,1))]:
+for name,color in [('dark',(0.055,.045,.034,1)),('lip',(.36,.20,.15,1)),('iris',(.12,.075,.040,1)),('bronze',(.32,.17,.055,1))]:
     mat=bpy.data.materials.new('Way_'+name);mat.diffuse_color=color;mat.use_nodes=True
     mat.node_tree.nodes.get('Principled BSDF').inputs['Base Color'].default_value=color
     mat.node_tree.nodes.get('Principled BSDF').inputs['Roughness'].default_value=.85
+    if name=='bronze':
+        mat.node_tree.nodes.get('Principled BSDF').inputs['Metallic'].default_value=.65
+        mat.node_tree.nodes.get('Principled BSDF').inputs['Roughness'].default_value=.55
     MATS[name]=mat
 
 # Reference-guided silhouette, not a reproduction of the reference costume.
@@ -301,7 +304,7 @@ manifest={'asset_status':'editable art candidate / equipment visual prototype',
  'blender':bpy.app.version_string,'height_m':rest_bounds[2][1]-rest_bounds[2][0],
  'shoulder_width_m':max(p.x for p in shoulders)-min(p.x for p in shoulders),'rest_bounds_m':rest_bounds,
  'anatomical_landmarks_m':ANATOMY,'head_units_to_anatomical_crown':round(ANATOMY['crown']/(ANATOMY['crown']-ANATOMY['chin']),3),
- 'revision':'western traveler: split linen tunic, draped neck cloth, leather calf boots, mature face and open-forehead crop; unchanged 32-bone rest',
+ 'revision':'user turnaround guided adventurer: layered hair, rolled sleeves, exposed forearms and leather wraps, short split tunic, scarf, brass belt buckle, cuffed boots; unchanged rest',
  'bones':len(adata.bones),'actions':metrics,'parts':entries,
  'regions':sorted(base_regions),'hidden_by_default':['body_under_cloth'],
  'bone_rest':{b.name:[list(row) for row in b.matrix_local] for b in adata.bones},
@@ -310,3 +313,7 @@ manifest={'asset_status':'editable art candidate / equipment visual prototype',
  'source':str(source.relative_to(ROOT))}
 (BASE/'source/build_manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
 print('WAYFARER_BUILD',json.dumps({k:v for k,v in manifest.items() if k not in ['parts','bone_rest']}))
+
+# Save an immediately inspectable native Blender scene AFTER GLB exports.
+from setup_blender_review import setup as setup_review
+setup_review(BASE,rig,merged)

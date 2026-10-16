@@ -1,5 +1,5 @@
-=== audit ===
-SOURCE_AUDIT {"source_reopen": "PASS", "bones": 32, "actions": ["idle", "run", "turn_left", "turn_right", "walk"], "editable_parts": 85, "packed_images": 10, "no_animated_bone_scaling": true, "proportions": {"head_height_m": 0.2549999952316284, "head_width_m": 0.18336625397205353, "head_units_excluding_hair": 7.058823474413245, "connected_shirt_components": 1, "connected_trousers_components": 1, "note": "rest-geometry checks; not an art approval"}}
+=== source ===
+SOURCE_AUDIT {"source_reopen": "PASS", "bones": 32, "actions": ["idle", "run", "turn_left", "turn_right", "walk"], "editable_parts": 150, "packed_images": 10, "no_animated_bone_scaling": true, "native_review_unarmored": true, "native_review_cameras": 4, "proportions": {"head_height_m": 0.2549999952316284, "head_width_m": 0.18336625397205353, "head_units_excluding_hair": 7.058823474413245, "connected_shirt_components": 1, "connected_trousers_components": 1, "note": "rest-geometry checks; not an art approval"}}
 Blender 4.5.9 LTS (hash 8bf95cbd38d1 built 2026-04-21 01:30:46)
 Read blend: "/Users/mac/Documents/ChatGPT/3d game/assets/characters/wayfarer/source/blender/wayfarer.blend"
 
@@ -64,7 +64,7 @@ PASS: game image click recaptures mouse after resize
 PASS: fit mode preserves aspect without stretching
 PASS: native comparison uses exact 16:9 whole pixel dimensions
 PASS: small window downsizes 960p without distortion
-PERF: 640x360 average frame 8.27 ms, p95 12.32 ms, objects 315, draw calls 209
+PERF: 640x360 average frame 5.44 ms, p95 6.19 ms, objects 315, draw calls 209
 RESULT: 0 failures
 
 === art_integrity ===
@@ -165,7 +165,7 @@ PASS: knight physically traverses all 12 curved trail segments
 PASS: Shift running retains higher speed
 PASS: camera smoothly follows moving knight
 PASS: R returns to valley spawn point
-PERF valley640 mean 8.33 ms p95 11.25 ms draws 684 objects 823
+PERF valley640 mean 10.22 ms p95 12.63 ms draws 681 objects 820
 RESULT: 34 checks, 0 failures
 
 === atelier ===
@@ -206,8 +206,8 @@ PASS: click recaptures cursor
 PASS: wheel zoom preserved
 PASS: frozen character has stable actual pixels
 PASS: real skeletal animation changes rendered pixels
-PERF old frame_interval mean_ms=8.30353333333333 p95_ms=13.062 draw_calls=34.0
-PERF new frame_interval mean_ms=8.29627222222222 p95_ms=12.64 draw_calls=34.0
+PERF old frame_interval mean_ms=1.96136111111111 p95_ms=2.989 draw_calls=34.0
+PERF new frame_interval mean_ms=2.34255 p95_ms=3.647 draw_calls=34.0
 PASS: animation restored before performance sampling
 ATELIER RESULT 35 checks, 0 failures
 
@@ -266,15 +266,12 @@ PASS: base decelerates to idle
 PASS: reset remains functional
 PASS: frozen base actual pixels stable
 PASS: real skeletal idle changes image
-PERF equipped=false mean_ms=10.2038111111111 p95_ms=17.069 draw_calls=73.0
-PERF equipped=true mean_ms=8.42678888888889 p95_ms=13.434 draw_calls=73.0
+PERF equipped=false mean_ms=9.71671666666667 p95_ms=15.022 draw_calls=81.0
+PERF equipped=true mean_ms=5.09824444444445 p95_ms=10.1 draw_calls=77.0
 PASS: real animations enabled during performance sampling
 EQUIPMENT RESULT 52 checks, 0 failures
 
-=== rest compatibility ===
-PASS all 32 bone rest matrices exactly match 5ca2f4d
-
-=== captures ===
+=== capture ===
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M1
 
@@ -308,6 +305,7 @@ CAPTURE equipped_forest_context
 CAPTURE forest_running
 FOREST RUN on_floor=true state=run
 
+=== portrait ===
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M1
 

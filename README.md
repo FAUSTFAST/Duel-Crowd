@@ -3,9 +3,11 @@
 
 ## 新：布衣人物与模块化装备外观实验
 
-本轮重新定义为西式奇幻旅人：燕麦色粗布系带长衫、分叉下摆、暗赭色垂挂领巾、皮腰带/小袋、长裤与高筒皮靴。重做露额短发、下颌/鼻部及面部UV肤色；初始仍没有盔甲、武器或盾牌。保留上一版32骨rest、五段动作接口和装备承载方式，调整待机重心与肘部姿态。
+本轮根据用户提供的冒险者多视图，在 **Blender 4.5.9 LTS** 制作卷袖布衣、露出前臂与皮护腕、较短开叉衣摆、围巾、黄铜腰扣/皮包和折边靴，头发改为分层发束。默认仍无盔甲、武器、盾牌，32骨rest和装备接口保持。
 
-实际同机位：[旧现代布衣](docs/traveler/before_base_front_native.png) / [新旅人](docs/wayfarer/base_front_native.png)；[游戏距离旧](docs/traveler/before_base_gameplay_640.png) / [新](docs/wayfarer/base_gameplay_640.png)。[本轮审阅与限制](docs/traveler/README.md)。这是新的**可运行美术候选**，不是正式人物美术通过验收；面部精雕、布料褶皱、UV密度与完整动作仍需人工精修。
+**Blender源文件：** `assets/characters/wayfarer/source/blender/wayfarer.blend`。打开默认显示基础人物；测试装备放在隐藏的 `TEST_EQUIPMENT_optional` 集合。`EDITABLE_SURFACES` 保留150个可编辑曲面，四个Review相机和参考图用于审阅，不进入游戏GLB。
+
+[Blender实际渲染](docs/adventurer_reference/blender_threequarter.png)、[正面](docs/adventurer_reference/blender_front.png)、[本轮对比与打开说明](docs/adventurer_reference/README.md)。模型和贴图在本项目制作，设定图来自用户，不宣称设定图由本项目原创。当前仍是**参考图指导的美术候选**，脸/手、细腻布褶和绘制质感尚未达到参考图质量。
 
 打开 **`scenes/visual_lab/character_equipment_lab.tscn`**，双击场景后按 **F6 / 运行当前场景的场记板按钮**。普通三角形/F5仍是旧教堂；Forest Valley和Knight Art Atelier完全保留。
 

@@ -2,15 +2,17 @@
 
 当前状态：可运行、可编辑的原创人物候选，**不是正式人物美术完成**。初始仅粗布长衫、长裤、皮靴，没有金属护甲和手持物。未读取旧骑士网格、未使用Duel Corp或第三方资源，也没有本轮AI图像或高模烘焙。
 
-本轮重新确立西式奇幻起始旅人造型：系带粗布长衫、分叉衣摆、垂挂领巾、皮腰带小袋、高筒靴；露额短发、较明确的鼻/下颌和面部UV色差。没有初始盔甲、武器和盾牌。保留已验证的连续肩袖、裤裆和手部基础拓扑，但替换旧短衫/软鞋/尖束刘海的可见设计。全部32骨rest与5ca2f4d逐矩阵一致，原装备/动作接口保留。实图见[旅人审阅](../../../docs/traveler/README.md)。
+本轮按用户提供的多视图在Blender重做卷袖、裸露前臂/护腕、短分叉衣摆、围巾、黄铜扣与靴带，头发使用连续头皮与分层发束。模型/贴图由本项目制作，设定图由用户提供，不宣称本项目原创设定。全部32骨rest保持，控制和装备接口不变。[本轮实图](../../../docs/adventurer_reference/README.md)。
+
+直接在Blender打开 `source/blender/wayfarer.blend`：默认基础人物，TEST_EQUIPMENT_optional集合关闭。EDITABLE_SURFACES含未合并曲面；REVIEW_STUDIO_not_exported含灯光/地面/四个Review相机；USER_REFERENCE_not_exported含用户图（外部相对路径，保留source/reference目录）。摄影棚/参考图只在导出后加入，不进入游戏GLB。
 
 ## 资源与职责
 
-- `wayfarer.glb`：32骨、idle/walk/run/turn_left/turn_right五段in-place动作、13个可见性区域。当前120,516三角形/66,047导出顶点（包含默认隐藏的衣内躯干）；三角形数不代表美术达标。
+- `wayfarer.glb`：32骨、idle/walk/run/turn_left/turn_right五段in-place动作、13个可见性区域。当前138,308三角形/76,806导出顶点（包含默认隐藏的衣内躯干）；三角形数不代表美术达标。
 - `equipment/helmet.glb` / `chest.glb`：同骨名/rest的独立蒙皮模型，6,032 / 7,928三角形。
 - `equipment/sword.glb` / `shield.glb`：2,724 / 4,348三角形，刚性模型，导出坐标与人物rest空间一致；运行时由手部rest逆矩阵转换到BoneAttachment3D局部空间。
-- `textures`：十套128²原创程序绘制像素色板PNG。材质粗糙度/金属度为设计常量（钢0.63/0.38，皮革0.84/0，其余0.92/0），无Normal烘焙。Godot使用外部PNG的真实mipmap与最近邻；Blender源同时打包图。
-- `source/blender/wayfarer.blend`：32骨、五个Fake User Action、85个未合并编辑曲面与按遮挡/材质合并的导出网格。源肩袖是共享顶点整体，只在导出时分离遮挡区；裤腰到双腿通过裤裆桥连接。目录`.gdignore`防止Godot自动导入原生文件；游戏仅加载GLB。
+- `textures`：十套128²原创程序绘制像素色板PNG。材质粗糙度/金属度为设计常量（钢0.63/0.38，黄铜0.55/0.65，皮革0.84/0，其余0.92/0），无Normal烘焙。Godot使用外部PNG的真实mipmap与最近邻；Blender源同时打包图。
+- `source/blender/wayfarer.blend`：32骨、五个Fake User Action、150个未合并编辑曲面与按遮挡/材质合并的导出网格。源肩袖是共享顶点整体，只在导出时分离遮挡区；裤腰到双腿通过裤裆桥连接。目录`.gdignore`防止Godot自动导入原生文件；游戏仅加载GLB。
 - `source/build_manifest.json` / `source_audit.json`：设计参数、分区、骨架rest和独立重开检查。`TailoredUV`为显式局部UV；四肢/小件有意复用，非无重叠烘焙UV。手工细化前应整理真正材质岛和纹素密度。
 
 ## 操作与扩展
@@ -37,8 +39,9 @@ python3 tests/wayfarer_asset_test.py
 Godot --path . --script tests/equipment_test.gd
 Godot --path . --script tools/wayfarer/capture_equipment.gd
 Godot --path . --script tools/wayfarer/capture_proportions.gd
+Blender --background --factory-startup --python-exit-code 1 --python tools/wayfarer/render_blender_review.py
 ```
 
-configure_imports仅改本候选sidecar，不改旧资源。截图会覆盖docs/wayfarer与docs/traveler/after_*，旧稳定图在docs/traveler/before_*，不可覆盖；图形测试不能headless。测试包括模拟输入，不等于真人长期试玩。
+configure_imports仅改本候选sidecar，不改旧资源。截图会覆盖docs/wayfarer与docs/adventurer_reference/after_*，本轮旧稳定图在docs/adventurer_reference/before_*，不可覆盖；图形测试不能headless。测试包括模拟输入，不等于真人长期试玩。
 
-本轮已经以实图淘汰僵硬宽披肩/独立胡茬壳，改为垂挂领巾/面部UV色差，并检查长衣摆、靴筒及胸甲遮挡；仍需人工精修面部、耳/手/肩/髋拓扑与服装质感。动作是新骨架上的程序周期，并非精修手工动画或mocap；原地跑姿不代替实际移动，平地测试不证明坡地IK、全姿态无穿插或完整脚指抓握。未来披风只有back槽位，未制作披风模型或布料模拟。应由角色美术师在保留曲面基础上雕刻/重拓扑/绘制，再按640/960/原生与真实动作审核，勿继续堆小装甲片冒充人物质量提升。
+此前已以实图淘汰僵硬宽披肩/独立胡茬壳，改为垂挂领巾/面部UV色差，并检查长衣摆、靴筒及胸甲遮挡；仍需人工精修面部、耳/手/肩/髋拓扑与服装质感。动作是新骨架上的程序周期，并非精修手工动画或mocap；原地跑姿不代替实际移动，平地测试不证明坡地IK、全姿态无穿插或完整脚指抓握。未来披风只有back槽位，未制作披风模型或布料模拟。应由角色美术师在保留曲面基础上雕刻/重拓扑/绘制，再按640/960/原生与真实动作审核，勿继续堆小装甲片冒充人物质量提升。

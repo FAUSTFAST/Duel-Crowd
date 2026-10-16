@@ -8,9 +8,11 @@
     "turn_right",
     "walk"
   ],
-  "editable_parts": 85,
+  "editable_parts": 150,
   "packed_images": 10,
   "no_animated_bone_scaling": true,
+  "native_review_unarmored": true,
+  "native_review_cameras": 4,
   "proportions": {
     "head_height_m": 0.2549999952316284,
     "head_width_m": 0.18336625397205353,

@@ -9,10 +9,10 @@ import math
 PALETTES={
  'skin':['9f795e','ae8769','ba9475','c29b7c','c9a485'],
  'face':['9f795e','ae8769','ba9475','c29b7c','c9a485'],
- 'hair':['24231f','2b2923','332f28','3a352d','403b32'],
- 'linen':['82755c','918367','a09173','ab9b7d','b3a58a'],
- 'wool':['3e2f2a','4b3730','594036','674c3d','705444'],
- 'trousers':['383934','40413a','48493f','505146','59594c'],
+ 'hair':['2f201a','3a281e','483023','573c2b','664a35'],
+ 'linen':['93836d','a6977e','b6a58b','c5b499','d2c1a6'],
+ 'wool':['4c2c23','5c3428','6c3e2e','7d4b37','8e5b43'],
+ 'trousers':['2b2826','342e2b','3e3731','494038','544b41'],
  'leather':['33281f','3c2e23','483729','53402f','604a36'],
  'steel':['59646b','6b7980','7b8990','8e9ba0','9eaaad'],
  'wood':['39352b','494334','554d39','62583f','706448'],
@@ -24,7 +24,7 @@ def pixel(kind,x,y,rgb):
     broad=math.sin(x*.093+math.sin(y*.07)*1.4)*math.sin(y*.061+.7)
     if kind in ('linen','wool','trousers'):
         weave=(1 if (x%4<2) == (y%4<2) else -1)
-        value=2+.28*broad+(.06 if kind=='wool' else .08)*weave
+        value=2+.28*broad+(.04 if kind=='wool' else .025)*weave
         if kind=='linen':
             # Narrow double stitched selvedge; only a few pixels in UV space.
             if y in (4,7,120,123):value-=.7
@@ -61,7 +61,7 @@ def pixel(kind,x,y,rgb):
         beard_top=1.602+.023*abs(math.sin(a))
         beard=max(0,min(1,(beard_top-z)/.032))*front**.4
         grain=((x*17+y*29)%13)/12
-        shade=1-beard*(.18+.055*grain)
+        shade=1-beard*.025
         # Restrained sockets/cheek planes and a warm nose; no painted lighting.
         socket=math.exp(-((abs(xx)-.035)/.019)**2-((z-1.680)/.018)**2)*front**3
         shade-=.075*socket
