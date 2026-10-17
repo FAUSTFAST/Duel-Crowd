@@ -1,5 +1,5 @@
 # 验证记录
-最新阶段见文末“参考人体比例修订”；以下历史环境与授权状态按当时情况保留，不代表当前状态。
+最新阶段见文末“2026-10-17 — 独立设计图轮廓候选”；以下历史环境与授权状态按当时情况保留，不代表当前状态。
 
 ## 历史：阶段 1–2
 日期：2026-10-13（Asia/Shanghai）。
@@ -432,3 +432,17 @@ Godot 4.7.2 / Apple M1 Compatibility实际图形回归：prototype 19、renderin
 180帧窗口帧间隔：基础平均9.717ms/P95 15.022ms/81 draw calls；四件装备平均5.098ms/P95 10.100ms/77 draw calls。数据为短时窗口采样，包含调度/刷新影响，不能以两次均值比较推断装备加速；未做Windows或长期压力测试。
 
 四张Blender实际渲染、四张Godot正侧/近景、31张Godot近景/三档/穿卸/走跑/森林截图分别留档，说明见docs/adventurer_reference/README.md。实际跑动截图日志记录on_floor=true、state=run。全部工程检查不等于美术审批：面部、手部、肩袖、布褶、绘制质感、UV密度与自然动画仍需人工精修。
+
+## 2026-10-17 — 独立设计图轮廓候选
+
+检查点：开发前本地 HEAD 和 GitHub main 均为 `17c91c512ebb4706fa799cedda271a0ccfecaea6`。用户已有 `project.godot`、`scenes/world/forest_ruins.tscn` 修改保留，SHA256 与修改前一致，不纳入本轮提交。
+
+Blender 4.5.9 LTS：实际生成候选 GLB，并重新打开保存的 .blend。32骨、五段Fake User Action、146可编辑部件、10张打包图；衣裤源拓扑连通；未使用动画骨骼缩放。新旧rest矩阵完全一致。共享旧绑定，不将新造型写回旧wayfarer。二进制检查UV/法线/切线/蒙皮/有限动画数据、独立装备绑定和命名skin通过。
+
+Godot 4.7.2图形回归：prototype 19、rendering 30、art_integrity 22、knight_animation 23、valley 34、atelier 35、旧equipment 52、新candidate equipment 52，共267项通过。新旧角色控制、鼠标捕获/Esc/重新捕获、滚轮、跑步、碰撞、动画状态、装备显隐、卸下恢复与冻结/恢复动画像素检查通过。导入及截图日志无SCRIPT ERROR。
+
+新候选180帧短时采样：空手平均帧间隔11.01ms/P95 14.87ms、79 draw calls；测试装备平均8.35ms/P95 11.35ms、77 draw calls。该数字不是GPU耗时，不能由此推断装备提升性能或长期帧率承诺；两次采样有运行时波动。
+
+实拍：六张新旧Blender三视图、十八张Godot原生/640三视图与游戏镜头/行走/跑步。检查并修复了初次手臂旋转方向错误、发顶空隙、围巾穿插。最终可见脸部神态、发束、围巾软度、布褶与鞋面仍未匹配参考，**轮廓审核尚未通过、细节版未开始**。没有把测试数量当成美术验收。
+
+[对照与限制](silhouette_review/README.md) · [实测日志](silhouette_review/test_results.txt)。新场景为 `scenes/visual_lab/reference_silhouette.tscn`，原地图/角色保留。

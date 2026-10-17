@@ -1,0 +1,24 @@
+{
+  "source_reopen": "PASS",
+  "bones": 32,
+  "actions": [
+    "idle",
+    "run",
+    "turn_left",
+    "turn_right",
+    "walk"
+  ],
+  "editable_parts": 146,
+  "packed_images": 10,
+  "no_animated_bone_scaling": true,
+  "native_review_unarmored": true,
+  "native_review_cameras": 4,
+  "proportions": {
+    "head_height_m": 0.2549999952316284,
+    "head_width_m": 0.1958875060081482,
+    "head_units_excluding_hair": 7.058823474413245,
+    "connected_shirt_components": 1,
+    "connected_trousers_components": 1,
+    "note": "rest-geometry checks; not an art approval"
+  }
+}

@@ -1,0 +1,1793 @@
+{
+  "asset_status": "silhouette approval study; details pending",
+  "blender": "4.5.9 LTS",
+  "height_m": 1.8638868948910385,
+  "shoulder_width_m": 0.5069993436336517,
+  "rest_bounds_m": [
+    [
+      -0.2766018509864807,
+      0.278141587972641
+    ],
+    [
+      -0.14442551136016846,
+      0.20462889969348907
+    ],
+    [
+      0.00011998205445706844,
+      1.8640068769454956
+    ]
+  ],
+  "anatomical_landmarks_m": {
+    "crown": 1.8,
+    "chin": 1.545,
+    "shoulder": 1.435,
+    "hip": 0.935,
+    "knee": 0.515,
+    "ankle": 0.105,
+    "hip_half_width": 0.103,
+    "elbow": 1.155,
+    "wrist": 0.91,
+    "head_width": 0.181
+  },
+  "head_units_to_anatomical_crown": 7.059,
+  "revision": "user turnaround guided adventurer: layered hair, rolled sleeves, exposed forearms and leather wraps, short split tunic, scarf, brass belt buckle, cuffed boots; unchanged rest",
+  "bones": 32,
+  "actions": {
+    "idle": {
+      "duration": 2.4,
+      "reference_speed": 0
+    },
+    "walk": {
+      "duration": 0.6,
+      "reference_speed": 3.2
+    },
+    "run": {
+      "duration": 0.6,
+      "reference_speed": 5.8
+    },
+    "turn_left": {
+      "duration": 0.7,
+      "reference_speed": 0
+    },
+    "turn_right": {
+      "duration": 0.7,
+      "reference_speed": 0
+    }
+  },
+  "parts": [
+    {
+      "name": "SculptedHead",
+      "category": "head",
+      "kind": "face",
+      "source_vertices": 4015
+    },
+    {
+      "name": "NeckSkin",
+      "category": "neck",
+      "kind": "skin",
+      "source_vertices": 561
+    },
+    {
+      "name": "EyeWhite-1",
+      "category": "head",
+      "kind": "eye",
+      "source_vertices": 119
+    },
+    {
+      "name": "Iris-1",
+      "category": "head",
+      "kind": "iris",
+      "source_vertices": 85
+    },
+    {
+      "name": "UpperLid-1",
+      "category": "head",
+      "kind": "dark",
+      "source_vertices": 51
+    },
+    {
+      "name": "Brow-1",
+      "category": "head",
+      "kind": "hair",
+      "source_vertices": 76
+    },
+    {
+      "name": "Ear-1",
+      "category": "head",
+      "kind": "skin",
+      "source_vertices": 319
+    },
+    {
+      "name": "Nostril-1",
+      "category": "head",
+      "kind": "lip",
+      "source_vertices": 21
+    },
+    {
+      "name": "EyeWhite1",
+      "category": "head",
+      "kind": "eye",
+      "source_vertices": 119
+    },
+    {
+      "name": "Iris1",
+      "category": "head",
+      "kind": "iris",
+      "source_vertices": 85
+    },
+    {
+      "name": "UpperLid1",
+      "category": "head",
+      "kind": "dark",
+      "source_vertices": 51
+    },
+    {
+      "name": "Brow1",
+      "category": "head",
+      "kind": "hair",
+      "source_vertices": 76
+    },
+    {
+      "name": "Ear1",
+      "category": "head",
+      "kind": "skin",
+      "source_vertices": 319
+    },
+    {
+      "name": "Nostril1",
+      "category": "head",
+      "kind": "lip",
+      "source_vertices": 21
+    },
+    {
+      "name": "Mouth",
+      "category": "head",
+      "kind": "lip",
+      "source_vertices": 84
+    },
+    {
+      "name": "LayeredScalp",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 1425
+    },
+    {
+      "name": "Forelock0",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "Forelock1",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "Forelock2",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "Forelock3",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "Forelock4",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "Forelock5",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "CrownSweep0",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "CrownSweep1",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "CrownSweep2",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "CrownSweep3",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "CrownSweep4",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "CrownSweep5",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "CrownSweep6",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "CrownSweep7",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "CrownSweep8",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "SideLayer-1_0",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "SideLayer-1_1",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "SideLayer-1_2",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "SideLayer-1_3",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "SideLayer-1_4",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "SideLayer1_0",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "SideLayer1_1",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "SideLayer1_2",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "SideLayer1_3",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "SideLayer1_4",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "NapeLayer0",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "NapeLayer1",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "NapeLayer2",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "NapeLayer3",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "NapeLayer4",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "NapeLayer5",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "NapeLayer6",
+      "category": "hair",
+      "kind": "hair",
+      "source_vertices": 135
+    },
+    {
+      "name": "BodyUnderTunic",
+      "category": "body_under_cloth",
+      "kind": "skin",
+      "source_vertices": 1089
+    },
+    {
+      "name": "TailoredShirtAndSleeves",
+      "category": "torso_cloth",
+      "kind": "linen",
+      "source_vertices": 5201
+    },
+    {
+      "name": "SplitTunicSkirt_L",
+      "category": "tunic_hem",
+      "kind": "linen",
+      "source_vertices": 957
+    },
+    {
+      "name": "HemBinding_L",
+      "category": "tunic_hem",
+      "kind": "leather",
+      "source_vertices": 99
+    },
+    {
+      "name": "SplitTunicSkirt_R",
+      "category": "tunic_hem",
+      "kind": "linen",
+      "source_vertices": 957
+    },
+    {
+      "name": "HemBinding_R",
+      "category": "tunic_hem",
+      "kind": "leather",
+      "source_vertices": 99
+    },
+    {
+      "name": "FoldedNeckScarf",
+      "category": "collar",
+      "kind": "wool",
+      "source_vertices": 1421
+    },
+    {
+      "name": "ShortScarfKnotTail",
+      "category": "collar",
+      "kind": "wool",
+      "source_vertices": 525
+    },
+    {
+      "name": "BackScarfFold",
+      "category": "collar",
+      "kind": "wool",
+      "source_vertices": 377
+    },
+    {
+      "name": "LaceOpening",
+      "category": "torso_cloth",
+      "kind": "skin",
+      "source_vertices": 85
+    },
+    {
+      "name": "NeckLace0_-1",
+      "category": "torso_cloth",
+      "kind": "leather",
+      "source_vertices": 27
+    },
+    {
+      "name": "NeckLace0_1",
+      "category": "torso_cloth",
+      "kind": "leather",
+      "source_vertices": 27
+    },
+    {
+      "name": "NeckLace1_-1",
+      "category": "torso_cloth",
+      "kind": "leather",
+      "source_vertices": 27
+    },
+    {
+      "name": "NeckLace1_1",
+      "category": "torso_cloth",
+      "kind": "leather",
+      "source_vertices": 27
+    },
+    {
+      "name": "NeckLace2_-1",
+      "category": "torso_cloth",
+      "kind": "leather",
+      "source_vertices": 27
+    },
+    {
+      "name": "NeckLace2_1",
+      "category": "torso_cloth",
+      "kind": "leather",
+      "source_vertices": 27
+    },
+    {
+      "name": "NeckLace3_-1",
+      "category": "torso_cloth",
+      "kind": "leather",
+      "source_vertices": 27
+    },
+    {
+      "name": "NeckLace3_1",
+      "category": "torso_cloth",
+      "kind": "leather",
+      "source_vertices": 27
+    },
+    {
+      "name": "WideWornBelt",
+      "category": "waist_tie",
+      "kind": "leather",
+      "source_vertices": 441
+    },
+    {
+      "name": "BeltTail",
+      "category": "waist_tie",
+      "kind": "leather",
+      "source_vertices": 171
+    },
+    {
+      "name": "TravelPouch",
+      "category": "waist_tie",
+      "kind": "leather",
+      "source_vertices": 493
+    },
+    {
+      "name": "PouchFlap",
+      "category": "waist_tie",
+      "kind": "leather",
+      "source_vertices": 135
+    },
+    {
+      "name": "RolledCuff_L",
+      "category": "sleeves",
+      "kind": "linen",
+      "source_vertices": 429
+    },
+    {
+      "name": "WristWrap_L0",
+      "category": "forearms",
+      "kind": "leather",
+      "source_vertices": 125
+    },
+    {
+      "name": "WristWrap_L1",
+      "category": "forearms",
+      "kind": "leather",
+      "source_vertices": 125
+    },
+    {
+      "name": "WristWrap_L2",
+      "category": "forearms",
+      "kind": "leather",
+      "source_vertices": 125
+    },
+    {
+      "name": "WristWrap_L3",
+      "category": "forearms",
+      "kind": "leather",
+      "source_vertices": 125
+    },
+    {
+      "name": "RolledCuff_R",
+      "category": "sleeves",
+      "kind": "linen",
+      "source_vertices": 429
+    },
+    {
+      "name": "WristWrap_R0",
+      "category": "forearms",
+      "kind": "leather",
+      "source_vertices": 125
+    },
+    {
+      "name": "WristWrap_R1",
+      "category": "forearms",
+      "kind": "leather",
+      "source_vertices": 125
+    },
+    {
+      "name": "WristWrap_R2",
+      "category": "forearms",
+      "kind": "leather",
+      "source_vertices": 125
+    },
+    {
+      "name": "WristWrap_R3",
+      "category": "forearms",
+      "kind": "leather",
+      "source_vertices": 125
+    },
+    {
+      "name": "BrassBeltBuckle",
+      "category": "waist_tie",
+      "kind": "bronze",
+      "source_vertices": 75
+    },
+    {
+      "name": "BuckleProng",
+      "category": "waist_tie",
+      "kind": "bronze",
+      "source_vertices": 75
+    },
+    {
+      "name": "BeltKeeper-0.065",
+      "category": "waist_tie",
+      "kind": "leather",
+      "source_vertices": 36
+    },
+    {
+      "name": "BeltKeeper0.06",
+      "category": "waist_tie",
+      "kind": "leather",
+      "source_vertices": 36
+    },
+    {
+      "name": "BeltKeeper0.104",
+      "category": "waist_tie",
+      "kind": "leather",
+      "source_vertices": 36
+    },
+    {
+      "name": "PouchStitch",
+      "category": "waist_tie",
+      "kind": "linen",
+      "source_vertices": 75
+    },
+    {
+      "name": "PouchToggle",
+      "category": "waist_tie",
+      "kind": "bronze",
+      "source_vertices": 16
+    },
+    {
+      "name": "TailoredTrousers",
+      "category": "legs_cloth",
+      "kind": "trousers",
+      "source_vertices": 4024
+    },
+    {
+      "name": "Wrist_L",
+      "category": "forearms",
+      "kind": "skin",
+      "source_vertices": 609
+    },
+    {
+      "name": "Palm_L",
+      "category": "hands",
+      "kind": "skin",
+      "source_vertices": 561
+    },
+    {
+      "name": "Index_L",
+      "category": "hands",
+      "kind": "skin",
+      "source_vertices": 195
+    },
+    {
+      "name": "Middle_L",
+      "category": "hands",
+      "kind": "skin",
+      "source_vertices": 195
+    },
+    {
+      "name": "Ring_L",
+      "category": "hands",
+      "kind": "skin",
+      "source_vertices": 195
+    },
+    {
+      "name": "Little_L",
+      "category": "hands",
+      "kind": "skin",
+      "source_vertices": 195
+    },
+    {
+      "name": "Thumb_L",
+      "category": "hands",
+      "kind": "skin",
+      "source_vertices": 255
+    },
+    {
+      "name": "TravelBoot_L",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 1353
+    },
+    {
+      "name": "BootTurnedRim_L",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 231
+    },
+    {
+      "name": "Sole_L",
+      "category": "feet_shoes",
+      "kind": "dark",
+      "source_vertices": 185
+    },
+    {
+      "name": "BootStrap_L0",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 165
+    },
+    {
+      "name": "BootStrap_L1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 165
+    },
+    {
+      "name": "BootLace_L0_-1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootLace_L0_1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootLace_L1_-1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootLace_L1_1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootLace_L2_-1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootLace_L2_1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootLace_L3_-1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootLace_L3_1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootCuffBuckle_L",
+      "category": "feet_shoes",
+      "kind": "bronze",
+      "source_vertices": 75
+    },
+    {
+      "name": "Wrist_R",
+      "category": "forearms",
+      "kind": "skin",
+      "source_vertices": 609
+    },
+    {
+      "name": "Palm_R",
+      "category": "hands",
+      "kind": "skin",
+      "source_vertices": 561
+    },
+    {
+      "name": "Index_R",
+      "category": "hands",
+      "kind": "skin",
+      "source_vertices": 195
+    },
+    {
+      "name": "Middle_R",
+      "category": "hands",
+      "kind": "skin",
+      "source_vertices": 195
+    },
+    {
+      "name": "Ring_R",
+      "category": "hands",
+      "kind": "skin",
+      "source_vertices": 195
+    },
+    {
+      "name": "Little_R",
+      "category": "hands",
+      "kind": "skin",
+      "source_vertices": 195
+    },
+    {
+      "name": "Thumb_R",
+      "category": "hands",
+      "kind": "skin",
+      "source_vertices": 255
+    },
+    {
+      "name": "TravelBoot_R",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 1353
+    },
+    {
+      "name": "BootTurnedRim_R",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 231
+    },
+    {
+      "name": "Sole_R",
+      "category": "feet_shoes",
+      "kind": "dark",
+      "source_vertices": 185
+    },
+    {
+      "name": "BootStrap_R0",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 165
+    },
+    {
+      "name": "BootStrap_R1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 165
+    },
+    {
+      "name": "BootLace_R0_-1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootLace_R0_1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootLace_R1_-1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootLace_R1_1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootLace_R2_-1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootLace_R2_1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootLace_R3_-1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootLace_R3_1",
+      "category": "feet_shoes",
+      "kind": "leather",
+      "source_vertices": 33
+    },
+    {
+      "name": "BootCuffBuckle_R",
+      "category": "feet_shoes",
+      "kind": "bronze",
+      "source_vertices": 75
+    },
+    {
+      "name": "Chestplate",
+      "category": "chest",
+      "kind": "steel",
+      "source_vertices": 1519
+    },
+    {
+      "name": "ChestplateRolledWaist",
+      "category": "chest",
+      "kind": "steel",
+      "source_vertices": 205
+    },
+    {
+      "name": "ChestplateGorget",
+      "category": "chest",
+      "kind": "steel",
+      "source_vertices": 261
+    },
+    {
+      "name": "Helmet",
+      "category": "helmet",
+      "kind": "steel",
+      "source_vertices": 1225
+    },
+    {
+      "name": "HelmetCheek-1",
+      "category": "helmet",
+      "kind": "steel",
+      "source_vertices": 143
+    },
+    {
+      "name": "HelmetCheek1",
+      "category": "helmet",
+      "kind": "steel",
+      "source_vertices": 143
+    },
+    {
+      "name": "LongswordBlade",
+      "category": "sword",
+      "kind": "steel",
+      "source_vertices": 243
+    },
+    {
+      "name": "LongswordGuard",
+      "category": "sword",
+      "kind": "steel",
+      "source_vertices": 68
+    },
+    {
+      "name": "SwordGrip",
+      "category": "sword",
+      "kind": "leather",
+      "source_vertices": 187
+    },
+    {
+      "name": "SwordPommel",
+      "category": "sword",
+      "kind": "steel",
+      "source_vertices": 187
+    },
+    {
+      "name": "ShieldBoard",
+      "category": "shield",
+      "kind": "wood",
+      "source_vertices": 625
+    },
+    {
+      "name": "ShieldRim0",
+      "category": "shield",
+      "kind": "steel",
+      "source_vertices": 100
+    },
+    {
+      "name": "ShieldRim1",
+      "category": "shield",
+      "kind": "steel",
+      "source_vertices": 100
+    },
+    {
+      "name": "ShieldUpperRim",
+      "category": "shield",
+      "kind": "steel",
+      "source_vertices": 100
+    },
+    {
+      "name": "ShieldStripe0.35",
+      "category": "shield",
+      "kind": "linen",
+      "source_vertices": 84
+    },
+    {
+      "name": "ShieldStripe0.57",
+      "category": "shield",
+      "kind": "linen",
+      "source_vertices": 84
+    }
+  ],
+  "regions": [
+    "body_under_cloth",
+    "collar",
+    "feet_shoes",
+    "forearms",
+    "hair",
+    "hands",
+    "head",
+    "legs_cloth",
+    "neck",
+    "sleeves",
+    "torso_cloth",
+    "tunic_hem",
+    "waist_tie"
+  ],
+  "hidden_by_default": [
+    "body_under_cloth"
+  ],
+  "bone_rest": {
+    "Root": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -1.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "Pelvis": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -1.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        0.934999942779541
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "Spine": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -1.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        1.0750000476837158
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "Chest": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -1.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        1.274999976158142
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "Neck": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -1.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        1.475000023841858
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "Head": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -1.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        1.559999942779541
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "Clavicle_L": [
+      [
+        0.05207169055938721,
+        -0.9736160039901733,
+        -0.22217141091823578,
+        -0.05999999865889549
+      ],
+      [
+        0.9736160635948181,
+        0.0,
+        0.22819195687770844,
+        0.0
+      ],
+      [
+        -0.2221713364124298,
+        -0.22819195687770844,
+        0.9479284286499023,
+        1.465000033378601
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "UpperArm_L": [
+      [
+        0.9893744587898254,
+        -0.10631613433361053,
+        -0.0991697758436203,
+        -0.18799997866153717
+      ],
+      [
+        0.1063162311911583,
+        0.06378965079784393,
+        0.9922839999198914,
+        0.0
+      ],
+      [
+        -0.09916993975639343,
+        -0.9922840595245361,
+        0.07441511750221252,
+        1.434999942779541
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "Forearm_L": [
+      [
+        0.997272253036499,
+        -0.052965179085731506,
+        -0.05140326917171478,
+        -0.21799996495246887
+      ],
+      [
+        0.05296530947089195,
+        0.028519675135612488,
+        0.9981889724731445,
+        0.017999988049268723
+      ],
+      [
+        -0.05140339210629463,
+        -0.9981889128684998,
+        0.031247325241565704,
+        1.1549999713897705
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "Hand_L": [
+      [
+        0.9982500672340393,
+        -0.045475155115127563,
+        -0.037793904542922974,
+        -0.23099997639656067
+      ],
+      [
+        0.045475274324417114,
+        0.18190081417560577,
+        0.9822648167610168,
+        0.024999983608722687
+      ],
+      [
+        -0.03779403865337372,
+        -0.9822646975517273,
+        0.1836506724357605,
+        0.9100000262260437
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "Index_L": [
+      [
+        0.9999997019767761,
+        -3.4458935260772705e-08,
+        -1.4901161193847656e-08,
+        -0.2059999704360962
+      ],
+      [
+        1.2293457984924316e-07,
+        0.29530614614486694,
+        0.9554027915000916,
+        0.0429999902844429
+      ],
+      [
+        -1.5972182154655457e-07,
+        -0.9554026126861572,
+        0.2953062951564789,
+        0.8069999814033508
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "Middle_L": [
+      [
+        0.9999997019767761,
+        -7.916241884231567e-09,
+        -1.4901161193847656e-08,
+        -0.22599996626377106
+      ],
+      [
+        1.1920928955078125e-07,
+        0.25672250986099243,
+        0.9664852023124695,
+        0.0429999865591526
+      ],
+      [
+        -1.327134668827057e-07,
+        -0.9664851427078247,
+        0.256722629070282,
+        0.8069999814033508
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "Ring_L": [
+      [
+        0.9999997019767761,
+        -1.1874362826347351e-08,
+        -1.4901161193847656e-08,
+        -0.24599997699260712
+      ],
+      [
+        1.1175870895385742e-07,
+        0.27687162160873413,
+        0.9609068632125854,
+        0.0429999902844429
+      ],
+      [
+        -1.4156103134155273e-07,
+        -0.9609068036079407,
+        0.2768717408180237,
+        0.8069999814033508
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "Little_L": [
+      [
+        0.9999997019767761,
+        -1.862645149230957e-08,
+        -7.450580596923828e-09,
+        -0.265999972820282
+      ],
+      [
+        1.1548399925231934e-07,
+        0.36039942502975464,
+        0.9327980279922485,
+        0.0429999902844429
+      ],
+      [
+        -1.41095370054245e-07,
+        -0.9327980279922485,
+        0.3603995442390442,
+        0.8069999814033508
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "Thumb_L": [
+      [
+        0.9340861439704895,
+        0.32037270069122314,
+        0.15761947631835938,
+        -0.20499998331069946
+      ],
+      [
+        -0.32037264108657837,
+        0.5571699142456055,
+        0.7661089897155762,
+        0.029999982565641403
+      ],
+      [
+        0.1576194167137146,
+        -0.7661087512969971,
+        0.6230835914611816,
+        0.8700000047683716
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "Clavicle_R": [
+      [
+        0.05207169055938721,
+        0.9736160039901733,
+        0.22217141091823578,
+        0.05999999865889549
+      ],
+      [
+        -0.9736160635948181,
+        0.0,
+        0.22819195687770844,
+        0.0
+      ],
+      [
+        0.2221713364124298,
+        -0.22819195687770844,
+        0.9479284286499023,
+        1.465000033378601
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "UpperArm_R": [
+      [
+        0.9893744587898254,
+        0.10631613433361053,
+        0.0991697758436203,
+        0.18799997866153717
+      ],
+      [
+        -0.1063162311911583,
+        0.06378965079784393,
+        0.9922839999198914,
+        0.0
+      ],
+      [
+        0.09916993975639343,
+        -0.9922840595245361,
+        0.07441511750221252,
+        1.434999942779541
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "Forearm_R": [
+      [
+        0.997272253036499,
+        0.052965179085731506,
+        0.05140326917171478,
+        0.21799996495246887
+      ],
+      [
+        -0.05296530947089195,
+        0.028519675135612488,
+        0.9981889724731445,
+        0.017999988049268723
+      ],
+      [
+        0.05140339210629463,
+        -0.9981889128684998,
+        0.031247325241565704,
+        1.1549999713897705
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "Hand_R": [
+      [
+        0.9982500672340393,
+        0.045475155115127563,
+        0.037793904542922974,
+        0.23099997639656067
+      ],
+      [
+        -0.045475274324417114,
+        0.18190081417560577,
+        0.9822648167610168,
+        0.024999983608722687
+      ],
+      [
+        0.03779403865337372,
+        -0.9822646975517273,
+        0.1836506724357605,
+        0.9100000262260437
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "Index_R": [
+      [
+        0.9999997019767761,
+        3.4458935260772705e-08,
+        1.4901161193847656e-08,
+        0.2059999704360962
+      ],
+      [
+        -1.2293457984924316e-07,
+        0.29530614614486694,
+        0.9554027915000916,
+        0.0429999902844429
+      ],
+      [
+        1.5972182154655457e-07,
+        -0.9554026126861572,
+        0.2953062951564789,
+        0.8069999814033508
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "Middle_R": [
+      [
+        0.9999997019767761,
+        7.916241884231567e-09,
+        1.4901161193847656e-08,
+        0.22599996626377106
+      ],
+      [
+        -1.1920928955078125e-07,
+        0.25672250986099243,
+        0.9664852023124695,
+        0.0429999865591526
+      ],
+      [
+        1.327134668827057e-07,
+        -0.9664851427078247,
+        0.256722629070282,
+        0.8069999814033508
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "Ring_R": [
+      [
+        0.9999997019767761,
+        1.1874362826347351e-08,
+        1.4901161193847656e-08,
+        0.24599997699260712
+      ],
+      [
+        -1.1175870895385742e-07,
+        0.27687162160873413,
+        0.9609068632125854,
+        0.0429999902844429
+      ],
+      [
+        1.4156103134155273e-07,
+        -0.9609068036079407,
+        0.2768717408180237,
+        0.8069999814033508
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "Little_R": [
+      [
+        0.9999997019767761,
+        1.862645149230957e-08,
+        7.450580596923828e-09,
+        0.265999972820282
+      ],
+      [
+        -1.1548399925231934e-07,
+        0.36039942502975464,
+        0.9327980279922485,
+        0.0429999902844429
+      ],
+      [
+        1.41095370054245e-07,
+        -0.9327980279922485,
+        0.3603995442390442,
+        0.8069999814033508
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "Thumb_R": [
+      [
+        0.9340861439704895,
+        -0.32037270069122314,
+        -0.15761947631835938,
+        0.20499998331069946
+      ],
+      [
+        0.32037264108657837,
+        0.5571699142456055,
+        0.7661089897155762,
+        0.029999982565641403
+      ],
+      [
+        -0.1576194167137146,
+        -0.7661087512969971,
+        0.6230835914611816,
+        0.8700000047683716
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "Thigh_L": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        -0.10300000011920929
+      ],
+      [
+        0.0,
+        0.04281783476471901,
+        0.9990837574005127,
+        0.0
+      ],
+      [
+        0.0,
+        -0.9990828633308411,
+        0.04281783476471901,
+        0.9350000023841858
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "Shin_L": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        -0.10300000011920929
+      ],
+      [
+        0.0,
+        -0.04386018589138985,
+        0.999038577079773,
+        0.017999999225139618
+      ],
+      [
+        0.0,
+        -0.9990376234054565,
+        -0.04386010020971298,
+        0.5149999856948853
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "Foot_L": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        -0.10300000011920929
+      ],
+      [
+        0.0,
+        0.9635186791419983,
+        0.26764434576034546,
+        1.862645149230957e-09
+      ],
+      [
+        0.0,
+        -0.2676440477371216,
+        0.9635177850723267,
+        0.10499998927116394
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "Toe_L": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        -0.10300000011920929
+      ],
+      [
+        0.0,
+        1.0000008344650269,
+        5.960464477539063e-08,
+        0.18000000715255737
+      ],
+      [
+        0.0,
+        0.0,
+        0.9999999403953552,
+        0.05499999225139618
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "Thigh_R": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.10300000011920929
+      ],
+      [
+        0.0,
+        0.04281783476471901,
+        0.9990837574005127,
+        0.0
+      ],
+      [
+        0.0,
+        -0.9990828633308411,
+        0.04281783476471901,
+        0.9350000023841858
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "Shin_R": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.10300000011920929
+      ],
+      [
+        0.0,
+        -0.04386018589138985,
+        0.999038577079773,
+        0.017999999225139618
+      ],
+      [
+        0.0,
+        -0.9990376234054565,
+        -0.04386010020971298,
+        0.5149999856948853
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "Foot_R": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.10300000011920929
+      ],
+      [
+        0.0,
+        0.9635186791419983,
+        0.26764434576034546,
+        1.862645149230957e-09
+      ],
+      [
+        0.0,
+        -0.2676440477371216,
+        0.9635177850723267,
+        0.10499998927116394
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "Toe_R": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.10300000011920929
+      ],
+      [
+        0.0,
+        1.0000008344650269,
+        5.960464477539063e-08,
+        0.18000000715255737
+      ],
+      [
+        0.0,
+        0.0,
+        0.9999999403953552,
+        0.05499999225139618
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ]
+  },
+  "rigid_rest_alignment": {
+    "sword": "Hand_R",
+    "shield": "Hand_L"
+  },
+  "materials": "ten original 128px UV material maps: low-contrast woven cloth, dyed wool, stitched leather; no high-poly bake",
+  "source": "assets/characters/reference_silhouette/source/blender/wayfarer.blend"
+}

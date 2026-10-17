@@ -4,7 +4,7 @@ Reference image is supplied by the user; not our original concept art. Studio
 objects and reference empties never enter the GLB exports. Default view is the
 unarmored figure, with gear in a separate disabled viewport/render collection.
 """
-import bpy,math
+import bpy,math,os
 from mathutils import Vector
 
 def setup(base,rig,merged):
@@ -39,8 +39,11 @@ def setup(base,rig,merged):
         if name=='ThreeQuarter':scene.camera=ob
     reference=bpy.data.collections.new('USER_REFERENCE_not_exported');scene.collection.children.link(reference)
     reference.hide_render=True
-    img=bpy.data.images.load(str(base/'source/reference/adventurer_concept.png'),check_existing=True)
-    img.filepath='//../reference/adventurer_concept.png'
+    image_path=base/'source/reference/adventurer_concept.png'
+    if not image_path.exists():
+        image_path=base.parent/'wayfarer/source/reference/adventurer_concept.png'
+    img=bpy.data.images.load(str(image_path),check_existing=True)
+    img.filepath='//'+os.path.relpath(image_path,base/'source/blender')
     ob=bpy.data.objects.new('User supplied turnaround — reference only',None)
     reference.objects.link(ob);ob.empty_display_type='IMAGE';ob.data=img
     ob.empty_display_size=3.5;ob.location=(-2.3,0,1.0);ob.rotation_euler=(math.pi/2,0,0)

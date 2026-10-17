@@ -1,5 +1,8 @@
 # 项目开发约定
 
+最新方向（2026-10-17）：用户设计图是唯一主要外观参考，禁止自由发挥“类似风格”。先轮廓还原、由用户审核，再细节完善。当前候选 `assets/characters/reference_silhouette`、场景 `scenes/visual_lab/reference_silhouette.tscn`；旧wayfarer/原地图保留，不能自动替换。`reference_surfaces.py`为独立曲面配方；共享生成器用 `--silhouette-study` 选择输出目录，重建覆盖前保留手工编辑。不能因267项工程检查通过称还原通过。
+`review_silhouette.py`重新打开新旧.blend并同机位实拍；`capture_silhouette.gd`为Godot三视图/640/游戏距离/动作实拍。新截图在docs/silhouette_review，不覆盖历史。32骨rest矩阵保持完全一致，姿态通过动画调节；新装备Resource使用副本，旧目录不写入。运行`python3 tests/silhouette_asset_test.py`和图形`tests/equipment_test.gd -- --silhouette`。脸、发束、布料与靴面仍需按图精修，停在用户要求的轮廓审核门槛。
+
 当前参考更新：用户提供冒险者多视图并明确要求Blender建模；发型和服饰以本轮图为准，替代上一版露额短发/长袖约定。卷袖、裸露前臂/皮护腕、短分叉布衣、棕红围巾、黄铜腰扣/皮包、折边靴；初始无盔甲/武器/盾牌。traveler_surfaces.py和traveler_textures.py为生成入口，32骨rest保持；不要以骨骼缩放改变比例。
 setup_blender_review.py只在游戏GLB导出之后创建原生审阅摄影棚和用户参考图。TEST_EQUIPMENT_optional默认隐藏，衣内躯干默认隐藏；Review四相机、摄影棚地面/灯光和用户图不能进入GLB。150未合并编辑曲面在EDITABLE_SURFACES；用户设定图不是本项目原创，不能当游戏纹理或实际3D渲染成果。
 docs/adventurer_reference/before_*是2d69e80稳定图；旧docs/traveler与docs/proportions不覆盖。capture_proportions当前输出docs/adventurer_reference/after_*；render_blender_review输出blender_*。capture_equipment仍覆盖docs/wayfarer，先保留稳定比较。源码重开审计验证原生默认无装备与四相机，GLB测试检查审阅物件未泄漏。

@@ -35,7 +35,8 @@ func click(position: Vector2) -> void:
 
 func run() -> void:
 	root.size = Vector2i(1280, 720)
-	game = load("res://scenes/visual_lab/character_equipment_lab.tscn").instantiate()
+	var scene_path := "res://scenes/visual_lab/reference_silhouette.tscn" if "--silhouette" in OS.get_cmdline_user_args() else "res://scenes/visual_lab/character_equipment_lab.tscn"
+	game = load(scene_path).instantiate()
 	root.add_child(game)
 	check(Input.mouse_mode == Input.MOUSE_MODE_CAPTURED, "startup captures mouse")
 	await frames(75)

@@ -11,7 +11,8 @@ from pathlib import Path
 from mathutils import Vector, Quaternion, Euler, Matrix
 
 ROOT = Path(__file__).resolve().parents[2]
-BASE = ROOT/'assets/characters/wayfarer'
+SILHOUETTE = '--silhouette-study' in sys.argv
+BASE = ROOT/('assets/characters/reference_silhouette' if SILHOUETTE else 'assets/characters/wayfarer')
 if (BASE/'wayfarer.glb').exists() and '--replace-generated' not in sys.argv:
     raise RuntimeError('Save manual edits/checkpoint before --replace-generated')
 for sub in ['textures','equipment','source/blender']:
@@ -50,7 +51,8 @@ for name,color in [('dark',(0.055,.045,.034,1)),('lip',(.36,.20,.15,1)),('iris',
         mat.node_tree.nodes.get('Principled BSDF').inputs['Roughness'].default_value=.55
     MATS[name]=mat
 
-# Reference-guided silhouette, not a reproduction of the reference costume.
+# Shared rig landmarks. The independent silhouette branch follows the supplied
+# design; the legacy branch remains available for direct comparison.
 # These landmarks drive BOTH the rest rig and animation IK. Never scale bones
 # to repair proportions after skinning. Clothing/gear are refitted below.
 ANATOMY={'crown':1.80,'chin':1.545,'shoulder':1.435,'hip':.935,
@@ -136,8 +138,20 @@ def leg_weights(side,p):
 
 # Anatomical surfaces are kept separate from rig/export code for hand editing.
 sys.path.insert(0,str(Path(__file__).parent))
-from traveler_surfaces import build as build_human_surfaces
+if SILHOUETTE:
+    from reference_surfaces import build as build_human_surfaces
+else:
+    from traveler_surfaces import build as build_human_surfaces
 skull_radius=build_human_surfaces(patch,loft,mesh,interp,clamp,torso,arm_weights,leg_weights)
+if SILHOUETTE:
+    # Move the complete pouch (including flap/stitch/toggle) around the hip.
+    # Reference front view puts it at the silhouette, side view shows its depth.
+    for ob in objects:
+        if 'Pouch' in ob.name:
+            for v in ob.data.vertices:
+                x,y,z=v.co
+                dx=(x+.097)*1.10;dy=(y-.139)*1.10
+                v.co=(-.174+dx*.72-dy*.69,.073+dx*.69+dy*.72,1.035+(z-1.035)*1.16)
 
 # Armor is export-separated, same exact rig and rest transforms; body garment
 # gets hidden on equip. No metal/weapon mesh exists in the base export.
@@ -198,14 +212,15 @@ def world_rotation(bn,direction):
 def leg_pose(side,y,z,bob):
     s=-1 if side=='L' else 1
     hip=rig.pose.bones['Thigh_'+side].head.copy()
-    foot=Vector((s*ANATOMY['hip_half_width'],y,z))
+    stance_width = (.218 if not moving else .128) if SILHOUETTE else ANATOMY['hip_half_width']
+    foot=Vector((s*stance_width,y,z))
     upper=adata.bones['Thigh_'+side].length;lower=adata.bones['Shin_'+side].length
     axis=(foot-hip).normalized();d=min(upper+lower-.001,max(.2,(foot-hip).length))
     along=(upper**2-lower**2+d*d)/(2*d)
     front=(Vector((0,1,0))-axis*axis.y).normalized()
     knee=hip+axis*along+front*math.sqrt(max(0,upper**2-along*along))
     world_rotation('Thigh_'+side,knee-hip);world_rotation('Shin_'+side,foot-knee)
-    world_rotation('Foot_'+side,(0,.19,-.045))
+    world_rotation('Foot_'+side,(s*.045 if SILHOUETTE and not moving else 0,.19,-.045))
 rig.animation_data_create();fps=30;metrics={}
 for clip,duration,speed in [('idle',2.4,0),('walk',.60,3.2),('run',.60,5.8),('turn_left',.70,0),('turn_right',.70,0)]:
     action=bpy.data.actions.new(clip);action.use_fake_user=True;rig.animation_data.action=action
@@ -233,7 +248,9 @@ for clip,duration,speed in [('idle',2.4,0),('walk',.60,3.2),('run',.60,5.8),('tu
             else:y=.018 if side=='L' else -.018;z=ANATOMY['ankle']
             leg_pose(side,y,z,bob)
             swing=(-1 if side=='L' else 1)*math.sin(phase)*(.42 if running else .24 if moving else .012)
-            rig.pose.bones['UpperArm_'+side].rotation_quaternion=Euler((swing,0,0)).to_quaternion()
+            # Reference arm slope; unchanged shared rest skeleton.
+            spread = (1 if side=='L' else -1)*(.15 if not moving else .08) if SILHOUETTE else 0
+            rig.pose.bones['UpperArm_'+side].rotation_quaternion=Euler((swing,0,spread)).to_quaternion()
             rig.pose.bones['Forearm_'+side].rotation_quaternion=Euler((-.75 if running else -.10 if moving else -.14 if side=='L' else -.09,0,0)).to_quaternion()
         for pb in rig.pose.bones:
             pb.keyframe_insert('rotation_quaternion',frame=frame,group=pb.name)
@@ -300,7 +317,7 @@ for cat in ['chest','helmet','sword','shield']:
 base_points=[v.co for ob in merged if ob['region'] in base_regions for v in ob.data.vertices]
 rest_bounds=[[min(p[i] for p in base_points),max(p[i] for p in base_points)] for i in range(3)]
 shoulders=[p for ob in merged if ob['region'] in ['torso_cloth','sleeves'] for p in (v.co for v in ob.data.vertices) if 1.38<p.z<1.48]
-manifest={'asset_status':'editable art candidate / equipment visual prototype',
+manifest={'asset_status':'silhouette approval study; details pending' if SILHOUETTE else 'editable art candidate / equipment visual prototype',
  'blender':bpy.app.version_string,'height_m':rest_bounds[2][1]-rest_bounds[2][0],
  'shoulder_width_m':max(p.x for p in shoulders)-min(p.x for p in shoulders),'rest_bounds_m':rest_bounds,
  'anatomical_landmarks_m':ANATOMY,'head_units_to_anatomical_crown':round(ANATOMY['crown']/(ANATOMY['crown']-ANATOMY['chin']),3),

@@ -4,6 +4,7 @@ extends "res://scripts/atelier/atelier_world.gd"
 signal pose_changed
 var equipment: Node
 var pose_index := 0
+@export var character_visual: PackedScene = preload("res://scenes/characters/wayfarer_visual.tscn")
 
 func _ready() -> void:
 	var input_source := preload("res://scripts/valley/valley_world.gd").new()
@@ -13,7 +14,7 @@ func _ready() -> void:
 	_floor()
 	player = preload("res://scripts/atelier/atelier_player.gd").new()
 	player.name = "ClothedWayfarer"
-	player.visual_scene = preload("res://scenes/characters/wayfarer_visual.tscn")
+	player.visual_scene = character_visual
 	player.spawn_point = Vector3(0, 0.05, 0)
 	player.position = player.spawn_point
 	add_child(player)

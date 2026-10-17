@@ -1,4 +1,13 @@
 # 灰誓 / Ashen Oath — Duel-Crowd
+
+## 当前：以设计图为唯一主要参考的轮廓还原实验
+
+独立候选：`scenes/visual_lab/reference_silhouette.tscn`（运行当前场景 / F6）。Blender源文件：`assets/characters/reference_silhouette/source/blender/wayfarer.blend`。原角色、原场景保留。
+
+[三视图对照页](docs/silhouette_review/comparison.html) · [旧版正面](docs/silhouette_review/old_front.png) · [新候选正面](docs/silhouette_review/new_front.png) · [逐项对照及打开说明](docs/silhouette_review/README.md)。当前为**轮廓待审核版**，没有擅自推进到细节完善版。脸部神态、发束和布褶仍未还原到设计图质量。
+
+以下为上一阶段记录。
+
 原创暗黑奇幻 3D 动作 RPG。当前路线：精细 3D 形体 + 装备用途 UV 图集 + 2D 像素元素 + 3D 光照 + 统一像素呈现。旧教堂、Forest Valley 与上一版骑士保留；新角色只在独立美术实验中验证。未使用 Duel Corp 素材；候选资产仍需人工美术精修。
 
 ## 新：布衣人物与模块化装备外观实验

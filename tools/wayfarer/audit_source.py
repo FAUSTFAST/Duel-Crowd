@@ -1,7 +1,8 @@
 """Re-open saved Blender source: rig, editable parts, packing and skin weights."""
-import bpy,json
+import bpy,json,sys
 from pathlib import Path
-BASE=Path(__file__).resolve().parents[2]/'assets/characters/wayfarer'
+STUDY='--silhouette-study' in sys.argv
+BASE=Path(__file__).resolve().parents[2]/('assets/characters/reference_silhouette' if STUDY else 'assets/characters/wayfarer')
 bpy.ops.wm.open_mainfile(filepath=str(BASE/'source/blender/wayfarer.blend'))
 rig=bpy.data.objects['WayfarerRig']
 assert len(rig.data.bones)==32
@@ -14,7 +15,7 @@ assert len(packed)==10
 assert bpy.data.collections['TEST_EQUIPMENT_optional'].hide_viewport
 assert bpy.data.collections['TEST_EQUIPMENT_optional'].hide_render
 assert all(bpy.data.objects.get('Review_'+name) is not None for name in ['Front','Side','Back','ThreeQuarter'])
-assert (BASE/'source/reference/adventurer_concept.png').exists()
+assert ((BASE.parent/'wayfarer' if STUDY else BASE)/'source/reference/adventurer_concept.png').exists()
 assert all(len(ob.vertex_groups)>0 for ob in parts if ob['region'] not in ('sword','shield'))
 def part(prefix):return next(ob for ob in parts if ob.name.startswith(prefix))
 def bounds(ob):
@@ -33,7 +34,7 @@ def components(ob):
 head=bounds(part('SculptedHead'))
 head_height=head[2][1]-head[2][0];head_width=head[0][1]-head[0][0]
 head_units=head[2][1]/head_height
-assert 6.8<head_units<7.3 and .175<head_width<.195
+assert 6.8<head_units<7.3 and .175<head_width<(.205 if STUDY else .195)
 assert components(part('TailoredShirtAndSleeves'))==1
 assert components(part('TailoredTrousers'))==1
 assert rig.data.bones['UpperArm_L'].length>rig.data.bones['Forearm_L'].length
