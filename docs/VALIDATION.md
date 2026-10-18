@@ -446,3 +446,9 @@ Godot 4.7.2图形回归：prototype 19、rendering 30、art_integrity 22、knigh
 实拍：六张新旧Blender三视图、十八张Godot原生/640三视图与游戏镜头/行走/跑步。检查并修复了初次手臂旋转方向错误、发顶空隙、围巾穿插。最终可见脸部神态、发束、围巾软度、布褶与鞋面仍未匹配参考，**轮廓审核尚未通过、细节版未开始**。没有把测试数量当成美术验收。
 
 [对照与限制](silhouette_review/README.md) · [实测日志](silhouette_review/test_results.txt)。新场景为 `scenes/visual_lab/reference_silhouette.tscn`，原地图/角色保留。
+
+## 2026-10-18 — 角色在森林地图移动实录
+
+实际图形运行Godot 4.7.2，内部640×360；复用原控制器/碰撞/动画，临时换reference_silhouette。录制360帧、30fps固定时步；沿小路实际移动44.43m，360/360帧控制器接地，记录到idle/walk/run/turn_left，步行稳定样本3.2m/s、奔跑峰值5.8m/s。没有改写生产场景或控制器。
+
+已查看实际步行与奔跑截图；GIF编码后重新打开验证100帧、640×360、10秒。Blender内置FFmpeg编码12秒H.264视频成功；系统Swift/SDK不匹配，未安装或修改系统配置。固定时步录像不代表实时性能、自然动画或坡地IK通过；本轮未改游戏逻辑，未重复上轮267项回归。原用户两个文件修改保留。详见docs/character_motion/README.md与recording.json。

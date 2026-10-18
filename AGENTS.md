@@ -47,3 +47,5 @@ tools/atelier/build_thorn_knight.py 默认拒绝覆盖；手工修改先存Git�
 基础knight.gd仅提供_build_visual/_animate_visual扩展点，原移动/碰撞/摄像机不变；valley_knight导出visual_scene指向scenes/characters/ashen_knight_visual.tscn，rigged_knight_visual管理AnimationTree/速度倍率/低速换向，knight_materials管理局部材质。不能把新骨架塞入旧四肢正弦动画，也不增加第二条输入路由。world.set_art_animation仅作为调试/截图冻结新骑士和火光，生产默认启用；冻结像素测试之后必须恢复动画再做实际游览/性能。
 
 执行python3 tests/knight_asset_test.py与图形tests/knight_animation_test.gd，回归原控制/渲染/valley。同镜头工具tools/characters/capture_knight_review.gd（-- --before仅在改造前执行），截图保存在docs/knight；它会覆盖本轮截图，先保留稳定对比。步态脚滑移测试针对平地参考高度，不代替坡地IK和真人试玩。保留旧教堂角色，F5旧地图；F6或停止按钮右侧“运行当前场景”播放场记板运行forest_valley。
+
+地图移动实录：tools/wayfarer/capture_valley_motion.gd 仅在运行时给原valley玩家换silhouette_visual，不保存地图；图形 --fixed-fps 30，帧留临时目录。encode_motion_gif.py / encode_motion_video.py将真实帧编码，拒绝覆盖已有成片。docs/character_motion为实录，非性能基准或美术验收。

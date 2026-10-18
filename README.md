@@ -1,5 +1,7 @@
 # 灰誓 / Ashen Oath — Duel-Crowd
 
+角色在森林地图中的实际移动：[12秒视频](docs/character_motion/forest_movement.mp4) · [动图](docs/character_motion/forest_movement.gif)。仅运行时临时替换候选外观，原地图保留。
+
 ## 当前：以设计图为唯一主要参考的轮廓还原实验
 
 独立候选：`scenes/visual_lab/reference_silhouette.tscn`（运行当前场景 / F6）。Blender源文件：`assets/characters/reference_silhouette/source/blender/wayfarer.blend`。原角色、原场景保留。

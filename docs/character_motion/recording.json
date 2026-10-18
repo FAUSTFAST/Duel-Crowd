@@ -1,0 +1,152 @@
+{
+	"date": "2026-10-18",
+	"distance_m": 44.4284541737288,
+	"engine": "4.7.2-stable (official)",
+	"fps": 30,
+	"frames": 360,
+	"grounded_frames": 360,
+	"internal_resolution": [
+		640,
+		360
+	],
+	"map": "forest_valley.tscn",
+	"movement": "original controller via input actions; no per-frame teleportation",
+	"run_peak_m_s": 5.80000066757202,
+	"samples": [
+		{
+			"on_floor": true,
+			"position": [
+				0.927692890167236,
+				0.658088624477386,
+				8.0
+			],
+			"second": 0.0,
+			"speed": 0.0,
+			"state": "idle"
+		},
+		{
+			"on_floor": true,
+			"position": [
+				0.918155014514923,
+				0.699113249778748,
+				7.14197158813477
+			],
+			"second": 1.0,
+			"speed": 3.20000004768372,
+			"state": "walk"
+		},
+		{
+			"on_floor": true,
+			"position": [
+				0.630981624126434,
+				0.70542961359024,
+				3.96141171455383
+			],
+			"second": 2.0,
+			"speed": 3.19999980926514,
+			"state": "walk"
+		},
+		{
+			"on_floor": true,
+			"position": [
+				-0.0803805068135262,
+				0.611239850521088,
+				0.841777086257935
+			],
+			"second": 3.0,
+			"speed": 3.19999980926514,
+			"state": "walk"
+		},
+		{
+			"on_floor": true,
+			"position": [
+				-1.0444130897522,
+				0.374374747276306,
+				-2.98325562477112
+			],
+			"second": 4.0,
+			"speed": 5.79999971389771,
+			"state": "run"
+		},
+		{
+			"on_floor": true,
+			"position": [
+				-1.43512189388275,
+				0.384303718805313,
+				-8.74177646636963
+			],
+			"second": 5.0,
+			"speed": 5.80000066757202,
+			"state": "run"
+		},
+		{
+			"on_floor": true,
+			"position": [
+				-1.17415308952332,
+				0.683580994606018,
+				-11.9114828109741
+			],
+			"second": 6.0,
+			"speed": 4.59955835342407,
+			"state": "run"
+		},
+		{
+			"on_floor": true,
+			"position": [
+				-1.51046025753021,
+				0.376430809497833,
+				-6.14888477325439
+			],
+			"second": 7.0,
+			"speed": 5.79999971389771,
+			"state": "run"
+		},
+		{
+			"on_floor": true,
+			"position": [
+				-0.422757297754288,
+				0.506478726863861,
+				-0.470542132854462
+			],
+			"second": 8.0,
+			"speed": 5.79999971389771,
+			"state": "run"
+		},
+		{
+			"on_floor": true,
+			"position": [
+				0.805141568183899,
+				0.723918259143829,
+				5.17869901657104
+			],
+			"second": 9.0,
+			"speed": 5.79999971389771,
+			"state": "run"
+		},
+		{
+			"on_floor": true,
+			"position": [
+				0.927934944629669,
+				0.661841928958893,
+				7.94212245941162
+			],
+			"second": 10.0,
+			"speed": 3.19999957084656,
+			"state": "walk"
+		},
+		{
+			"on_floor": true,
+			"position": [
+				0.92769193649292,
+				0.64816027879715,
+				8.21811771392822
+			],
+			"second": 11.0,
+			"speed": 1.00000035762787,
+			"state": "turn_left"
+		}
+	],
+	"trail_targets_reached": 19,
+	"visual": "reference_silhouette",
+	"walk_peak_m_s": 5.06594467163086
+}
