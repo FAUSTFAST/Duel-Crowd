@@ -1,5 +1,7 @@
 # 项目开发约定
 
+2026-10-19图集授权：用户提供的pixel/painted equipment atlas仅用于reference_silhouette。source/art保留原图/摘要(.gdignore)，prepare_equipment_patterns.py提取11组128px Albedo+Roughness；apply_equipment_patterns.py只改材质和UV，原UV保留PrePatternUV、顶点/rest/9Action不变，覆盖前保存检查点。源目前32张packed图(原10+工作22)，audit_source按manifest核对。wayfarer_materials的texture_root默认旧目录，silhouette通过工厂覆盖，不能把新图案写回旧角色。map新实验1–4/0仅视觉调试，不是战斗/完整装备玩法。运行pattern_asset_test.py与图形equipment --silhouette、locomotion_test、locomotion_valley_test。docs/material_patterns为真实同机位图；docs/locomotion_review为真实360帧实录，旧实录保留。图案与工程通过仍不代表模型/动画美术审批通过。
+
 2026-10-19 动作候选：contact_locomotion.gd + locomotion_profile.gd 仅用于silhouette；旧控制默认profile=null。九段60fps Blender动作（idle/walk/jog/run/start/stop_left/right/turn_left/right）；走跑周期统一1秒相位、实际周期由速度驱动，禁止把GLB重采样回30fps。build_locomotion.py只重做动作，校验网格/UV/rest不变，执行前保存检查点。图形tests/locomotion_test.gd检查实际导入接触、腕部、起停与反向；独立可游玩场景locomotion_valley.tscn。原森林/教堂不替换。录像capture_valley_motion.gd -- --locomotion输出docs/locomotion_review，旧docs/character_motion保留；录制工具需运行到完成标记，不能将quit-after提前退出当通过。
 
 最新方向（2026-10-17）：用户设计图是唯一主要外观参考，禁止自由发挥“类似风格”。先轮廓还原、由用户审核，再细节完善。当前候选 `assets/characters/reference_silhouette`、场景 `scenes/visual_lab/reference_silhouette.tscn`；旧wayfarer/原地图保留，不能自动替换。`reference_surfaces.py`为独立曲面配方；共享生成器用 `--silhouette-study` 选择输出目录，重建覆盖前保留手工编辑。不能因267项工程检查通过称还原通过。

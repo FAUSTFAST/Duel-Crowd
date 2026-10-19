@@ -1841,5 +1841,26 @@
     "root_motion": false,
     "terrain_ik": false,
     "source": "tools/wayfarer/build_locomotion.py"
+  },
+  "patterns": {
+    "tiles": 11,
+    "materials_used": [
+      "blade",
+      "brass",
+      "chest_back",
+      "chest_front",
+      "helmet",
+      "hem",
+      "leather",
+      "linen",
+      "scarf",
+      "shield",
+      "steel"
+    ],
+    "positions_sha256": "2eae308c0449d5859b4bdbdd024520032e4828ec0903ca4036a95691ccbb52b6",
+    "rest_and_actions_unchanged": true,
+    "uv_backup": "PrePatternUV",
+    "source": "user supplied earlier generated atlases, authorized 2026-10-19",
+    "normal_maps": "none; painted companion used only for broad roughness study"
   }
 }

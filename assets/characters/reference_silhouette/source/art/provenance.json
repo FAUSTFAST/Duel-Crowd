@@ -1,0 +1,20 @@
+{
+  "pixel_equipment_atlas.png": {
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "21e805c87f822601636a3363fb048a70dc1430cb23f228f8d2c777867e6787d7",
+    "provenance": "Previously generated project artwork, explicitly supplied and authorized by user on 2026-10-19",
+    "use": "pixel albedo tiles / painted roughness studies; not a baked PBR source"
+  },
+  "painted_equipment_atlas.png": {
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "8958729af0ff861c17e6faefdb81029876e6eb1d34c5345446687118faecd6b7",
+    "provenance": "Previously generated project artwork, explicitly supplied and authorized by user on 2026-10-19",
+    "use": "pixel albedo tiles / painted roughness studies; not a baked PBR source"
+  }
+}

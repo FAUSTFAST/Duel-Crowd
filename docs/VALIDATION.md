@@ -460,3 +460,15 @@ Godot 4.7.2图形回归：prototype 19、rendering 30、art_integrity 22、knigh
 Godot 4.7.2图形tests/locomotion_test.gd：33项/0失败。平地导入片段在120分段的支撑窗口中最大相邻接触点漂移：walk 0.144mm、jog 0.352mm、run 0.448mm；最大参考鞋底下穿约2.12mm；最大腕部折角约3.9度。此为动画片段接触点测试，未覆盖混合过程、坡地或真实网格全部鞋底；不可称全地形无脚滑。控制器实际验证起步加速、1.8/4.6m/s走跑、角速度限制、反向刹停/迈步和收步回待机。
 
 新旧equipment各52项、prototype 19、rendering 30、knight_animation 23图形回归通过；保留输入/摄像机/碰撞和穿卸。新角色短时空手帧间隔均值11.91ms/P95 17.16ms，四件装备9.49ms/P95 14.95ms；不是GPU耗时或长期性能保证。早期使用quit-after的录制/候选测试曾提前退出，没有计为通过，改为完成标记核验。
+
+valley另34项通过；动作阶段共243项图形检查/0失败，日志见docs/locomotion_review/validation_logs.txt。动作检查点32ab736已实际推送origin/main。
+
+### 用户图集接入后的复验
+
+两张用户图集原文件SHA256及用途保存在source/art/provenance.json。实际执行Pillow提取11组128px Albedo/Roughness、Blender用途UV及五份GLB导出；顶点位置摘要、32骨rest和九段动作保持。source重开审计确认146编辑部件、32张packed图、四相机及默认无测试装备，保留PrePatternUV。pattern_asset_test通过：实际GLB材质、UV边距、贴图摘要和mipmap；没有新增法线烘焙。
+
+图案后equipment新52/旧52、locomotion33图形复验通过。候选空手平均帧间隔11.66ms/P95 16.42ms/79 draws，四装备10.96ms/P95 16.27ms/81 draws，180帧短采样，不作长期性能保证。另独立森林场景测试初始空装备、1–4/0穿卸、唯一骨骼/布衣恢复和Esc释放。
+
+实际保存12张before和12张after（正面/3/4/背面、640与原生），查看基础正面、装备3/4及同镜头拼图；衣摆织纹、胸甲/盾纹章可见，无缺失贴图。完成森林360帧实录：30.64m、360帧胶囊接地、稳定步速1.8/跑峰4.6m/s；6.5秒穿四件装备、11.5秒卸下。MP4编码成功并重新读取确认640×360/360帧，GIF100帧/10秒。录像和代码检查不代表坡地双脚贴合、负重动画或人物造型已达正式质量。
+
+用户project.godot与forest_ruins.tscn的SHA256仍分别为2d55b277…和a8694472…，与开始时一致，不提交。旧地图和旧素材均保留。

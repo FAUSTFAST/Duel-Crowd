@@ -26,4 +26,6 @@ for i in range(1,360):strip.elements.append('frame_%04d.png'%i)
 scene.render.use_sequencer=True
 bpy.ops.render.render(animation=True)
 assert output.exists() and output.stat().st_size>10000
+clip=bpy.data.movieclips.load(str(output))
+assert tuple(clip.size)==(640,360) and clip.frame_duration==360
 print('PASS MP4: 360 actual Godot frames, 30fps, 12s, 640x360; no synthesized motion.')

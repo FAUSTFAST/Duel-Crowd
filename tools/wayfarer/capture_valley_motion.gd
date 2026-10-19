@@ -30,15 +30,20 @@ func record() -> void:
 	if revised:
 		output = "res://docs/locomotion_review/"
 		frame_dir = "/private/tmp/duel-crowd-locomotion-20261019"
+	if FileAccess.file_exists(output+"recording.json") and "--replace-review" not in OS.get_cmdline_user_args():
+		push_error("Review already exists. Save a checkpoint before --replace-review.")
+		quit(2)
+		return
 	DirAccess.make_dir_recursive_absolute(output)
 	DirAccess.make_dir_recursive_absolute(frame_dir)
 	root.size = Vector2i(1280, 720)
-	game = load("res://scenes/visual_lab/forest_valley.tscn").instantiate()
+	game = load("res://scenes/visual_lab/locomotion_valley.tscn" if revised else "res://scenes/visual_lab/forest_valley.tscn").instantiate()
 	root.add_child(game)
 	var player: CharacterBody3D = game.world.player
-	player.visual.free()
-	player.visual_scene = load("res://scenes/characters/silhouette_visual.tscn")
-	player._build_visual()
+	if not revised:
+		player.visual.free()
+		player.visual_scene = load("res://scenes/characters/silhouette_visual.tscn")
+		player._build_visual()
 	game.world.set_art_animation(true)
 	game.set_resolution(1)
 	game.hud.visible = false
@@ -67,6 +72,12 @@ func record() -> void:
 		# valley. The physical player follows the trail, including its return.
 		orbit.yaw = lerpf(PI+.30, .20, smoothstep(3.0, 5.5, seconds))
 		if seconds > 9.0: orbit.yaw = lerpf(.20, -.65, smoothstep(9.0, 11.0, seconds))
+		if revised and seconds > 7.5: orbit.yaw = lerpf(.20, PI+.3, smoothstep(7.5, 10.0, seconds))
+		# Debug equipment switch only, demonstrating real weighted/sockets while
+		# moving. The playable scene itself still starts with empty equipment.
+		if revised and frame == 195:
+			for id in player.visual.equipment.catalog: player.visual.equipment.equip(id)
+		if revised and frame == 345: player.visual.equipment.clear()
 		var moving := seconds >= .7 and seconds < 11.0
 		var sprint := seconds >= 3.7 and seconds < 9.5
 		if moving and target < route.size():
@@ -95,15 +106,17 @@ func record() -> void:
 			var label: String = {65:"walking",180:"running",290:"turning"}[frame]
 			assert(root.get_texture().get_image().save_png(output + label + ".png") == OK)
 		if frame % 30 == 0:
-			samples.append({"second":seconds,"position":[player.position.x,player.position.y,player.position.z],"speed":speed,"state":player.visual.current_state,"on_floor":player.is_on_floor()})
+			samples.append({"second":seconds,"position":[player.position.x,player.position.y,player.position.z],"speed":speed,"state":player.visual.current_state,"on_floor":player.is_on_floor(),"equipment_count":player.visual.equipment.equipped.size()})
 	release_actions()
 	var report := {"date":"2026-10-19" if revised else "2026-10-18", "engine":Engine.get_version_info().string,
-		"map":"forest_valley.tscn", "visual":"reference_silhouette", "frames":360,
+		"scene":"locomotion_valley.tscn" if revised else "forest_valley.tscn",
+		"map_geometry":"Forest Valley Study", "visual":"reference_silhouette", "frames":360,
 		"fps":FPS,"internal_resolution":[640,360],"distance_m":distance,
 		"walk_peak_m_s":walk_peak,"run_peak_m_s":run_peak,
 		"grounded_frames":grounded_frames,"trail_targets_reached":target,
 		"movement":"physics controller via input actions; no per-frame teleportation",
 		"profile":{"walk":player.walk_speed,"run":player.run_speed},
+		"equipment_preview_seconds":[6.5,11.5] if revised else [],
 		"samples":samples}
 	var file := FileAccess.open(output + "recording.json",FileAccess.WRITE)
 	file.store_string(JSON.stringify(report,"\t")+"\n")

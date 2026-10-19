@@ -3,12 +3,15 @@ extends "res://scripts/characters/rigged_knight_visual.gd"
 var equipment: Node
 
 func _ready() -> void:
-	materials = preload("res://scripts/wayfarer/wayfarer_materials.gd").new()
+	materials = _make_materials()
 	super._ready()
 	equipment = preload("res://scripts/equipment/equipment_controller.gd").new()
 	equipment.name = "VisualEquipment"
 	add_child(equipment)
 	equipment.initialize(self, skeleton)
+
+func _make_materials() -> RefCounted:
+	return preload("res://scripts/wayfarer/wayfarer_materials.gd").new()
 
 func update_locomotion(delta: float, horizontal_speed: float) -> void:
 	super.update_locomotion(delta, horizontal_speed)

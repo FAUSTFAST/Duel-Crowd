@@ -1,0 +1,222 @@
+{
+  "linen": {
+    "atlas_tile": [
+      2,
+      0
+    ],
+    "crop": [
+      0.05,
+      0.04,
+      0.95,
+      0.69
+    ],
+    "albedo_px": [
+      128,
+      128
+    ],
+    "albedo_source": "pixel_equipment_atlas.png",
+    "roughness_source": "painted_equipment_atlas.png",
+    "roughness_status": "broad value-derived study, not measured or baked",
+    "sha256": "9a0542a4393ac439219591fc7415da399022b635c30c2bbb56ee9caa211ef64c"
+  },
+  "hem": {
+    "atlas_tile": [
+      2,
+      0
+    ],
+    "crop": [
+      0,
+      0,
+      1,
+      1
+    ],
+    "albedo_px": [
+      128,
+      128
+    ],
+    "albedo_source": "pixel_equipment_atlas.png",
+    "roughness_source": "painted_equipment_atlas.png",
+    "roughness_status": "broad value-derived study, not measured or baked",
+    "sha256": "b5f75a1e83db5fc79d5dc33bcdde69fbdec9f1ea93abc93b2685468c01b381e0"
+  },
+  "scarf": {
+    "atlas_tile": [
+      2,
+      2
+    ],
+    "crop": [
+      0.025,
+      0.025,
+      0.975,
+      0.975
+    ],
+    "albedo_px": [
+      128,
+      128
+    ],
+    "albedo_source": "pixel_equipment_atlas.png",
+    "roughness_source": "painted_equipment_atlas.png",
+    "roughness_status": "broad value-derived study, not measured or baked",
+    "sha256": "52b4c3740bae4280eb7902032494f64d427dfc7f2be89e93f8d80e631df89d55"
+  },
+  "leather": {
+    "atlas_tile": [
+      3,
+      0
+    ],
+    "crop": [
+      0.22,
+      0.24,
+      0.78,
+      0.7
+    ],
+    "albedo_px": [
+      128,
+      128
+    ],
+    "albedo_source": "pixel_equipment_atlas.png",
+    "roughness_source": "painted_equipment_atlas.png",
+    "roughness_status": "broad value-derived study, not measured or baked",
+    "sha256": "517d902c7b92282184bdec280f185dc6fcf8b1e1e1c078a4a38f214a4cf0e43e"
+  },
+  "steel": {
+    "atlas_tile": [
+      3,
+      2
+    ],
+    "crop": [
+      0.025,
+      0.025,
+      0.975,
+      0.975
+    ],
+    "albedo_px": [
+      128,
+      128
+    ],
+    "albedo_source": "pixel_equipment_atlas.png",
+    "roughness_source": "painted_equipment_atlas.png",
+    "roughness_status": "broad value-derived study, not measured or baked",
+    "sha256": "be2c73d47512300a0acca5454bc7c13d9085da9f370fc5d43e1a59bb43393800"
+  },
+  "chest_front": {
+    "atlas_tile": [
+      0,
+      0
+    ],
+    "crop": [
+      0,
+      0,
+      1,
+      1
+    ],
+    "albedo_px": [
+      128,
+      128
+    ],
+    "albedo_source": "pixel_equipment_atlas.png",
+    "roughness_source": "painted_equipment_atlas.png",
+    "roughness_status": "broad value-derived study, not measured or baked",
+    "sha256": "60654bad5f7204c4a3f3d210339f5399fb1bc84ef954862ee4e87a4d0fca72a5"
+  },
+  "chest_back": {
+    "atlas_tile": [
+      0,
+      1
+    ],
+    "crop": [
+      0,
+      0,
+      1,
+      1
+    ],
+    "albedo_px": [
+      128,
+      128
+    ],
+    "albedo_source": "pixel_equipment_atlas.png",
+    "roughness_source": "painted_equipment_atlas.png",
+    "roughness_status": "broad value-derived study, not measured or baked",
+    "sha256": "d8012ddb86324d2b61f2364f0d5fe59f6153a7398b3fb217a7e36446e669e55e"
+  },
+  "helmet": {
+    "atlas_tile": [
+      0,
+      2
+    ],
+    "crop": [
+      0,
+      0,
+      1,
+      1
+    ],
+    "albedo_px": [
+      128,
+      128
+    ],
+    "albedo_source": "pixel_equipment_atlas.png",
+    "roughness_source": "painted_equipment_atlas.png",
+    "roughness_status": "broad value-derived study, not measured or baked",
+    "sha256": "130bcf3e50da28ff5424c1b6ce61df27e053724fcd116c4c21533f8a348e9419"
+  },
+  "shield": {
+    "atlas_tile": [
+      1,
+      2
+    ],
+    "crop": [
+      0,
+      0,
+      1,
+      1
+    ],
+    "albedo_px": [
+      128,
+      128
+    ],
+    "albedo_source": "pixel_equipment_atlas.png",
+    "roughness_source": "painted_equipment_atlas.png",
+    "roughness_status": "broad value-derived study, not measured or baked",
+    "sha256": "6e6e9a4373e984ae1b7e9b066ebbd7a738c94c3afffe58abd74f5c5f254db0ba"
+  },
+  "blade": {
+    "atlas_tile": [
+      3,
+      1
+    ],
+    "crop": [
+      0.025,
+      0.025,
+      0.975,
+      0.975
+    ],
+    "albedo_px": [
+      128,
+      128
+    ],
+    "albedo_source": "pixel_equipment_atlas.png",
+    "roughness_source": "painted_equipment_atlas.png",
+    "roughness_status": "broad value-derived study, not measured or baked",
+    "sha256": "fae5e73b18a6837295962614b2a0c4a755fe8d762016b983a8862618f484d159"
+  },
+  "brass": {
+    "atlas_tile": [
+      1,
+      3
+    ],
+    "crop": [
+      0.08,
+      0.24,
+      0.92,
+      0.76
+    ],
+    "albedo_px": [
+      128,
+      128
+    ],
+    "albedo_source": "pixel_equipment_atlas.png",
+    "roughness_source": "painted_equipment_atlas.png",
+    "roughness_status": "broad value-derived study, not measured or baked",
+    "sha256": "956f95870379a86a6081fc6231bbd728cdc041efc5c5ef66458581529c4a64fa"
+  }
+}

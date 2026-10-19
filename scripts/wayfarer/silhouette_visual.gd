@@ -1,5 +1,10 @@
 extends "res://scripts/wayfarer/contact_locomotion.gd"
 ## Independent reference likeness study. Never replaces the accepted player.
+func _make_materials() -> RefCounted:
+	var local := super._make_materials()
+	local.texture_root = "res://assets/characters/reference_silhouette/textures/"
+	return local
+
 func _ready() -> void:
 	super._ready()
 	var controller := get_parent()

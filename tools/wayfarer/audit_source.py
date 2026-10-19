@@ -13,7 +13,10 @@ assert set(actions)==expected
 parts=list(bpy.data.collections['EDITABLE_SURFACES'].objects)
 assert len(parts)>40 and all(ob.data.uv_layers.active.name=='TailoredUV' for ob in parts)
 packed=[image for image in bpy.data.images if image.packed_file]
-assert len(packed)==10
+pattern_count=len(json.loads((BASE/'source/art/pattern_manifest.json').read_text())) if STUDY and (BASE/'source/art/pattern_manifest.json').exists() else 0
+assert len(packed)==10+pattern_count*2
+if pattern_count:
+    assert all(ob.data.uv_layers.get('PrePatternUV') is not None for ob in parts)
 assert bpy.data.collections['TEST_EQUIPMENT_optional'].hide_viewport
 assert bpy.data.collections['TEST_EQUIPMENT_optional'].hide_render
 assert all(bpy.data.objects.get('Review_'+name) is not None for name in ['Front','Side','Back','ThreeQuarter'])
