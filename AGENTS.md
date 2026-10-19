@@ -1,5 +1,7 @@
 # 项目开发约定
 
+2026-10-19 动作候选：contact_locomotion.gd + locomotion_profile.gd 仅用于silhouette；旧控制默认profile=null。九段60fps Blender动作（idle/walk/jog/run/start/stop_left/right/turn_left/right）；走跑周期统一1秒相位、实际周期由速度驱动，禁止把GLB重采样回30fps。build_locomotion.py只重做动作，校验网格/UV/rest不变，执行前保存检查点。图形tests/locomotion_test.gd检查实际导入接触、腕部、起停与反向；独立可游玩场景locomotion_valley.tscn。原森林/教堂不替换。录像capture_valley_motion.gd -- --locomotion输出docs/locomotion_review，旧docs/character_motion保留；录制工具需运行到完成标记，不能将quit-after提前退出当通过。
+
 最新方向（2026-10-17）：用户设计图是唯一主要外观参考，禁止自由发挥“类似风格”。先轮廓还原、由用户审核，再细节完善。当前候选 `assets/characters/reference_silhouette`、场景 `scenes/visual_lab/reference_silhouette.tscn`；旧wayfarer/原地图保留，不能自动替换。`reference_surfaces.py`为独立曲面配方；共享生成器用 `--silhouette-study` 选择输出目录，重建覆盖前保留手工编辑。不能因267项工程检查通过称还原通过。
 `review_silhouette.py`重新打开新旧.blend并同机位实拍；`capture_silhouette.gd`为Godot三视图/640/游戏距离/动作实拍。新截图在docs/silhouette_review，不覆盖历史。32骨rest矩阵保持完全一致，姿态通过动画调节；新装备Resource使用副本，旧目录不写入。运行`python3 tests/silhouette_asset_test.py`和图形`tests/equipment_test.gd -- --silhouette`。脸、发束、布料与靴面仍需按图精修，停在用户要求的轮廓审核门槛。
 

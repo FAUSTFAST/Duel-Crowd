@@ -19,6 +19,9 @@ func _ready() -> void:
 	materials.apply(self)
 	skeleton = find_child("Skeleton3D", true, false)
 	animation_player = find_child("AnimationPlayer", true, false)
+	_build_animation_tree()
+
+func _build_animation_tree() -> void:
 	var machine := AnimationNodeStateMachine.new()
 	for state in ["idle", "walk", "run", "turn_left", "turn_right"]:
 		var clip := animation_player.get_animation(state)

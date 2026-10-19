@@ -3,7 +3,11 @@
   "bones": 32,
   "actions": [
     "idle",
+    "jog",
     "run",
+    "start",
+    "stop_left",
+    "stop_right",
     "turn_left",
     "turn_right",
     "walk"

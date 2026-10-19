@@ -140,12 +140,12 @@ func run() -> void:
 	main_socket = equipment.instances[&"main_hand"]
 	orbit.yaw = 0
 	Input.action_press("move_forward")
-	await frames(30)
+	await frames(60 if "--silhouette" in OS.get_cmdline_user_args() else 30)
 	check(visual.current_state == "walk" and player.position.distance_to(location)>1 and player.is_on_floor(), "equipped WASD walking and original collision")
 	var hand_before := main_socket.global_transform
 	Input.action_press("sprint")
-	await frames(30)
-	check(visual.current_state == "run" and Vector2(player.velocity.x,player.velocity.z).length()>5.5, "equipped Shift run state")
+	await frames(40 if "--silhouette" in OS.get_cmdline_user_args() else 30)
+	check(visual.current_state == "run" and Vector2(player.velocity.x,player.velocity.z).length()>player.run_speed-.1, "equipped Shift reaches configured run speed")
 	check(not main_socket.global_transform.is_equal_approx(hand_before), "rigid sword moves with actual animation")
 	check(main_socket.transform.is_equal_approx(skeleton.get_bone_global_pose(skeleton.find_bone("Hand_R"))), "socket matches animated hand pose")
 	equipment.clear()
@@ -153,7 +153,7 @@ func run() -> void:
 	check(visual.current_state == "run" and equipment.equipped.is_empty(), "unequip while running retains animation")
 	Input.action_release("sprint")
 	Input.action_release("move_forward")
-	await frames(35)
+	await frames(55 if "--silhouette" in OS.get_cmdline_user_args() else 35)
 	check(visual.current_state == "idle", "base decelerates to idle")
 	# push_input delivers callbacks but does not mutate Input's action state.
 	# Match the original controller regression for physics-polled reset.

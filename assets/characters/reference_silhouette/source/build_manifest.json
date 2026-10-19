@@ -34,24 +34,67 @@
   "bones": 32,
   "actions": {
     "idle": {
-      "duration": 2.4,
-      "reference_speed": 0
+      "duration": 2.8,
+      "loop": true
     },
     "walk": {
-      "duration": 0.6,
-      "reference_speed": 3.2
+      "duration": 1.0,
+      "loop": true,
+      "speed": 1.8,
+      "period": 0.82,
+      "duty": 0.62,
+      "heel": 0.22,
+      "push": -0.88,
+      "lift": 0.115,
+      "arm": 0.27,
+      "flex": 0.22,
+      "lean": 0.035
+    },
+    "jog": {
+      "duration": 1.0,
+      "loop": true,
+      "speed": 3.2,
+      "period": 0.72,
+      "duty": 0.43,
+      "heel": 0.255,
+      "push": -1.0,
+      "lift": 0.21,
+      "arm": 0.48,
+      "flex": 0.7,
+      "lean": 0.085
     },
     "run": {
-      "duration": 0.6,
-      "reference_speed": 5.8
+      "duration": 1.0,
+      "loop": true,
+      "speed": 4.6,
+      "period": 0.66,
+      "duty": 0.32,
+      "heel": 0.245,
+      "push": -1.08,
+      "lift": 0.29,
+      "arm": 0.67,
+      "flex": 1.04,
+      "lean": 0.13
+    },
+    "start": {
+      "duration": 0.2833333333333333,
+      "loop": false
+    },
+    "stop_left": {
+      "duration": 0.3,
+      "loop": false
+    },
+    "stop_right": {
+      "duration": 0.3,
+      "loop": false
     },
     "turn_left": {
-      "duration": 0.7,
-      "reference_speed": 0
+      "duration": 0.4666666666666667,
+      "loop": false
     },
     "turn_right": {
-      "duration": 0.7,
-      "reference_speed": 0
+      "duration": 0.4666666666666667,
+      "loop": false
     }
   },
   "parts": [
@@ -1789,5 +1832,14 @@
     "shield": "Hand_L"
   },
   "materials": "ten original 128px UV material maps: low-contrast woven cloth, dyed wool, stitched leather; no high-poly bake",
-  "source": "assets/characters/reference_silhouette/source/blender/wayfarer.blend"
+  "source": "assets/characters/reference_silhouette/source/blender/wayfarer.blend",
+  "locomotion_revision": {
+    "method": "authored contact/roll/recovery curves; analytic two-bone bake",
+    "geometry_uv_sha256": "94315b12ae3212aac202b1bef0b132c6a306982ae3de4ac3022afd9ddaa26971",
+    "rest_unchanged": true,
+    "fps": 60,
+    "root_motion": false,
+    "terrain_ik": false,
+    "source": "tools/wayfarer/build_locomotion.py"
+  }
 }

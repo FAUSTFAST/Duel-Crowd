@@ -1,8 +1,8 @@
 extends SceneTree
 ## Real controller-driven tour. Only the runtime fixture swaps the visual.
 ## Run graphically with --fixed-fps 30. PNG frames remain outside the repo.
-const OUTPUT := "res://docs/character_motion/"
-const FRAME_DIR := "/private/tmp/duel-crowd-motion-20261018"
+var output := "res://docs/character_motion/"
+var frame_dir := "/private/tmp/duel-crowd-motion-20261018"
 const FPS := 30
 var game: Node
 
@@ -26,8 +26,12 @@ func drive(direction: Vector3, yaw: float, sprint: bool) -> void:
 	else: Input.action_release("sprint")
 
 func record() -> void:
-	DirAccess.make_dir_recursive_absolute(OUTPUT)
-	DirAccess.make_dir_recursive_absolute(FRAME_DIR)
+	var revised := "--locomotion" in OS.get_cmdline_user_args()
+	if revised:
+		output = "res://docs/locomotion_review/"
+		frame_dir = "/private/tmp/duel-crowd-locomotion-20261019"
+	DirAccess.make_dir_recursive_absolute(output)
+	DirAccess.make_dir_recursive_absolute(frame_dir)
 	root.size = Vector2i(1280, 720)
 	game = load("res://scenes/visual_lab/forest_valley.tscn").instantiate()
 	root.add_child(game)
@@ -68,11 +72,13 @@ func record() -> void:
 		if moving and target < route.size():
 			var delta: Vector3 = route[target] - player.position
 			delta.y = 0
-			if delta.length() < .28 and target + 1 < route.size():
+			if delta.length() < .28:
 				target += 1
-				delta = route[target] - player.position
-				delta.y = 0
-			drive(delta.normalized(), orbit.yaw, sprint)
+				if target < route.size():
+					delta = route[target] - player.position
+					delta.y = 0
+			if target < route.size(): drive(delta.normalized(), orbit.yaw, sprint)
+			else: release_actions()
 		else: release_actions()
 		await process_frame
 		await RenderingServer.frame_post_draw
@@ -84,21 +90,22 @@ func record() -> void:
 		if sprint: run_peak = maxf(run_peak, speed)
 		elif moving: walk_peak = maxf(walk_peak, speed)
 		var image: Image = game.viewport.get_texture().get_image()
-		assert(image.save_png(FRAME_DIR + "/frame_%04d.png" % frame) == OK)
+		assert(image.save_png(frame_dir + "/frame_%04d.png" % frame) == OK)
 		if frame in [65, 180, 290]:
 			var label: String = {65:"walking",180:"running",290:"turning"}[frame]
-			assert(root.get_texture().get_image().save_png(OUTPUT + label + ".png") == OK)
+			assert(root.get_texture().get_image().save_png(output + label + ".png") == OK)
 		if frame % 30 == 0:
 			samples.append({"second":seconds,"position":[player.position.x,player.position.y,player.position.z],"speed":speed,"state":player.visual.current_state,"on_floor":player.is_on_floor()})
 	release_actions()
-	var report := {"date":"2026-10-18", "engine":Engine.get_version_info().string,
+	var report := {"date":"2026-10-19" if revised else "2026-10-18", "engine":Engine.get_version_info().string,
 		"map":"forest_valley.tscn", "visual":"reference_silhouette", "frames":360,
 		"fps":FPS,"internal_resolution":[640,360],"distance_m":distance,
 		"walk_peak_m_s":walk_peak,"run_peak_m_s":run_peak,
 		"grounded_frames":grounded_frames,"trail_targets_reached":target,
-		"movement":"original controller via input actions; no per-frame teleportation",
+		"movement":"physics controller via input actions; no per-frame teleportation",
+		"profile":{"walk":player.walk_speed,"run":player.run_speed},
 		"samples":samples}
-	var file := FileAccess.open(OUTPUT + "recording.json",FileAccess.WRITE)
+	var file := FileAccess.open(output + "recording.json",FileAccess.WRITE)
 	file.store_string(JSON.stringify(report,"\t")+"\n")
 	print("MOTION_RECORD ",JSON.stringify(report))
-	quit(0 if distance > 15 and walk_peak > 3 and run_peak > 5 and target > 5 else 1)
+	quit(0 if distance > 15 and walk_peak >= player.walk_speed-.1 and run_peak >= player.run_speed-.1 and target > 5 else 1)

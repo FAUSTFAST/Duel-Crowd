@@ -6,6 +6,8 @@ const PixelMaterials = preload("res://scripts/rendering/pixel_materials.gd")
 const Orbit = preload("res://scripts/camera/orbit_camera.gd")
 @export var walk_speed: float = 3.2
 @export var run_speed: float = 5.8
+## Optional locomotion study. Null preserves the original maps' movement.
+var locomotion_profile: Resource
 var visual: Node3D
 var left_leg: Node3D
 var right_leg: Node3D
@@ -55,14 +57,21 @@ func _physics_process(delta: float) -> void:
 	var input := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	var direction: Vector3 = Basis(Vector3.UP, orbit.yaw) * Vector3(input.x, 0, input.y)
 	var speed := run_speed if Input.is_action_pressed("sprint") else walk_speed
-	velocity.x = move_toward(velocity.x, direction.x * speed, delta * 22.0)
-	velocity.z = move_toward(velocity.z, direction.z * speed, delta * 22.0)
+	if locomotion_profile:
+		var horizontal: Vector2 = locomotion_profile.step(Vector2(velocity.x, velocity.z), Vector2(direction.x, direction.z) * speed, delta, visual.rotation.y)
+		velocity.x = horizontal.x
+		velocity.z = horizontal.y
+	else:
+		velocity.x = move_toward(velocity.x, direction.x * speed, delta * 22.0)
+		velocity.z = move_toward(velocity.z, direction.z * speed, delta * 22.0)
 	if not is_on_floor():
 		velocity.y -= 22.0 * delta
 	else:
 		velocity.y = 0
 	move_and_slide()
-	if direction.length_squared() > 0.01:
+	if locomotion_profile:
+		locomotion_profile.face_velocity(visual, Vector2(velocity.x, velocity.z), delta, Vector2(direction.x, direction.z))
+	elif direction.length_squared() > 0.01:
 		visual.rotation.y = lerp_angle(visual.rotation.y, atan2(-direction.x, -direction.z), 12 * delta)
 	_animate_visual(delta)
 	if position.y < -8 or Input.is_action_just_pressed("reset"):

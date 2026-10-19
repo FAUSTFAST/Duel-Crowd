@@ -1,0 +1,58 @@
+{
+	"checks": 33,
+	"contacts": {
+		"jog": {
+			"ankle_lift_range_m": 0.28871476650238,
+			"contact_max_frame_drift_m": 0.000352129020029679,
+			"contact_samples": 70,
+			"max_wrist_angle_rad": 0.0648530721664429,
+			"minimum_sole_m": -0.00111271440982819,
+			"pelvis_range_m": [
+				0.857999920845032,
+				0.90583860874176
+			],
+			"worst": {
+				"foot_phase": 0.316666666666667,
+				"phase": 0.316666666666667,
+				"side": "L",
+				"stage": "toe"
+			}
+		},
+		"run": {
+			"ankle_lift_range_m": 0.36826953291893,
+			"contact_max_frame_drift_m": 0.000447505328338593,
+			"contact_samples": 50,
+			"max_wrist_angle_rad": 0.0674882680177689,
+			"minimum_sole_m": -0.00212067738175392,
+			"pelvis_range_m": [
+				0.837999939918518,
+				0.905999958515167
+			],
+			"worst": {
+				"foot_phase": 0.233333333333333,
+				"phase": 0.233333333333333,
+				"side": "L",
+				"stage": "toe"
+			}
+		},
+		"walk": {
+			"ankle_lift_range_m": 0.195458829402924,
+			"contact_max_frame_drift_m": 0.000144299032399431,
+			"contact_samples": 102,
+			"max_wrist_angle_rad": 0.048967357724905,
+			"minimum_sole_m": -0.000774145126342773,
+			"pelvis_range_m": [
+				0.879999935626984,
+				0.915999948978424
+			],
+			"worst": {
+				"foot_phase": 0.225,
+				"phase": 0.725,
+				"side": "R",
+				"stage": "flat"
+			}
+		}
+	},
+	"failures": 0,
+	"scope": "flat clip contact plus controller regression; not terrain IK or art approval"
+}

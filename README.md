@@ -1,5 +1,7 @@
 # 灰誓 / Ashen Oath — Duel-Crowd
 
+2026-10-19 动作实验：打开 `scenes/visual_lab/locomotion_valley.tscn` 后按 F6，在原森林中操作空手候选人物。WASD 步行、Shift 奔跑、鼠标视角、滚轮、Esc/点击保持。候选采用1.8m/s步行、4.6m/s奔跑，加入起步、收步、急转刹停及迈步转身；原 Forest Valley、旧教堂保留。动作是原创接触曲线烘焙，仍需手工润色与坡地IK，不声称达到商业魂类作品质量。
+
 角色在森林地图中的实际移动：[12秒视频](docs/character_motion/forest_movement.mp4) · [动图](docs/character_motion/forest_movement.gif)。仅运行时临时替换候选外观，原地图保留。
 
 ## 当前：以设计图为唯一主要参考的轮廓还原实验

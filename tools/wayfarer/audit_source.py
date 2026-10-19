@@ -7,7 +7,9 @@ bpy.ops.wm.open_mainfile(filepath=str(BASE/'source/blender/wayfarer.blend'))
 rig=bpy.data.objects['WayfarerRig']
 assert len(rig.data.bones)==32
 actions=[a.name for a in bpy.data.actions if a.use_fake_user]
-assert set(actions)=={'idle','walk','run','turn_left','turn_right'}
+expected={'idle','walk','run','turn_left','turn_right'}
+if STUDY:expected|={'jog','start','stop_left','stop_right'}
+assert set(actions)==expected
 parts=list(bpy.data.collections['EDITABLE_SURFACES'].objects)
 assert len(parts)>40 and all(ob.data.uv_layers.active.name=='TailoredUV' for ob in parts)
 packed=[image for image in bpy.data.images if image.packed_file]
