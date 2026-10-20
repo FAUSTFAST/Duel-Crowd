@@ -1,0 +1,32 @@
+2026-10-20 / Blender 4.5.9 LTS / stage 1-2 only
+Official temporary ARM64 DMG SHA256: e3a3d7aac381fb4e4d05197f99cd8899484d7e8bc4497c134066e6733f372238
+Starting stable Git checkpoint: 3e267bbde64cd8caa3a11c5af58777ff2ad2cc97
+BUILT_PIXEL_BODY {"version": "v3", "mesh_objects": 37, "vertices": 2367, "triangles": 4314}
+RENDER_PIXEL_BODY front native
+RENDER_PIXEL_BODY front pixel128
+RENDER_PIXEL_BODY front pixel96
+RENDER_PIXEL_BODY front pixel64
+RENDER_PIXEL_BODY side native
+RENDER_PIXEL_BODY side pixel128
+RENDER_PIXEL_BODY side pixel96
+RENDER_PIXEL_BODY side pixel64
+RENDER_PIXEL_BODY threequarter native
+RENDER_PIXEL_BODY threequarter pixel128
+RENDER_PIXEL_BODY threequarter pixel96
+RENDER_PIXEL_BODY threequarter pixel64
+PASS PIXEL BODY STAGE 2 BUILD AND 12 REAL RENDERS
+RENDER_PREVIOUS_SAME_CAMERA front native
+RENDER_PREVIOUS_SAME_CAMERA front pixel96
+RENDER_PREVIOUS_SAME_CAMERA side native
+RENDER_PREVIOUS_SAME_CAMERA side pixel96
+RENDER_PREVIOUS_SAME_CAMERA threequarter native
+RENDER_PREVIOUS_SAME_CAMERA threequarter pixel96
+PASS REOPEN SOURCE CONNECTIVITY AND GLB ROUNDTRIP; SIX PREVIOUS RENDERS
+PRESERVED USER EDIT project.godot 2d55b277c3a983988091f1e0facf6d494d967f377f5fd2bbbc8953ff4cd48aee
+PRESERVED USER EDIT scenes/world/forest_ruins.tscn a8694472e9095058ec174824fe6898afb2fd5ebd636f68e25d4820f4f86c61cf
+PRESERVED USER EDIT assets/characters/wayfarer/source/blender/wayfarer.blend 75b27156ddf9e2866da4e207eccbf90b4a8c3f8de42aae15d7487069986f064f
+PASS GLB roundtrip: 37 mesh objects / 4314 triangles / no camera, light, rig or reference image
+PASS continuous main mesh components, no degenerate faces or loose vertices
+PASS 12 actual new renders + 6 old same-camera renders; 3 composition-only review boards
+NOT TESTED: rigging, animation deformation, Godot rendering, gameplay, performance, final sprite pipeline
+Art status: silhouette approval pending; stage 3-5 not started

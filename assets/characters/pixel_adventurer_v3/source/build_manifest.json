@@ -1,0 +1,233 @@
+{
+  "version": "v3",
+  "stage": 2,
+  "status": "silhouette candidate, not approved",
+  "blender": "4.5.9 LTS",
+  "reference_sha256": "0799fb4c9fd9675f0b4e18de59c7a2c908504066aa89e9b9c9ef550a33644864",
+  "armatures": 0,
+  "actions": 0,
+  "textures": 0,
+  "palette_srgb": {
+    "skin": "#c79a75",
+    "skin_shadow": "#a97654",
+    "hair": "#493023",
+    "hair_light": "#60402b",
+    "hair_dark": "#32251e",
+    "linen": "#d6c4a1",
+    "linen_shadow": "#b5a280",
+    "scarf": "#813e30",
+    "scarf_shadow": "#622c25",
+    "trousers": "#343334",
+    "leather": "#53392c",
+    "leather_light": "#745038",
+    "sole": "#2d2420",
+    "buckle": "#a87a3a",
+    "face_mark": "#44332b"
+  },
+  "mesh_objects": 37,
+  "vertices": 2367,
+  "triangles": 4314,
+  "landmarks_m": {
+    "hair_top_approx": 1.86,
+    "chin": 1.535,
+    "shoulder": 1.43,
+    "belt": 1.083,
+    "hem": 0.84,
+    "knee": 0.52,
+    "boot_top": 0.379
+  },
+  "intentional_limits": [
+    "No final UVs/textures",
+    "Hands are silhouette blocks",
+    "Hair overlap at clump roots",
+    "Accessories are blockout; stage 3 pending",
+    "No binding or motion deformation claims"
+  ],
+  "objects": {
+    "HeadNeck_continuous": {
+      "vertices": 240,
+      "faces": 222,
+      "future_role": "head"
+    },
+    "Ear_-1": {
+      "vertices": 6,
+      "faces": 6,
+      "future_role": "head"
+    },
+    "Ear_1": {
+      "vertices": 6,
+      "faces": 6,
+      "future_role": "head"
+    },
+    "EyeMark_-1": {
+      "vertices": 4,
+      "faces": 1,
+      "future_role": "head"
+    },
+    "Brow_-1": {
+      "vertices": 4,
+      "faces": 1,
+      "future_role": "head"
+    },
+    "EyeMark_1": {
+      "vertices": 4,
+      "faces": 1,
+      "future_role": "head"
+    },
+    "Brow_1": {
+      "vertices": 4,
+      "faces": 1,
+      "future_role": "head"
+    },
+    "MouthMark": {
+      "vertices": 4,
+      "faces": 1,
+      "future_role": "head"
+    },
+    "Tunic_shoulders_sleeves_CONTINUOUS": {
+      "vertices": 420,
+      "faces": 384,
+      "future_role": "torso_cloth"
+    },
+    "Trousers_seat_crotch_legs_CONTINUOUS": {
+      "vertices": 389,
+      "faces": 360,
+      "future_role": "legs_cloth"
+    },
+    "Forearm_hand_-1": {
+      "vertices": 124,
+      "faces": 114,
+      "future_role": "arms_hands"
+    },
+    "Wrist_wrap_blockout_-1": {
+      "vertices": 24,
+      "faces": 12,
+      "future_role": "arms_hands"
+    },
+    "Forearm_hand_1": {
+      "vertices": 124,
+      "faces": 114,
+      "future_role": "arms_hands"
+    },
+    "Wrist_wrap_blockout_1": {
+      "vertices": 24,
+      "faces": 12,
+      "future_role": "arms_hands"
+    },
+    "Boot_main_-1": {
+      "vertices": 144,
+      "faces": 130,
+      "future_role": "feet"
+    },
+    "Boot_sole_-1": {
+      "vertices": 32,
+      "faces": 18,
+      "future_role": "feet"
+    },
+    "Boot_cuff_blockout_-1": {
+      "vertices": 48,
+      "faces": 32,
+      "future_role": "feet"
+    },
+    "Boot_main_1": {
+      "vertices": 144,
+      "faces": 130,
+      "future_role": "feet"
+    },
+    "Boot_sole_1": {
+      "vertices": 32,
+      "faces": 18,
+      "future_role": "feet"
+    },
+    "Boot_cuff_blockout_1": {
+      "vertices": 48,
+      "faces": 32,
+      "future_role": "feet"
+    },
+    "Hair_main_mass": {
+      "vertices": 120,
+      "faces": 102,
+      "future_role": "head"
+    },
+    "Hair_fringe_0": {
+      "vertices": 24,
+      "faces": 20,
+      "future_role": "head"
+    },
+    "Hair_fringe_1": {
+      "vertices": 24,
+      "faces": 20,
+      "future_role": "head"
+    },
+    "Hair_fringe_2": {
+      "vertices": 24,
+      "faces": 20,
+      "future_role": "head"
+    },
+    "Hair_fringe_3": {
+      "vertices": 24,
+      "faces": 20,
+      "future_role": "head"
+    },
+    "Hair_fringe_4": {
+      "vertices": 24,
+      "faces": 20,
+      "future_role": "head"
+    },
+    "Hair_temple_-1": {
+      "vertices": 18,
+      "faces": 14,
+      "future_role": "head"
+    },
+    "Hair_side_sweep_-1": {
+      "vertices": 18,
+      "faces": 14,
+      "future_role": "head"
+    },
+    "Hair_back_flip_-1": {
+      "vertices": 18,
+      "faces": 14,
+      "future_role": "head"
+    },
+    "Hair_temple_1": {
+      "vertices": 18,
+      "faces": 14,
+      "future_role": "head"
+    },
+    "Hair_side_sweep_1": {
+      "vertices": 18,
+      "faces": 14,
+      "future_role": "head"
+    },
+    "Hair_back_flip_1": {
+      "vertices": 18,
+      "faces": 14,
+      "future_role": "head"
+    },
+    "Hair_crown_sweep": {
+      "vertices": 24,
+      "faces": 20,
+      "future_role": "head"
+    },
+    "Scarf_wrap_BLOCKOUT": {
+      "vertices": 72,
+      "faces": 56,
+      "future_role": "accessory"
+    },
+    "Scarf_tail_BLOCKOUT": {
+      "vertices": 10,
+      "faces": 7,
+      "future_role": "accessory"
+    },
+    "Belt_BLOCKOUT": {
+      "vertices": 48,
+      "faces": 24,
+      "future_role": "accessory"
+    },
+    "Pouch_BLOCKOUT": {
+      "vertices": 40,
+      "faces": 32,
+      "future_role": "accessory"
+    }
+  }
+}

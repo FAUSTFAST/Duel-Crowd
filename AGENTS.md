@@ -1,5 +1,7 @@
 # 项目开发约定
 
+2026-10-20最新方向优先：像素可读性优先的低模风格化动作底模，不再以近看高精度二次元人物为目标。只做阶段1分析+阶段2大形审核；独立assets/characters/pixel_adventurer_v3/source/blender/adventurer_blockout.blend及静态GLB，根.gdignore隔离，不改Godot脚本/场景/旧模型。以现有adventurer_concept.png为唯一主要外观参考；棕发/红棕围巾/米白上衣/深裤/棕靴。build_study.py全新截面与共享边建模，默认拒绝覆盖；audit_study.py重开源+GLB回读；compose_review.py仅拼实际渲染与整数最近邻放大。三视图、64/96/128画布低分辨率和新旧同灯光实拍见docs/pixel_body_study。0骨0动画0纹理，不宣称绑定/美术通过；手部、围巾/腰包/靴子细节、UV与变形留后续。阶段3–5等用户审核后推进；未来单个攻击仅离线动作测试，当前不实现战斗。v1/v2为本轮中间草案，保留但不进入生产。
+
 2026-10-19图集授权：用户提供的pixel/painted equipment atlas仅用于reference_silhouette。source/art保留原图/摘要(.gdignore)，prepare_equipment_patterns.py提取11组128px Albedo+Roughness；apply_equipment_patterns.py只改材质和UV，原UV保留PrePatternUV、顶点/rest/9Action不变，覆盖前保存检查点。源目前32张packed图(原10+工作22)，audit_source按manifest核对。wayfarer_materials的texture_root默认旧目录，silhouette通过工厂覆盖，不能把新图案写回旧角色。map新实验1–4/0仅视觉调试，不是战斗/完整装备玩法。运行pattern_asset_test.py与图形equipment --silhouette、locomotion_test、locomotion_valley_test。docs/material_patterns为真实同机位图；docs/locomotion_review为真实360帧实录，旧实录保留。图案与工程通过仍不代表模型/动画美术审批通过。
 
 2026-10-19 动作候选：contact_locomotion.gd + locomotion_profile.gd 仅用于silhouette；旧控制默认profile=null。九段60fps Blender动作（idle/walk/jog/run/start/stop_left/right/turn_left/right）；走跑周期统一1秒相位、实际周期由速度驱动，禁止把GLB重采样回30fps。build_locomotion.py只重做动作，校验网格/UV/rest不变，执行前保存检查点。图形tests/locomotion_test.gd检查实际导入接触、腕部、起停与反向；独立可游玩场景locomotion_valley.tscn。原森林/教堂不替换。录像capture_valley_motion.gd -- --locomotion输出docs/locomotion_review，旧docs/character_motion保留；录制工具需运行到完成标记，不能将quit-after提前退出当通过。

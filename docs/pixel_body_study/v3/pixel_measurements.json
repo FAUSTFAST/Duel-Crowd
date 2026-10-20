@@ -1,0 +1,119 @@
+{
+  "front_64": {
+    "canvas": [
+      52,
+      64
+    ],
+    "alpha_50pct_bbox": [
+      14,
+      2,
+      38,
+      61
+    ],
+    "role_height_px": 59
+  },
+  "side_64": {
+    "canvas": [
+      52,
+      64
+    ],
+    "alpha_50pct_bbox": [
+      21,
+      3,
+      30,
+      61
+    ],
+    "role_height_px": 58
+  },
+  "threequarter_64": {
+    "canvas": [
+      52,
+      64
+    ],
+    "alpha_50pct_bbox": [
+      17,
+      2,
+      38,
+      61
+    ],
+    "role_height_px": 59
+  },
+  "front_96": {
+    "canvas": [
+      78,
+      96
+    ],
+    "alpha_50pct_bbox": [
+      21,
+      3,
+      57,
+      91
+    ],
+    "role_height_px": 88
+  },
+  "side_96": {
+    "canvas": [
+      78,
+      96
+    ],
+    "alpha_50pct_bbox": [
+      31,
+      4,
+      45,
+      91
+    ],
+    "role_height_px": 87
+  },
+  "threequarter_96": {
+    "canvas": [
+      78,
+      96
+    ],
+    "alpha_50pct_bbox": [
+      25,
+      3,
+      57,
+      92
+    ],
+    "role_height_px": 89
+  },
+  "front_128": {
+    "canvas": [
+      104,
+      128
+    ],
+    "alpha_50pct_bbox": [
+      28,
+      5,
+      76,
+      122
+    ],
+    "role_height_px": 117
+  },
+  "side_128": {
+    "canvas": [
+      104,
+      128
+    ],
+    "alpha_50pct_bbox": [
+      41,
+      5,
+      60,
+      122
+    ],
+    "role_height_px": 117
+  },
+  "threequarter_128": {
+    "canvas": [
+      104,
+      128
+    ],
+    "alpha_50pct_bbox": [
+      34,
+      5,
+      75,
+      122
+    ],
+    "role_height_px": 117
+  }
+}

@@ -1,5 +1,9 @@
 # 灰誓 / Ashen Oath — Duel-Crowd
 
+**2026-10-20：像素友好底模，阶段1 / 2。** 新建独立低模轮廓候选，保留设定图配色和识别点，先验收大形与低分辨率读图。[三视图](docs/pixel_body_study/v3/review_board.png) · [低分辨率读图](docs/pixel_body_study/v3/pixel_board.png) · [旧/新同机位](docs/pixel_body_study/v3/before_after.png) · [分析、范围与打开方法](docs/pixel_body_study/README.md)。在Blender打开 `assets/characters/pixel_adventurer_v3/source/blender/adventurer_blockout.blend`。它是静态候选，尚无绑定/动作，未接入Godot，原游戏功能与旧模型保留。围巾、小包和靴子仍为大形，未提前开展阶段3–5。
+
+下面为已保留的上一轮动作与材质实验。
+
 2026-10-19 动作实验：打开 `scenes/visual_lab/locomotion_valley.tscn` 后按 F6，在原森林中操作空手候选人物。WASD 步行、Shift 奔跑、鼠标视角、滚轮、Esc/点击保持。候选采用1.8m/s步行、4.6m/s奔跑，加入起步、收步、急转刹停及迈步转身；原 Forest Valley、旧教堂保留。动作是原创接触曲线烘焙，仍需手工润色与坡地IK，不声称达到商业魂类作品质量。
 
 **最新实录：[新版走跑及穿卸视频](docs/locomotion_review/forest_movement.mp4) · [动图](docs/locomotion_review/forest_movement.gif)。** 已把用户提供的两张装备图集接入布料、皮革、胸甲及盾面等用途UV；[装备前后对照](docs/material_patterns/comparison_equipped.png)、[布衣对照](docs/material_patterns/comparison_base.png)。新森林实验中1–4切换测试装备，0卸下；默认仍空手无甲。[动作/调参说明](docs/locomotion_review/README.md) · [材质工作流](docs/material_patterns/README.md)。

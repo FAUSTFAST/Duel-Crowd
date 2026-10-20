@@ -1,0 +1,387 @@
+{
+  "source": "assets/characters/pixel_adventurer_v3/source/blender/adventurer_blockout.blend",
+  "status": "stage-2 geometry/export audit; not art approval",
+  "armatures": 0,
+  "actions": 0,
+  "objects": {
+    "HeadNeck_continuous": {
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 220,
+      "faces": 222
+    },
+    "Ear_-1": {
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 0,
+      "faces": 6
+    },
+    "Ear_1": {
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 0,
+      "faces": 6
+    },
+    "EyeMark_-1": {
+      "components": 1,
+      "boundary_edges": 4,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 1,
+      "faces": 1
+    },
+    "Brow_-1": {
+      "components": 1,
+      "boundary_edges": 4,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 1,
+      "faces": 1
+    },
+    "EyeMark_1": {
+      "components": 1,
+      "boundary_edges": 4,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 1,
+      "faces": 1
+    },
+    "Brow_1": {
+      "components": 1,
+      "boundary_edges": 4,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 1,
+      "faces": 1
+    },
+    "MouthMark": {
+      "components": 1,
+      "boundary_edges": 4,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 1,
+      "faces": 1
+    },
+    "Tunic_shoulders_sleeves_CONTINUOUS": {
+      "components": 1,
+      "boundary_edges": 76,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 384,
+      "faces": 384
+    },
+    "Trousers_seat_crotch_legs_CONTINUOUS": {
+      "components": 1,
+      "boundary_edges": 60,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 360,
+      "faces": 360
+    },
+    "Forearm_hand_-1": {
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 112,
+      "faces": 114
+    },
+    "Wrist_wrap_blockout_-1": {
+      "components": 1,
+      "boundary_edges": 24,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 12,
+      "faces": 12
+    },
+    "Forearm_hand_1": {
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 112,
+      "faces": 114
+    },
+    "Wrist_wrap_blockout_1": {
+      "components": 1,
+      "boundary_edges": 24,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 12,
+      "faces": 12
+    },
+    "Boot_main_-1": {
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 128,
+      "faces": 130
+    },
+    "Boot_sole_-1": {
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 16,
+      "faces": 18
+    },
+    "Boot_cuff_blockout_-1": {
+      "components": 1,
+      "boundary_edges": 32,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 32,
+      "faces": 32
+    },
+    "Boot_main_1": {
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 128,
+      "faces": 130
+    },
+    "Boot_sole_1": {
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 16,
+      "faces": 18
+    },
+    "Boot_cuff_blockout_1": {
+      "components": 1,
+      "boundary_edges": 32,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 32,
+      "faces": 32
+    },
+    "Hair_main_mass": {
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 100,
+      "faces": 102
+    },
+    "Hair_fringe_0": {
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 18,
+      "faces": 20
+    },
+    "Hair_fringe_1": {
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 18,
+      "faces": 20
+    },
+    "Hair_fringe_2": {
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 18,
+      "faces": 20
+    },
+    "Hair_fringe_3": {
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 18,
+      "faces": 20
+    },
+    "Hair_fringe_4": {
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 18,
+      "faces": 20
+    },
+    "Hair_temple_-1": {
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 12,
+      "faces": 14
+    },
+    "Hair_side_sweep_-1": {
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 12,
+      "faces": 14
+    },
+    "Hair_back_flip_-1": {
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 12,
+      "faces": 14
+    },
+    "Hair_temple_1": {
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 12,
+      "faces": 14
+    },
+    "Hair_side_sweep_1": {
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 12,
+      "faces": 14
+    },
+    "Hair_back_flip_1": {
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 12,
+      "faces": 14
+    },
+    "Hair_crown_sweep": {
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 18,
+      "faces": 20
+    },
+    "Scarf_wrap_BLOCKOUT": {
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 54,
+      "faces": 56
+    },
+    "Scarf_tail_BLOCKOUT": {
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 5,
+      "faces": 7
+    },
+    "Belt_BLOCKOUT": {
+      "components": 1,
+      "boundary_edges": 48,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 24,
+      "faces": 24
+    },
+    "Pouch_BLOCKOUT": {
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_internal_edges": 0,
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "quads": 30,
+      "faces": 32
+    }
+  },
+  "blender": "4.5.9 LTS",
+  "bounds_m": [
+    [
+      -0.38100001215934753,
+      0.38100001215934753
+    ],
+    [
+      -0.1336601823568344,
+      0.16964100301265717
+    ],
+    [
+      0.014000000432133675,
+      1.8721873760223389
+    ]
+  ],
+  "source_triangles": 4314,
+  "source_mesh_objects": 37,
+  "palette_materials_used": [
+    "Pixel_face_mark",
+    "Pixel_hair",
+    "Pixel_hair_dark",
+    "Pixel_hair_light",
+    "Pixel_leather",
+    "Pixel_leather_light",
+    "Pixel_linen",
+    "Pixel_scarf",
+    "Pixel_scarf_shadow",
+    "Pixel_skin",
+    "Pixel_skin_shadow",
+    "Pixel_sole",
+    "Pixel_trousers"
+  ],
+  "glb_import": {
+    "mesh_objects": 37,
+    "triangles": 4314,
+    "cameras_lights_rigs": 0
+  },
+  "before_comparison": "Previous source idle frame 0, identical cameras/lights/world/color management; no mesh retouch or rescale.",
+  "not_tested": [
+    "Skinning",
+    "joint deformation",
+    "slope IK",
+    "Godot gameplay/performance",
+    "final UVs",
+    "sprite export animation"
+  ]
+}
