@@ -1,0 +1,313 @@
+{
+  "schema_version": 1,
+  "updated_date": "2026-10-29",
+  "scope": "本地第三方模型收集；不自动接入原创游戏或公开再分发",
+  "requested_characters": 9,
+  "duplicate_request_collapsed": [
+    "八幡海铃"
+  ],
+  "game_release_rights_confirmed": false,
+  "characters": [
+    {
+      "id": "anon",
+      "name_zh": "千早爱音",
+      "status": "pending_login",
+      "files": [],
+      "sources": [
+        "https://www.aplaybox.com/details/model/6FWdVCZUFzMh",
+        "https://www.bilibili.com/video/BV1Zx4y1e7Ec/"
+      ],
+      "publisher": "Liope / 很ying的哈呵",
+      "license_note": "页面禁止商用，允许修改与视频外用途；完整包内说明待下载",
+      "blocker": "模之屋需用户登录；原百度盘被浏览器安全策略阻止"
+    },
+    {
+      "id": "tomori",
+      "name_zh": "高松灯",
+      "status": "pending_user_download",
+      "files": [],
+      "sources": [
+        "https://www.deviantart.com/bunglescrungle/art/BanG-Dream-MyGO-FBX-and-PMX-DL-1036304336",
+        "https://www.aplaybox.com/details/model/rSoGnOxd1faF"
+      ],
+      "publisher": "BungleScrungle; alternative 竹芩子",
+      "license_note": "原包来自 Bushiroad Games / CraftEgg 游戏提取，游戏发布许可未确认；竹芩子改版禁止商用、二配、暴力表现",
+      "blocker": "原包公开下载托管MEGA被浏览器安全策略阻止；改版需登录及作者密码"
+    },
+    {
+      "id": "taki",
+      "name_zh": "椎名立希",
+      "status": "pending_user_download",
+      "files": [],
+      "sources": [
+        "https://www.deviantart.com/bunglescrungle/art/BanG-Dream-MyGO-FBX-and-PMX-DL-1036304336",
+        "https://www.deviantart.com/bunglescrungle/art/BanG-Dream-Ave-Mujica-collab-FBX-and-PMX-DL-1188270509"
+      ],
+      "publisher": "BungleScrungle",
+      "license_note": "游戏提取；未确认可用于或发布本项目游戏，未验证包内文件",
+      "blocker": "原作者公开下载托管MEGA被浏览器安全策略阻止"
+    },
+    {
+      "id": "raana",
+      "name_zh": "要乐奈",
+      "status": "pending_user_download",
+      "files": [],
+      "sources": [
+        "https://www.deviantart.com/bunglescrungle/art/BanG-Dream-MyGO-FBX-and-PMX-DL-1036304336",
+        "https://www.deviantart.com/bunglescrungle/art/BanG-Dream-Ave-Mujica-collab-FBX-and-PMX-DL-1188270509"
+      ],
+      "publisher": "BungleScrungle",
+      "license_note": "游戏提取；未确认可用于或发布本项目游戏，未验证包内文件",
+      "blocker": "原作者公开下载托管MEGA被浏览器安全策略阻止"
+    },
+    {
+      "id": "soyo",
+      "name_zh": "长崎素世",
+      "status": "pending_login",
+      "files": [],
+      "sources": [
+        "https://www.aplaybox.com/details/model/iuJMdFxoU6KY",
+        "https://www.bilibili.com/video/BV1e84y1S7R2/"
+      ],
+      "publisher": "Liope / 很ying的哈呵",
+      "license_note": "作者允许视频外用途但禁止商用；完整包内说明待下载",
+      "blocker": "模之屋需用户登录"
+    },
+    {
+      "id": "sakiko",
+      "name_zh": "丰川祥子",
+      "status": "pending_login",
+      "files": [],
+      "sources": [
+        "https://www.aplaybox.com/details/model/Q0IbLG0mIe4l",
+        "https://www.bilibili.com/video/BV17p4y1T79e/"
+      ],
+      "publisher": "Liope / 很ying的哈呵",
+      "license_note": "页面禁止商用，允许修改与视频外用途；完整包内说明待下载",
+      "blocker": "模之屋需用户登录"
+    },
+    {
+      "id": "mutsumi",
+      "name_zh": "若叶睦",
+      "status": "downloaded",
+      "files": [
+        {
+          "path": "archives/mutsumi/还原睦.zip",
+          "bytes": 5764612,
+          "sha256": "11fb560512ee3faa43ce78e32deaec810e10213b745e24c295ff538acecd9dba"
+        },
+        {
+          "path": "models/mutsumi/还原睦.glb",
+          "bytes": 9252540,
+          "sha256": "19c4444f54dd2e0ba772b974b209c8fa82091a3f4e043ffd64bd97330da3268b"
+        },
+        {
+          "path": "archives/mutsumi/MyGO.zip",
+          "bytes": 26977956,
+          "sha256": "df2af019fae5a8e55355e965c0463e5c74f93c1199729c3810975dc312c1df6f"
+        },
+        {
+          "path": "source/mutsumi/01doing.blend",
+          "bytes": 17748667,
+          "sha256": "90643becfe77b56acef2f3a2ffab0c22c4260fc781cca00298f156704c4347dc"
+        },
+        {
+          "path": "source/mutsumi/textures/91F29BDA500F52006689573F1CAA9586.jpg",
+          "bytes": 644893,
+          "sha256": "1ad2f3f63a131e0f6b9d18d22f213f0bd3a34f990791260059ea9f117f510288"
+        },
+        {
+          "path": "source/mutsumi/textures/995927021a527d1f4d3e12c9c5d62d88.jpeg",
+          "bytes": 262150,
+          "sha256": "ae03547fb1aec5446859e09b242a57c720afccecae2e1507e95f2d1a4b63cfd5"
+        },
+        {
+          "path": "source/mutsumi/textures/B4FCD64E12E7EB7F9DA2703CB6AF119D.jpg",
+          "bytes": 617576,
+          "sha256": "0840e5256e8436f2279f0394e99e0ed7b98d87cb3e780eab0094cdac5cd6a269"
+        },
+        {
+          "path": "source/mutsumi/textures/E964160ECED91EAD8978094CE75E51FC.jpg",
+          "bytes": 553741,
+          "sha256": "1ff9fd9151a00fccc8113e79794128f76ede1d644f566cffb8db51071b25bd88"
+        },
+        {
+          "path": "source/mutsumi/textures/cca4ffe29ab21560297438ee69c1d567.jpg",
+          "bytes": 19192,
+          "sha256": "41cf4c01c5a57e4893f77dfabe9922e571c24613a69a68ee779251e999aebbad"
+        },
+        {
+          "path": "source/mutsumi/textures/mutsmi_body_pants - 副本.png",
+          "bytes": 1566392,
+          "sha256": "7da5cb701bff7683d8cd86636769dd0eaf89c17a470033a15c83b19a5796aeff"
+        },
+        {
+          "path": "source/mutsumi/textures/mutsmi_body_pants.png",
+          "bytes": 1668865,
+          "sha256": "bf6fd12ba65f32a7baa73a47ae4754220241f81987b4d29ee0d48f99c5bd501f"
+        },
+        {
+          "path": "source/mutsumi/textures/mutsmi_body_pants.png.002.png",
+          "bytes": 1642872,
+          "sha256": "0f76ca550476c3676e578ed58dce3e4217a848930ec7da3eb237283b7e0bd766"
+        },
+        {
+          "path": "source/mutsumi/textures/mutsmi_body_shadow.png.002.png",
+          "bytes": 590385,
+          "sha256": "7cdc0764549757d0d8e11e8c6c5eb9846da65166b59397d159387236e0ee03ce"
+        },
+        {
+          "path": "source/mutsumi/textures/mutsmi_clothes.png",
+          "bytes": 1103029,
+          "sha256": "893543502b9287be9305dc454c98c3b8d064241ec127dac96b2ae3de5db8a86b"
+        },
+        {
+          "path": "source/mutsumi/textures/mutsmi_clothes_shadow.png",
+          "bytes": 372935,
+          "sha256": "a59fee75252368426d27ff41977334fe3f127441e0508a4171ade10add329756"
+        },
+        {
+          "path": "source/mutsumi/textures/mutsmi_hair.001.png",
+          "bytes": 304625,
+          "sha256": "fbe28a0469cfe37f40b6d0e30f666748d49e76f72fae2605b62e490281544270"
+        },
+        {
+          "path": "source/mutsumi/textures/mutsmi_hair_highliight.png",
+          "bytes": 508674,
+          "sha256": "5a451c423c54d46c147bc53e528a3d3f80878a56123c6fd3399d550164352714"
+        },
+        {
+          "path": "source/mutsumi/textures/mutsmi_hair_shadow.001.png",
+          "bytes": 863931,
+          "sha256": "c3dd34b279d4456422cb02e4031f2aa024c02e213a55ecc4b7e5abd747f910e4"
+        },
+        {
+          "path": "source/mutsumi/textures/屏幕截图 2024-12-12 104425.png",
+          "bytes": 1993438,
+          "sha256": "64ce62ae2efafe5d15ad38e7c153c8ace182aba0ab4a39ffeed65ac2585c5bd6"
+        },
+        {
+          "path": "source/mutsumi/textures/屏幕截图 2024-12-15 213123.png",
+          "bytes": 482661,
+          "sha256": "d001fc357dcbdda16b0147fa56e6a8d458351242888fc9c7abf26787b27074b4"
+        },
+        {
+          "path": "source/mutsumi/textures/屏幕截图 2024-12-15 213227.png",
+          "bytes": 1005172,
+          "sha256": "8a47c3c134ea4d13eaf7663722e4d4d262127ece926119af8e5f4d56905abae0"
+        },
+        {
+          "path": "source/mutsumi/textures/屏幕截图 2024-12-15 213339.png",
+          "bytes": 783182,
+          "sha256": "b099ce89768b2faa8409c5c9d294ea5c69b88f4ca9419f8bdbf91ff890964625"
+        },
+        {
+          "path": "source/mutsumi/textures/屏幕截图 2024-12-15 213453.png",
+          "bytes": 1048891,
+          "sha256": "71564252d1e60c020476efeaed19007575ff48c8319a7eacdfb0155eac8023be"
+        },
+        {
+          "path": "source/mutsumi/textures/屏幕截图 2024-12-15 213528.png",
+          "bytes": 638217,
+          "sha256": "4d1d36607a8f78604d9c02eb70948266302588f5ef503e05c4d440a1e8773b2b"
+        },
+        {
+          "path": "source/mutsumi/textures/屏幕截图 2024-12-15 213542.png",
+          "bytes": 678257,
+          "sha256": "7d3c0bc36381a15c27158963ace60203fe3844492e938b70e54d928973b84a85"
+        },
+        {
+          "path": "source/mutsumi/textures/屏幕截图 2024-12-15 213651.png",
+          "bytes": 1448463,
+          "sha256": "93431d4ef28870aa13bdd40df2d6874735426e1cac80b18c9b3338d32c36eb1d"
+        },
+        {
+          "path": "source/mutsumi/textures/屏幕截图 2024-12-15 213820.png",
+          "bytes": 783745,
+          "sha256": "a4a5a5b4cbebdc1d06647f8bd44b73edc4c69babc152787d06f4aab35dc3f194"
+        },
+        {
+          "path": "source/mutsumi/textures/屏幕截图 2025-01-05 202816.png",
+          "bytes": 1235530,
+          "sha256": "709394334a7d23c46823a8be7e10428d259c1f027a25e76b10f166a8b6de239e"
+        },
+        {
+          "path": "source/mutsumi/textures/屏幕截图 2025-01-05 203021.png",
+          "bytes": 1671341,
+          "sha256": "4e7bddb1280078438b132c7a4401285f670b46eb40f293cb7c575e05fe89de41"
+        },
+        {
+          "path": "source/mutsumi/textures/屏幕截图 2025-01-07 230047.png",
+          "bytes": 1811040,
+          "sha256": "e78584f7285924fb9852e9a290abbef6c301b0f0ce3ac2f46cb093bab7c5c9b3"
+        },
+        {
+          "path": "source/mutsumi/textures/屏幕截图 2025-01-07 233413.png",
+          "bytes": 1160474,
+          "sha256": "5e0651a562b4954de48ba1aeb06015a8f6fa33b043ce2dceb58826d73962c27b"
+        }
+      ],
+      "sources": [
+        "https://www.bilibili.com/video/BV1V5QoYHE1g/",
+        "https://wwzh.lanzout.com/iNKS62wacg4h",
+        "https://wwzh.lanzout.com/iJXJm2l4931g",
+        "https://www.aplaybox.com/details/model/V9zNcRnXtaZJ"
+      ],
+      "publisher": "GLB分享/修改：小泽LoneL；原模型：很ying的哈呵 / Liope",
+      "license_note": "下载包仅含GLB，无独立授权文件。分享说明为改自很ying；原作者同名配布禁止商用，但具体转换版本完整许可及游戏使用仍需确认",
+      "download_channel": "蓝奏云作者视频公开链接",
+      "download_observed_date": "2026-10-27",
+      "deployment": "本地隔离文件；未接入Godot生产项目，未适配现有骨骼或动画",
+      "technical_notes": [
+        "已保留GLB和原生Blender资料包；不是九人合集",
+        "原GLB包含可见MMD刚体辅助网格，颜色贴图导出通道有误，不能直接作为正常游戏角色",
+        "prepared GLB仅为本地诊断实验；仍存在颜色异常，不作为完成的材质修复",
+        "204骨、没有动画，尚未重定向到本项目角色骨架"
+      ]
+    },
+    {
+      "id": "umiri",
+      "name_zh": "八幡海铃",
+      "status": "public_download_not_found",
+      "files": [],
+      "sources": [
+        "https://www.bilibili.com/video/BV1XTtpeyETK/"
+      ],
+      "publisher": "很ying的哈呵",
+      "license_note": "仅找到模型展示，未获可下载包及许可",
+      "blocker": "原视频简介为空，未找到可核实的公开配布"
+    },
+    {
+      "id": "uika",
+      "name_zh": "三角初华",
+      "status": "pending_user_checkout",
+      "files": [],
+      "sources": [
+        "https://sagi3d.gumroad.com/l/xjhwh"
+      ],
+      "publisher": "SSSS.sagisu / sagi3d",
+      "license_note": "公开产品页未写游戏许可；需领取后检查随包条款，MerlinToon材质仅声明支持Blender4.x",
+      "blocker": "Gumroad $0领取需用户邮箱；页面另提示reCAPTCHA连接失败，尚未领取"
+    }
+  ],
+  "public_bundle_candidates": [
+    {
+      "title": "MyGO!!! Let's Start a Lifetime Costume",
+      "source": "https://www.deviantart.com/bunglescrungle/art/BanG-Dream-MyGO-FBX-and-PMX-DL-1036304336",
+      "download": "https://mega.nz/file/we8ESLYJ#5cSmQK1NFgYNADAFnFGS8adID9kle7OVlo8CGLBphB8",
+      "status": "not_downloaded_browser_safety_block",
+      "advertised_format": [
+        "FBX",
+        "PMX"
+      ],
+      "contents_verified": false
+    },
+    {
+      "title": "BanG Dream Ave Mujica collab FBX and PMX DL (MyGO costumes)",
+      "source": "https://www.deviantart.com/bunglescrungle/art/BanG-Dream-Ave-Mujica-collab-FBX-and-PMX-DL-1188270509",
+      "download": "https://mega.nz/file/lftlhJDY#xc06lDPBn0FtiR4OJgKm_b-YWBKOgKsZsT0dAxN-bYg",
+      "status": "not_downloaded_browser_safety_block",
+      "contents_verified": false
+    }
+  ]
+}
