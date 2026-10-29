@@ -11,7 +11,7 @@
     {
       "id": "anon",
       "name_zh": "千早爱音",
-      "status": "pending_login",
+      "status": "pending_download_conditions_approval",
       "files": [],
       "sources": [
         "https://www.aplaybox.com/details/model/6FWdVCZUFzMh",
@@ -19,7 +19,7 @@
       ],
       "publisher": "Liope / 很ying的哈呵",
       "license_note": "页面禁止商用，允许修改与视频外用途；完整包内说明待下载",
-      "blocker": "模之屋需用户登录；原百度盘被浏览器安全策略阻止"
+      "blocker": "2026-10-29已确认模之屋登录成功；作者下载要求关注、点赞、收藏，自动审批拒绝代办账号互动，等待用户明确授权"
     },
     {
       "id": "tomori",
@@ -63,7 +63,7 @@
     {
       "id": "soyo",
       "name_zh": "长崎素世",
-      "status": "pending_login",
+      "status": "pending_download_conditions_approval",
       "files": [],
       "sources": [
         "https://www.aplaybox.com/details/model/iuJMdFxoU6KY",
@@ -71,12 +71,12 @@
       ],
       "publisher": "Liope / 很ying的哈呵",
       "license_note": "作者允许视频外用途但禁止商用；完整包内说明待下载",
-      "blocker": "模之屋需用户登录"
+      "blocker": "2026-10-29已确认模之屋登录成功；作者下载要求关注、点赞、收藏，自动审批拒绝代办账号互动，等待用户明确授权"
     },
     {
       "id": "sakiko",
       "name_zh": "丰川祥子",
-      "status": "pending_login",
+      "status": "pending_download_conditions_approval",
       "files": [],
       "sources": [
         "https://www.aplaybox.com/details/model/Q0IbLG0mIe4l",
@@ -84,7 +84,7 @@
       ],
       "publisher": "Liope / 很ying的哈呵",
       "license_note": "页面禁止商用，允许修改与视频外用途；完整包内说明待下载",
-      "blocker": "模之屋需用户登录"
+      "blocker": "2026-10-29已确认模之屋登录成功；作者下载要求关注、点赞、收藏，自动审批拒绝代办账号互动，等待用户明确授权"
     },
     {
       "id": "mutsumi",
@@ -309,5 +309,6 @@
       "status": "not_downloaded_browser_safety_block",
       "contents_verified": false
     }
-  ]
+  ],
+  "collection_session_note": "2026-10-29继续：模之屋登录已成功；未执行被拒绝的账号互动，尚无新增下载。用户账号与凭据不写入清单。"
 }

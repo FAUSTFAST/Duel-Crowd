@@ -2,6 +2,8 @@
 
 2026-10-29用户另行授权MyGO/Ave Mujica本地模型收集：仅local_assets/bang_dream隔离库，根.gdignore及目录.gitignore排除Godot导入/第三方二进制上传。9名中实际仅若叶睦取得GLB+原生Blender资料包；catalog.json未下载项files必须为空。保留原包/原源/SHA256，不执行第三方脚本；Blender检查使用--disable-autoexec，原源只读不保存。原GLB带MMD辅助物且导出颜色异常；prepared只是失败的本地诊断副本，不能当游戏完成适配。其余待登录/用户领取/公开原包，不能绕过已阻止的MEGA/百度盘访问。正式游戏许可尚未确认，不上传模型/贴图/预览，不替换现有角色或改控制、场景；公开同步只含来源清单/工具/文档。此前原创pixel_adventurer_v3仍停在阶段2，不能因收集新角色自动推进。
 
+同日继续：模之屋已登录；关注Liope、点赞及收藏的下载条件被自动审批拒绝，已请求用户明确授权，不能把“全部帮我弄”或切换入口当作绕过拒绝。初华仍待授权领取邮箱；未新增模型。只读材质审计见本地reports/material_audit_nodes.json，制服/裙/鞋彩色源是mutsmi_clothes.png；发/肤色还依赖Shader-to-RGB/Ramp，未修复或导出。待用户授权后再按实际下载更新清单。
+
 2026-10-20最新方向优先：像素可读性优先的低模风格化动作底模，不再以近看高精度二次元人物为目标。只做阶段1分析+阶段2大形审核；独立assets/characters/pixel_adventurer_v3/source/blender/adventurer_blockout.blend及静态GLB，根.gdignore隔离，不改Godot脚本/场景/旧模型。以现有adventurer_concept.png为唯一主要外观参考；棕发/红棕围巾/米白上衣/深裤/棕靴。build_study.py全新截面与共享边建模，默认拒绝覆盖；audit_study.py重开源+GLB回读；compose_review.py仅拼实际渲染与整数最近邻放大。三视图、64/96/128画布低分辨率和新旧同灯光实拍见docs/pixel_body_study。0骨0动画0纹理，不宣称绑定/美术通过；手部、围巾/腰包/靴子细节、UV与变形留后续。阶段3–5等用户审核后推进；未来单个攻击仅离线动作测试，当前不实现战斗。v1/v2为本轮中间草案，保留但不进入生产。
 
 2026-10-19图集授权：用户提供的pixel/painted equipment atlas仅用于reference_silhouette。source/art保留原图/摘要(.gdignore)，prepare_equipment_patterns.py提取11组128px Albedo+Roughness；apply_equipment_patterns.py只改材质和UV，原UV保留PrePatternUV、顶点/rest/9Action不变，覆盖前保存检查点。源目前32张packed图(原10+工作22)，audit_source按manifest核对。wayfarer_materials的texture_root默认旧目录，silhouette通过工厂覆盖，不能把新图案写回旧角色。map新实验1–4/0仅视觉调试，不是战斗/完整装备玩法。运行pattern_asset_test.py与图形equipment --silhouette、locomotion_test、locomotion_valley_test。docs/material_patterns为真实同机位图；docs/locomotion_review为真实360帧实录，旧实录保留。图案与工程通过仍不代表模型/动画美术审批通过。

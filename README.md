@@ -1,6 +1,6 @@
 # 灰誓 / Ashen Oath — Duel-Crowd
 
-2026-10-29：按用户要求建立独立[第三方角色本地素材库](local_assets/bang_dream/README.md)。9名角色中目前仅若叶睦实际取得GLB及原生Blender资料包，其余仍待登录、用户领取或公开原包。模型、贴图和预览仅保留本地并隔离Godot自动导入；未接入游戏或上传GitHub，下载不等于游戏使用授权。原GLB有辅助网格与材质兼容问题，详见清单。
+2026-10-29：按用户要求建立独立[第三方角色本地素材库](local_assets/bang_dream/README.md)。9名角色中目前仅若叶睦实际取得GLB及原生Blender资料包。模之屋已登录，下载所需关注/点赞/收藏待明确授权；其余仍待用户领取或公开原包。模型、贴图和预览仅保留本地并隔离Godot自动导入；未接入游戏或上传GitHub，下载不等于游戏使用授权。原GLB有辅助网格与材质兼容问题，详见清单。
 
 **2026-10-20：像素友好底模，阶段1 / 2。** 新建独立低模轮廓候选，保留设定图配色和识别点，先验收大形与低分辨率读图。[三视图](docs/pixel_body_study/v3/review_board.png) · [低分辨率读图](docs/pixel_body_study/v3/pixel_board.png) · [旧/新同机位](docs/pixel_body_study/v3/before_after.png) · [分析、范围与打开方法](docs/pixel_body_study/README.md)。在Blender打开 `assets/characters/pixel_adventurer_v3/source/blender/adventurer_blockout.blend`。它是静态候选，尚无绑定/动作，未接入Godot，原游戏功能与旧模型保留。围巾、小包和靴子仍为大形，未提前开展阶段3–5。
 

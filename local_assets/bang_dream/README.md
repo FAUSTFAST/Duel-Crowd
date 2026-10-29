@@ -18,12 +18,12 @@
 
 | 角色 | 已确认的来源 | 当前阻碍 |
 | --- | --- | --- |
-| 千早爱音 | [Liope 原配布](https://www.aplaybox.com/details/model/6FWdVCZUFzMh) · [作者视频](https://www.bilibili.com/video/BV1Zx4y1e7Ec/) | 模之屋需用户登录；原百度盘通道被浏览器安全策略阻止。作者页禁止商用。 |
+| 千早爱音 | [Liope 原配布](https://www.aplaybox.com/details/model/6FWdVCZUFzMh) · [作者视频](https://www.bilibili.com/video/BV1Zx4y1e7Ec/) | 模之屋已登录；关注作者、点赞和收藏的下载条件待明确授权。原百度盘通道被浏览器安全策略阻止。作者页禁止商用。 |
 | 高松灯 | [BungleScrungle MyGO 包](https://www.deviantart.com/bunglescrungle/art/BanG-Dream-MyGO-FBX-and-PMX-DL-1036304336) · [竹芩子改版](https://www.aplaybox.com/details/model/rSoGnOxd1faF) | 原包作者页访问受限；改版需登录/密码，禁止商用和暴力表现。未验证包内角色。 |
 | 椎名立希 | [MyGO 联动服装包](https://www.deviantart.com/bunglescrungle/art/BanG-Dream-Ave-Mujica-collab-FBX-and-PMX-DL-1188270509) | 作者标签包含立希等五人，但下载托管 MEGA 被浏览器安全策略阻止；未验证包内容。 |
 | 要乐奈 | [MyGO 联动服装包](https://www.deviantart.com/bunglescrungle/art/BanG-Dream-Ave-Mujica-collab-FBX-and-PMX-DL-1188270509) | 同上；不能只凭标签称模型已经齐全。 |
-| 长崎素世 | [Liope 原配布](https://www.aplaybox.com/details/model/iuJMdFxoU6KY) · [作者视频](https://www.bilibili.com/video/BV1e84y1S7R2/) | 模之屋需用户登录；允许视频外用途但禁止商用。 |
-| 丰川祥子 | [Liope 原配布](https://www.aplaybox.com/details/model/Q0IbLG0mIe4l) · [作者视频](https://www.bilibili.com/video/BV17p4y1T79e/) | 模之屋需用户登录；禁止商用。 |
+| 长崎素世 | [Liope 原配布](https://www.aplaybox.com/details/model/iuJMdFxoU6KY) · [作者视频](https://www.bilibili.com/video/BV1e84y1S7R2/) | 模之屋已登录；同作者配布下载条件待明确授权。允许视频外用途但禁止商用。 |
+| 丰川祥子 | [Liope 原配布](https://www.aplaybox.com/details/model/Q0IbLG0mIe4l) · [作者视频](https://www.bilibili.com/video/BV17p4y1T79e/) | 模之屋已登录；同作者配布下载条件待明确授权。禁止商用。 |
 | 八幡海铃 | [很ying的哈呵模型展示](https://www.bilibili.com/video/BV1XTtpeyETK/) | 仅确认模型展示，简介没有配布链接，未找到可核实的公开原包。 |
 | 三角初华 | [SSSS.sagisu 免费 Blender 模型](https://sagi3d.gumroad.com/l/xjhwh) | Gumroad 零元领取需用户邮箱；尚未领取或确认游戏许可。Blender 4.x/MerlinToon 不能直接等同 Godot 材质。 |
 
@@ -37,7 +37,7 @@
 
 ## 后续领取与检查
 
-请在模之屋自行登录，在 Gumroad 用自己的邮箱领取初华。涉及验证码或同意网站条款的步骤由用户完成。被浏览器安全策略阻止的网盘如需继续，请用户自行下载到系统“下载”目录，再告知文件名；不会要求发送密码或 Token。
+模之屋已确认登录成功，但关注作者、点赞和收藏的动作被自动审批拒绝，因为此前下载授权没有明确包括账号互动；现正等待用户对这三类必要下载条件的明确授权，未绕过拒绝。Gumroad 初华仍需用户提供授权领取邮箱或自行领取。涉及验证码或同意网站条款的步骤需用户操作/明确确认。被浏览器安全策略阻止的网盘如需继续，请用户自行下载到系统“下载”目录，再告知文件名；不会要求发送密码或 Token。
 
 收到文件后逐包校验、保留原作者说明与来源，更新 `catalog.json`，再检查骨骼、材质、比例和动画。尚未明确许可的素材继续保留在隔离目录，不自动进入可发布游戏或 GitHub。
 
