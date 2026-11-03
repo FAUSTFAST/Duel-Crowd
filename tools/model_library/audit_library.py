@@ -62,13 +62,18 @@ def main() -> None:
             result["pending"].append(character["name_zh"])
             continue
         record = {"character": character["name_zh"], "files": []}
-        for item in character["files"]:
+        items = list(character["files"])
+        if character.get("local_preview"):
+            items.append({**character["local_preview"], "derived_local_preview": True})
+        for item in items:
             path = (LIBRARY / item["path"]).resolve()
             assert path.is_relative_to(LIBRARY.resolve()), "Path escapes library"
             assert path.is_file(), f"Missing: {path.name}"
             assert path.stat().st_size == item["bytes"], "File size mismatch"
             assert hashlib.sha256(path.read_bytes()).hexdigest() == item["sha256"], "SHA256 mismatch"
             details = {"path": item["path"], "sha256_verified": True}
+            if item.get("derived_local_preview"):
+                details["derived_local_preview"] = True
             if path.suffix.lower() == ".zip":
                 with zipfile.ZipFile(path) as archive:
                     assert archive.testzip() is None, "Archive CRC failed"

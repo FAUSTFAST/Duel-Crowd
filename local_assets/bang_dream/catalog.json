@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "updated_date": "2026-10-29",
-  "scope": "本地第三方模型收集；不自动接入原创游戏或公开再分发",
+  "updated_date": "2026-11-03",
+  "scope": "本地第三方模型收集与独立静态地图预览；不进入原创生产资产或公开再分发",
   "requested_characters": 9,
   "duplicate_request_collapsed": [
     "八幡海铃"
@@ -257,13 +257,27 @@
       "license_note": "下载包仅含GLB，无独立授权文件。分享说明为改自很ying；原作者同名配布禁止商用，但具体转换版本完整许可及游戏使用仍需确认",
       "download_channel": "蓝奏云作者视频公开链接",
       "download_observed_date": "2026-10-27",
-      "deployment": "本地隔离文件；未接入Godot生产项目，未适配现有骨骼或动画",
+      "deployment": "本地独立森林静态陈列；未替换正式角色，未适配走跑/角色碰撞",
       "technical_notes": [
         "已保留GLB和原生Blender资料包；不是九人合集",
         "原GLB包含可见MMD刚体辅助网格，颜色贴图导出通道有误，不能直接作为正常游戏角色",
-        "prepared GLB仅为本地诊断实验；仍存在颜色异常，不作为完成的材质修复",
-        "204骨、没有动画，尚未重定向到本项目角色骨架"
-      ]
+        "prepared GLB仍为失败诊断；地图使用另一份map_preview_v2，原件和旧副本均不改写",
+        "原生203骨、0动作；新GLB保留203骨并由导出器增加neutral_bone，仅一帧源站姿快照",
+        "独立地图仅静态陈列；Tab原骑士游览，未进行重定向或角色动画/碰撞适配"
+      ],
+      "local_preview": {
+        "scene": "scenes/visual_lab/local_model_preview.tscn",
+        "path": "models/mutsumi/map_preview_v2/mutsumi_map.glb",
+        "sha256": "b150e40698080e3c1b8eeabdf10d54db6a3a618a7a892b163e910528981addd7",
+        "bytes": 3043444,
+        "meshes": 12,
+        "triangles": 45512,
+        "joint_count": 204,
+        "pose_snapshot": "source_display_pose",
+        "locomotion_clips": 0,
+        "materials": "简化PBR；原彩色制服/裙/鞋，头发肤色近似，非作者卡通材质完整还原",
+        "local_only": true
+      }
     },
     {
       "id": "umiri",
@@ -310,5 +324,5 @@
       "contents_verified": false
     }
   ],
-  "collection_session_note": "2026-10-29继续：模之屋登录已成功；未执行被拒绝的账号互动，尚无新增下载。用户账号与凭据不写入清单。"
+  "collection_session_note": "2026-11-03按用户新增授权制作若叶睦独立本地地图静态展示；实际仍1/9，未重试账号互动或被阻止下载。模型/贴图/预览不上传GitHub。"
 }

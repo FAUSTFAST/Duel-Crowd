@@ -510,3 +510,17 @@ Blender实际执行build_study.py完成新建源及静态GLB、12张正/侧/3/4�
 原作者动态主页仍为5件作品，没有海铃。补查独立VRoid作者的高松灯，原页明确不可下载/不可使用，未尝试提取；立希/乐奈没有找到新的许可明确免费公开原包。未重复访问被安全策略阻止的百度/MEGA下载。
 
 若叶睦原生源只读节点审计完成：38材质/8节点组，autoexec=False；原源前后SHA256均为90643becfe77b56acef2f3a2ffab0c22c4260fc781cca00298f156704c4347dc。制服/裙/鞋彩色源为mutsmi_clothes.png；脸为body_pants副本经HSV及肤色Ramp；头发依赖近白基础图、光照Ramp/AO和Overlay。没有保存模型、导出或生成新预览，也没有将这份分析称材质修复完成。本轮仅更新状态/文档，本地文件审计仍通过，未进行Godot游戏回归。
+
+## 2026-11-03 — 若叶睦独立森林静态预览
+
+起点6b37724；新增授权仅为将已取得模型放入地图查看，实际仍1/9。未执行此前被拒的关注/点赞/收藏或绕过下载安全限制。原生Blender只读、disable-autoexec，原源SHA256仍为90643bec…，不执行其脚本或保存源。新工具export_local_preview.py默认拒绝覆盖输出。
+
+新map_preview_v2 GLB实际导出及Blender重新导入：12人物网格、45,512三角形、3,043,444字节、SHA256 b150e40698080e3c1b8eeabdf10d54db6a3a618a7a892b163e910528981addd7；203原骨名称全部保留，导出器另增neutral_bone。只含一帧source_display_pose源站姿快照，不是待机/走跑动作。过滤MMD辅助物、重复下半身和不兼容物理/描边；制服/裙/鞋改接原彩色Albedo，工作图降至1024，头发/皮肤为近似PBR，不称作者卡通材质完整移植。v1为中间失败副本保留，地图使用v2。
+
+独立local_model_preview.tscn使用原像素渲染器与森林，GLTFDocument运行时读取.gdignore内本地副本。原图、主角和项目设置不改；默认静态观察，Tab切换到原骑士游览。陈列物无独立碰撞，未将模型绑定原角色动画或实现可操作若叶睦。
+
+Godot4.7.2实际图形运行tests/local_model_preview_test.gd：33项/0失败，日志有LOCAL_MODEL_PREVIEW_TEST_COMPLETE并退出0。验证12网格/204骨、静态快照、高清UI、单次相对鼠标转发、Esc/点击捕获、滚轮、三档16:9、Tab模式切换与原骑士WASD/Shift/接地。1.58m为bind网格包围盒归一化，不当作全姿态实测高度；检查实际图可见脚底位于路面，未做全模型穿插或斜坡IK验收。原tests/prototype_test.gd图形回归19项/0失败，包含原角色移动、摄像机捕获、缩放、墙体碰撞和复位。
+
+实际地图截图在ignored previews/mutsumi_map_v2：forest_front_640、forest_three_quarter_640、forest_three_quarter_native。人工查看了正面640和原生3/4，能辨认绿发/蓝制服/棕鞋，未见辅助物、明显重复下半身或拉伸；脸与腿在森林强光下偏白，原卡通层次尚未还原。非美术质量审批。120帧短窗口帧间隔median8.12ms/P95 10.33ms，非GPU耗时或长期性能基准。
+
+模型、贴图、衍生GLB、Blender回读图、地图截图和日志保持本地Git忽略；公开同步仅新增工具/独立场景脚本/文档清单。缺少本地模型的机器会显示缺失提示。未验证正式游戏发布许可、骨骼重定向、走跑、发裙物理或角色碰撞。

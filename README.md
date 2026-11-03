@@ -1,5 +1,7 @@
 # 灰誓 / Ashen Oath — Duel-Crowd
 
+2026-11-03：已将本地取得的**若叶睦**接入独立森林静态预览。打开 `scenes/visual_lab/local_model_preview.tscn`，选择“运行当前场景”（F6）；F5仍是旧主场景。默认鼠标旋转、滚轮缩放，Esc释放/点击捕获；Tab切回原骑士用WASD/Shift游览，再按Tab返回展示。模型没有走跑动画，材质为Godot简化近似，尚未正式角色适配。模型和运行截图仅在本地隔离库，其他8名尚未取得。[文件位置和完整说明](local_assets/bang_dream/README.md)。
+
 2026-10-29：按用户要求建立独立[第三方角色本地素材库](local_assets/bang_dream/README.md)。9名角色中目前仅若叶睦实际取得GLB及原生Blender资料包。模之屋已登录，下载所需关注/点赞/收藏待明确授权；其余仍待用户领取或公开原包。模型、贴图和预览仅保留本地并隔离Godot自动导入；未接入游戏或上传GitHub，下载不等于游戏使用授权。原GLB有辅助网格与材质兼容问题，详见清单。
 
 **2026-10-20：像素友好底模，阶段1 / 2。** 新建独立低模轮廓候选，保留设定图配色和识别点，先验收大形与低分辨率读图。[三视图](docs/pixel_body_study/v3/review_board.png) · [低分辨率读图](docs/pixel_body_study/v3/pixel_board.png) · [旧/新同机位](docs/pixel_body_study/v3/before_after.png) · [分析、范围与打开方法](docs/pixel_body_study/README.md)。在Blender打开 `assets/characters/pixel_adventurer_v3/source/blender/adventurer_blockout.blend`。它是静态候选，尚无绑定/动作，未接入Godot，原游戏功能与旧模型保留。围巾、小包和靴子仍为大形，未提前开展阶段3–5。

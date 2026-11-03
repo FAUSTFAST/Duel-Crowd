@@ -1,6 +1,27 @@
 # BanG Dream 角色本地素材库
 
-这是用户要求收集的第三方角色资料，独立于 Ashen Oath 的原创游戏资产。Godot 自动导入已通过 `.gdignore` 隔离；模型、压缩包、贴图和预览均不提交 Git，也未接入游戏场景。下载不等于取得游戏发布、商用或再分发许可。
+这是用户要求收集的第三方角色资料，独立于 Ashen Oath 的原创游戏资产。Godot 自动导入已通过 `.gdignore` 隔离；模型、压缩包、贴图和预览均不提交 Git。2026-11-03按新增要求接入独立本地地图陈列，没有更换正式角色或原地图。下载不等于取得游戏发布、商用或再分发许可。
+
+## 查看若叶睦在地图里的效果（2026-11-03）
+
+Godot打开 `scenes/visual_lab/local_model_preview.tscn`，使用“运行当前场景”（F6，Mac功能键设置可能需要Fn+F6）。F5依然运行原项目主场景。
+
+- 默认静态陈列：鼠标旋转、滚轮缩放，Esc释放鼠标、点击重新捕获。
+- Tab切回原骑士游览：WASD移动、Shift奔跑；再次Tab返回模型。
+- F1开关像素化、F2三档内部尺寸；F3仅切环境/原骑士细节，不会切若叶睦的PBR纹理。
+- 模型没有待机/走跑动画，不能把静态站姿当作已适配的可操作人物。陈列物无独立碰撞。
+
+本机实际图形运行截图仅本地保存：`previews/mutsumi_map_v2/forest_front_640.png`、`forest_three_quarter_640.png`、`forest_three_quarter_native.png`。
+
+本轮新副本 `models/mutsumi/map_preview_v2/mutsumi_map.glb`：12网格、45,512三角形、204导入骨（203原骨+neutral_bone）、约3MB。`source_display_pose`是原源单帧站姿快照，不是动作片段。制服/裙/鞋用原彩色图，头发/肤色为简化近似；森林强光下肤色偏亮，原卡通材质、描边和物理尚未复现。旧失败prepared副本保留，不再用作地图展示。
+
+新增GLB在ignored库中，由主项目GLTFDocument运行时读取，未取消.gdignore；GitHub不包含第三方模型/贴图/截图。另一台机器需合法取得本地模型并按同一路径放置，否则预览显示缺失提示。可复验：
+
+```sh
+/Applications/Godot.app/Contents/MacOS/Godot --path . --script res://tests/local_model_preview_test.gd
+```
+
+`tools/model_library/export_local_preview.py`只在禁用自动执行的Blender进程运行，读取原生源而不保存，默认拒绝覆盖已有输出。衍生副本及原件摘要分别记录在本地manifest和catalog；不把近似显示当作游戏发布授权或正式适配。
 
 ## 已下载
 
@@ -47,4 +68,4 @@
 python3 tools/model_library/audit_library.py
 ```
 
-本轮更新：2026-10-29。精确状态及 SHA256 见 `catalog.json`，未下载项的 `files` 必须为空。
+本轮更新：2026-11-03。精确状态及 SHA256 见 `catalog.json`，未下载项的 `files` 必须为空。

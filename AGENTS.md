@@ -1,5 +1,7 @@
 # 项目开发约定
 
+2026-11-03新增授权：用户要求把已下载角色放入地图查看。独立scenes/visual_lab/local_model_preview.tscn复用森林，GLTFDocument运行时读取ignored local_assets/bang_dream/models/mutsumi/map_preview_v2/mutsumi_map.glb；不替换原图/主角。默认静态陈列，Tab切回原骑士WASD游览，原单输入路由保留。新工具export_local_preview.py须Blender --disable-autoexec --python-exit-code 1，原源只读、默认拒绝覆盖；source_display_pose仅一帧源姿态快照，203原骨+导出neutral_bone，非动作适配。制服彩色图恢复，头发/肤色简化近似，不能称作者材质还原/可用游戏角色。模型/贴图/预览/manifest仍全在ignored库，不公开上传。运行图形tests/local_model_preview_test.gd；原图控制保持。此新增地图陈列授权不包括此前被拒的账号互动或下载绕过。
+
 2026-10-29用户另行授权MyGO/Ave Mujica本地模型收集：仅local_assets/bang_dream隔离库，根.gdignore及目录.gitignore排除Godot导入/第三方二进制上传。9名中实际仅若叶睦取得GLB+原生Blender资料包；catalog.json未下载项files必须为空。保留原包/原源/SHA256，不执行第三方脚本；Blender检查使用--disable-autoexec，原源只读不保存。原GLB带MMD辅助物且导出颜色异常；prepared只是失败的本地诊断副本，不能当游戏完成适配。其余待登录/用户领取/公开原包，不能绕过已阻止的MEGA/百度盘访问。正式游戏许可尚未确认，不上传模型/贴图/预览，不替换现有角色或改控制、场景；公开同步只含来源清单/工具/文档。此前原创pixel_adventurer_v3仍停在阶段2，不能因收集新角色自动推进。
 
 同日继续：模之屋已登录；关注Liope、点赞及收藏的下载条件被自动审批拒绝，已请求用户明确授权，不能把“全部帮我弄”或切换入口当作绕过拒绝。初华仍待授权领取邮箱；未新增模型。只读材质审计见本地reports/material_audit_nodes.json，制服/裙/鞋彩色源是mutsmi_clothes.png；发/肤色还依赖Shader-to-RGB/Ramp，未修复或导出。待用户授权后再按实际下载更新清单。
