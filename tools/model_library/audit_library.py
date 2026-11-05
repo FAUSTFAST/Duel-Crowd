@@ -63,8 +63,9 @@ def main() -> None:
             continue
         record = {"character": character["name_zh"], "files": []}
         items = list(character["files"])
-        if character.get("local_preview"):
-            items.append({**character["local_preview"], "derived_local_preview": True})
+        for key in ["local_preview", "local_motion"]:
+            if character.get(key):
+                items.append({**character[key], "derived_local_preview": True, "derived_kind": key})
         for item in items:
             path = (LIBRARY / item["path"]).resolve()
             assert path.is_relative_to(LIBRARY.resolve()), "Path escapes library"
@@ -74,6 +75,7 @@ def main() -> None:
             details = {"path": item["path"], "sha256_verified": True}
             if item.get("derived_local_preview"):
                 details["derived_local_preview"] = True
+                details["derived_kind"] = item["derived_kind"]
             if path.suffix.lower() == ".zip":
                 with zipfile.ZipFile(path) as archive:
                     assert archive.testzip() is None, "Archive CRC failed"

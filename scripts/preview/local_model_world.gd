@@ -4,6 +4,7 @@ extends "res://scripts/valley/valley_world.gd"
 
 @export_file("*.glb") var local_model_path := "res://local_assets/bang_dream/models/mutsumi/map_preview_v2/mutsumi_map.glb"
 @export var display_height := 1.58
+@export_range(1.0, 120.0, 1.0) var animation_bake_fps := 30.0
 var display_root: Node3D
 var local_model: Node3D
 var inspecting := true
@@ -23,7 +24,7 @@ func _ready() -> void:
 	if result != OK:
 		load_error = "Local GLB could not load (error %d)." % result
 		return
-	local_model = document.generate_scene(state) as Node3D
+	local_model = document.generate_scene(state, animation_bake_fps) as Node3D
 	if not is_instance_valid(local_model):
 		load_error = "Local GLB did not produce a 3D scene."
 		return

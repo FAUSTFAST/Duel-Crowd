@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_date": "2026-11-03",
+  "updated_date": "2026-11-05",
   "scope": "本地第三方模型收集与独立静态地图预览；不进入原创生产资产或公开再分发",
   "requested_characters": 9,
   "duplicate_request_collapsed": [
@@ -257,7 +257,7 @@
       "license_note": "下载包仅含GLB，无独立授权文件。分享说明为改自很ying；原作者同名配布禁止商用，但具体转换版本完整许可及游戏使用仍需确认",
       "download_channel": "蓝奏云作者视频公开链接",
       "download_observed_date": "2026-10-27",
-      "deployment": "本地独立森林静态陈列；未替换正式角色，未适配走跑/角色碰撞",
+      "deployment": "本地独立动作测试及静态陈列；原骑士/正式地图保留，非正式发布适配",
       "technical_notes": [
         "已保留GLB和原生Blender资料包；不是九人合集",
         "原GLB包含可见MMD刚体辅助网格，颜色贴图导出通道有误，不能直接作为正常游戏角色",
@@ -276,6 +276,28 @@
         "pose_snapshot": "source_display_pose",
         "locomotion_clips": 0,
         "materials": "简化PBR；原彩色制服/裙/鞋，头发肤色近似，非作者卡通材质完整还原",
+        "local_only": true
+      },
+      "local_motion": {
+        "scene": "scenes/visual_lab/local_model_motion.tscn",
+        "path": "models/mutsumi/motion_preview_v5/mutsumi_motion.glb",
+        "bytes": 3521532,
+        "sha256": "e786899167efdf1ebabeadab44282fd27b233fb9eba5ad8739ef5d46a120aaf3",
+        "meshes": 12,
+        "triangles": 45512,
+        "joint_count": 204,
+        "clips": [
+          "idle",
+          "walk",
+          "run"
+        ],
+        "fps": 60,
+        "cycle_seconds": 1.0,
+        "walk_speed_m_s": 1.25,
+        "jog_speed_m_s": 2.8,
+        "jog_stride_m": 1.8,
+        "scope": "原创程序烘焙的可操作动作候选；仅新副本裙网格3868点修权重",
+        "limitations": "裙摆抬升过强、少量局部穿插；无坡地IK/发裙物理/正式美术验收",
         "local_only": true
       }
     },
@@ -324,5 +346,5 @@
       "contents_verified": false
     }
   ],
-  "collection_session_note": "2026-11-03按用户新增授权制作若叶睦独立本地地图静态展示；实际仍1/9，未重试账号互动或被阻止下载。模型/贴图/预览不上传GitHub。"
+  "collection_session_note": "2026-11-05按新增授权制作若叶睦idle/walk/run本地动作副本与可操作森林场景。实际仍1/9；原模型/贴图/衍生素材/录像不上传，账号互动与下载阻碍未改变。"
 }

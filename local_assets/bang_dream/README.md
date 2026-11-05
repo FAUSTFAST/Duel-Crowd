@@ -4,6 +4,14 @@
 
 ## 查看若叶睦在地图里的效果（2026-11-03）
 
+**2026-11-05动作版：** Godot打开 `scenes/visual_lab/local_model_motion.tscn` 后运行当前场景（F6/Fn+F6）。WASD控制若叶睦步行、Shift慢跑、Tab观察/操作；鼠标旋转/滚轮缩放、Esc释放/点击捕获。原来的local_model_preview.tscn仍为静态陈列及原骑士游览，不会自动替换。
+
+动作副本在 `models/mutsumi/motion_preview_v5/mutsumi_motion.glb`，原生工作文件同目录 `mutsumi_motion.blend`；idle/walk/run均1秒/60fps。只对新副本裙网格3868点修权重，mesh/UV/rest/材质保留，无新增骨或隐藏身体面，详见manifest及skirt_weight_changes。原源、静态GLB和中间失败副本均保留。程序烘焙候选仍需手工精修，尚无坡地脚IK、真正发裙物理或全姿态穿插保证。
+
+真实录像中走路裙摆抬升偏强，另有少量局部穿插；当前是可试玩动作测试版，不是服装变形完成版。正面八相位复核在动作副本的front_review/；保留这些真实问题，不将其修图消除。
+
+实际地图实录及运行截图保存在 `previews/mutsumi_motion_v5/take1/`；录像来自真实控制器逐帧渲染，非生成动画。`tools/model_library/build_mutsumi_motion.py`在Blender禁用自动执行下使用，默认拒绝覆盖输出；图形复验运行 `tests/local_model_motion_test.gd`，实录工具 `capture_local_motion.gd` 使用 `--fixed-fps 30`。模型、贴图和录像不上传GitHub，游戏发布许可未因此改变。
+
 Godot打开 `scenes/visual_lab/local_model_preview.tscn`，使用“运行当前场景”（F6，Mac功能键设置可能需要Fn+F6）。F5依然运行原项目主场景。
 
 - 默认静态陈列：鼠标旋转、滚轮缩放，Esc释放鼠标、点击重新捕获。
@@ -68,4 +76,4 @@ Godot打开 `scenes/visual_lab/local_model_preview.tscn`，使用“运行当前
 python3 tools/model_library/audit_library.py
 ```
 
-本轮更新：2026-11-03。精确状态及 SHA256 见 `catalog.json`，未下载项的 `files` 必须为空。
+本轮更新：2026-11-05。精确状态及 SHA256 见 `catalog.json`，未下载项的 `files` 必须为空。

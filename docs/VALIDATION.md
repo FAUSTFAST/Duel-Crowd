@@ -524,3 +524,19 @@ Godot4.7.2实际图形运行tests/local_model_preview_test.gd：33项/0失败，
 实际地图截图在ignored previews/mutsumi_map_v2：forest_front_640、forest_three_quarter_640、forest_three_quarter_native。人工查看了正面640和原生3/4，能辨认绿发/蓝制服/棕鞋，未见辅助物、明显重复下半身或拉伸；脸与腿在森林强光下偏白，原卡通层次尚未还原。非美术质量审批。120帧短窗口帧间隔median8.12ms/P95 10.33ms，非GPU耗时或长期性能基准。
 
 模型、贴图、衍生GLB、Blender回读图、地图截图和日志保持本地Git忽略；公开同步仅新增工具/独立场景脚本/文档清单。缺少本地模型的机器会显示缺失提示。未验证正式游戏发布许可、骨骼重定向、走跑、发裙物理或角色碰撞。
+
+## 2026-11-05 — 若叶睦可操作动作候选
+
+稳定起点3d2b7eb。用户新增授权让若叶睦运动，仅独立local_model_motion场景；原静态预览、主场景和角色控制资源保留。开始时已有3份用户修改及4份未跟踪UID，七文件摘要在ignored reports/motion_user_before.json，最终逐一核对未改。
+
+build_mutsumi_motion.py用Blender4.5.9、disable-autoexec，只读既有静态map_preview_v2 GLB，未打开/改写原下载blend。新v5 GLB 3,521,532字节，SHA256 e786899167efdf1ebabeadab44282fd27b233fb9eba5ad8739ef5d46a120aaf3；12网格/45,512三角形/204骨，全部原骨名保留，回读rest最大数值差1.77e-5。mesh/UV/11材质保持；仅新副本dress3868点重绑，逐点旧/新权重保留。没有隐藏身体面或新增骨。原生动作工作文件独立保存在ignored动作目录，3个Action均Fake User。
+
+idle/walk/run是原创程序烘焙候选，非动捕/人工精修。足接触轨迹+两骨腿IK、骨盆重心、对侧摆臂；3循环均准确0–1秒/60fps，运行时generate_scene显式60fps。步速1.25m/s，慢跑2.8m/s，对应1.25/1.8m相位步距。AnimationTree使用真实XZ位移速度调频，跟随模型子树避免Tab重挂后路径失效；原控制器使用独立profile实例，不改变旧地图默认设置。
+
+Godot4.7.2图形tests/local_model_motion_test.gd最终42项/0失败，完成标记并退出0。实际导入三循环、时长、204骨、待机全循环躯干幅度约4.12mm；walk .1–.2秒支撑窗口位移残差约0.183mm，非全周期/坡地脚滑结论。验证实际AnimationTree驱动骨骼、走跑/停步/转向、Tab无跳位、原碰撞胶囊接地、Esc/点击捕获、单次鼠标转发及3档/原生渲染。
+
+初轮出现AnimationTree重挂后的无效路径警告，已将mixer移到模型子树并显式设root_node，最终日志无此警告；后一次idle检测因恰好取两个同值相位误报，改为测整循环幅度后通过，保留失败日志。原prototype首轮非固定帧运行2项失败（镜头收敛/行走位移），未改原控制，固定60fps图形复验19项/0失败；不据此断言首轮失败原因。原静态预览33项/0失败。
+
+真实录制360帧/30fps/12秒/640×360，物理控制器走过19.9197m，胶囊360帧接地、idle71/walk125/run164帧，10个路线目标；不是网格双脚全程贴地或性能基准。capture_local_motion.gd运行至LOCAL_MOTION_RECORD_COMPLETE并退出0。现有Blender编码工具将真实帧编码MP4，重新读入确认640×360/360帧，完成标记/退出0。实录及截图在ignored previews/mutsumi_motion_v5/take1/。
+
+人工检查地图步行/慢跑截图、原生回读及正面八相位：主要腿穿裙大斑改善，但走路裙摆随腿抬升偏强、暴露腿部，另有少量裙面局部穿插。当前明确为可操作候选，仍需手工裙摆权重、手指、坡地IK及发裙物理；不称全姿态无穿插或动作美术通过。v1–v4仅保留中间诊断，不作运行模型。第三方衍生GLB/blend/贴图/视频/图片继续本地忽略，Git只同步独立工具、场景、测试和文档清单。

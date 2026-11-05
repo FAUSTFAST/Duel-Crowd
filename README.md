@@ -1,5 +1,7 @@
 # 灰誓 / Ashen Oath — Duel-Crowd
 
+2026-11-05：若叶睦已新增**待机、步行和慢跑动作测试**。打开 `scenes/visual_lab/local_model_motion.tscn` 运行当前场景（F6/Fn+F6）；默认可用WASD操作她，Shift慢跑，Tab在观察/操作间切换，鼠标/滚轮/Esc保留。原静态预览、原骑士和地图保留。动作是新副本上的原创程序烘焙候选，尚无坡地贴脚IK、布料/头发物理及手工精修；文件和实际录像仅在本地隔离库。[详情](local_assets/bang_dream/README.md)。
+
 2026-11-03：已将本地取得的**若叶睦**接入独立森林静态预览。打开 `scenes/visual_lab/local_model_preview.tscn`，选择“运行当前场景”（F6）；F5仍是旧主场景。默认鼠标旋转、滚轮缩放，Esc释放/点击捕获；Tab切回原骑士用WASD/Shift游览，再按Tab返回展示。模型没有走跑动画，材质为Godot简化近似，尚未正式角色适配。模型和运行截图仅在本地隔离库，其他8名尚未取得。[文件位置和完整说明](local_assets/bang_dream/README.md)。
 
 2026-10-29：按用户要求建立独立[第三方角色本地素材库](local_assets/bang_dream/README.md)。9名角色中目前仅若叶睦实际取得GLB及原生Blender资料包。模之屋已登录，下载所需关注/点赞/收藏待明确授权；其余仍待用户领取或公开原包。模型、贴图和预览仅保留本地并隔离Godot自动导入；未接入游戏或上传GitHub，下载不等于游戏使用授权。原GLB有辅助网格与材质兼容问题，详见清单。
