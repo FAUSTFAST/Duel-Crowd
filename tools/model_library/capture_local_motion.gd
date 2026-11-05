@@ -88,7 +88,7 @@ func record() -> void:
 		if frame % 30 == 0:
 			samples.append({"second": seconds, "state": state, "speed": Vector2(player.get_real_velocity().x, player.get_real_velocity().z).length(), "grounded": player.is_on_floor()})
 	release_actions()
-	var report := {"engine": Engine.get_version_info().string, "frames": 360, "fps": 30, "internal_resolution": [640,360], "distance_m": distance, "grounded_frames": grounded, "states": states, "route_targets": target, "samples": samples, "kind": "actual physics/controller/rendered frames; no synthesized motion", "limitations": "original prototype clips; no slope foot IK or cloth/hair physics"}
+	var report := {"engine": Engine.get_version_info().string, "frames": 360, "fps": 30, "internal_resolution": [game.viewport.size.x, game.viewport.size.y], "distance_m": distance, "grounded_frames": grounded, "states": states, "route_targets": target, "samples": samples, "kind": "actual physics/controller/rendered frames; no synthesized motion", "limitations": "original prototype clips; no slope foot IK or cloth/hair physics"}
 	FileAccess.open(output + "recording.json", FileAccess.WRITE).store_string(JSON.stringify(report, "\t") + "\n")
 	print("LOCAL_MOTION_RECORD_COMPLETE ", JSON.stringify(report))
 	quit(0 if distance > 12 and states.has("walk") and states.has("run") and states.has("idle") else 1)

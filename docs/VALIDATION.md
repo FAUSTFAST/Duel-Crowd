@@ -1,5 +1,13 @@
 # 验证记录
-最新阶段见文末“2026-10-20 — 像素友好低模底模阶段1/2”；以下历史环境与授权状态按当时情况保留，不代表当前状态。
+最新显示方向见本节；历史环境与授权状态按当时情况保留，不代表当前状态。
+
+## 2026-11-05 — 若叶睦非像素原生显示
+
+稳定起点df2e2df。用户要求不用像素风；仅local_model_motion默认pixel_enabled=false，独立派生脚本在原生模式移除pixel_present呈现材质、改Linear并启用4× MSAA，像素对比恢复Nearest/无AA。共享渲染器、旧地图、原静态预览及模型/贴图/动画文件未改。七份既有用户文件摘要复核未改。
+
+Godot4.7.2图形固定60fps复验local_model_motion_test：45项/0失败，退出0。检查默认1280×720原生尺寸、无量化shader、Linear/4× MSAA、三档像素对比切换；原走跑/Tab/碰撞/相对鼠标捕获等继续通过。日志在ignored reports/native_motion_test_20261105.log。
+
+capture_local_style.gd实际图形运行完成并退出0；同机位同冻结姿态的640像素版与1280原生版根视口截图均1280×720，保存在ignored previews/mutsumi_native_20261105，原take1录像未覆盖。人工看图：原生版人物边缘与衣服细节更清楚，环境纹理仍保留原像素绘制。截图元数据native_msaa=2是Godot MSAA_4X枚举值。没有重导出模型或完整恢复作者卡通Shader，肤色/头发PBR近似及裙摆动作问题仍存在；没有给出新性能基准。capture_local_motion元数据改为实际内部尺寸，避免未来原生录像被误标640×360。
 
 ## 历史：阶段 1–2
 日期：2026-10-13（Asia/Shanghai）。

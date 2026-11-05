@@ -1,5 +1,7 @@
 # 项目开发约定
 
+2026-11-05显示方向更新：用户要求若叶睦不用像素风，当前独立local_model_motion.tscn默认pixel_enabled=false。local_motion_preview只在本场景原生模式取消像素呈现shader、Linear显示、4x MSAA；F1可回像素对比，旧主场景/森林/静态预览不改。当前仍使用既有简化PBR，不等于作者Shader-to-RGB/Ramp完整还原；环境贴图仍为现有美术。capture_local_style.gd拒绝覆盖，同机位截图存ignored previews/mutsumi_native_20261105；capture_local_motion报告实际渲染尺寸，不再硬编码640。
+
 2026-11-05新增授权：用户要求若叶睦运动；仅独立scenes/visual_lab/local_model_motion.tscn，默认操作睦，Tab观察/操作，旧静态陈列/森林/原骑士不替换。runtime加载ignored motion_preview_v5/mutsumi_motion.glb，60fps显式generate_scene；新local_motion控制idle/walk/run混合，原controller+独立locomotion_profile实例，步1.25m/s慢跑2.8m/s，步频按get_real_velocity和1.25/1.8m周期距离驱动。AnimationTree跟随model子树避免reparent路径失效。build_mutsumi_motion.py只读旧静态GLB、--disable-autoexec、默认拒绝覆盖；原rest/mesh/UV/材质保留，仅新副本dress3868点权重修正neutral_bone区。无隐藏身体面、无新增骨；动作原创程序烘焙候选，非手工精修/坡地IK/布料物理。原源与v2静态文件不能覆盖；v1–v4失败/中间稿不作最终。图形tests/local_model_motion_test.gd；capture_local_motion.gd --fixed-fps 30录360帧到ignored previews/mutsumi_motion_v5/takeN，拒绝覆盖，必须完成标记。新原生blend/GLB/录像/图全部本地不上传。
 
 2026-11-03新增授权：用户要求把已下载角色放入地图查看。独立scenes/visual_lab/local_model_preview.tscn复用森林，GLTFDocument运行时读取ignored local_assets/bang_dream/models/mutsumi/map_preview_v2/mutsumi_map.glb；不替换原图/主角。默认静态陈列，Tab切回原骑士WASD游览，原单输入路由保留。新工具export_local_preview.py须Blender --disable-autoexec --python-exit-code 1，原源只读、默认拒绝覆盖；source_display_pose仅一帧源姿态快照，203原骨+导出neutral_bone，非动作适配。制服彩色图恢复，头发/肤色简化近似，不能称作者材质还原/可用游戏角色。模型/贴图/预览/manifest仍全在ignored库，不公开上传。运行图形tests/local_model_preview_test.gd；原图控制保持。此新增地图陈列授权不包括此前被拒的账号互动或下载绕过。
